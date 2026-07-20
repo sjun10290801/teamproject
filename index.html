@@ -1,31 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<style>
-    .product-card {
-        border: 1px solid #000000;  
-        padding: 15px;            
-        width: 250px;              
-    }
+    <style>
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            width: 100%;
+        }
+    </style>
+
+    <style>
+            .card-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;                             
+            padding: 20px;
+        }
+    </style>
+
+        <style>
+            .product-card {
+            border: 1px solid #000000;
+            padding: 15px;
+            width: 320px;
+            height: 400px;
+        }
     </style>
 </head>
-<body>
-    <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
-<div class="product-card">
-        
-    <h2 class="product-title">당근마켓 스타일 자전거 팝니다</h2>
-    
-      <img src="..." class="card-img-top" alt="...">
 
-    <p class="product-time">경주시 황오동 • 3시간 전</p>
-    
-    <h3 class="product-price">150,000원</h3>
+<body>
+    <div class="search-container">
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="card-list">
+
+    <div class="product-card">
+
+        <h2 class="product-title">메리다 105 자전거 팝니다</h2>
+
+        <img src="..." class="card-img-top" alt="...">
+
+        <p class="product-time">서울시 상계동 • 15분 전</p>
+
+        <h3 class="product-price">700,000원</h3>
+    </div>
+
+
+        <div class="product-card">
+
+        <h2 class="product-title">삼성 갤럭시북 노트북 팔아요</h2>
+
+        <img src="..." class="card-img-top" alt="...">
+
+        <p class="product-time">서울시 중계동 • 하루 전</p>
+
+        <h3 class="product-price">500,000원</h3>
+    </div>
+
+
+        <div class="product-card">
+
+        <h2 class="product-title">로지텍 마우스 102 팝니다</h2>
+
+        <img src="..." class="card-img-top" alt="...">
+
+        <p class="product-time">서울시 노원구 • 1시간 전</p>
+
+        <h3 class="product-price">20,000원</h3>
+    </div>
+
+        <div class="product-card">
+
+        <h2 class="product-title">5060 컴퓨터 본체 팔아요</h2>
+
+        <img src="..." class="card-img-top" alt="...">
+
+        <p class="product-time">서울시 공릉동 • 3시간 전</p>
+
+        <h3 class="product-price">1,500,000원</h3>
+    </div>
+
 </div>
 </body>
+
 </html>
