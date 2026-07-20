@@ -18,23 +18,57 @@
             <option selected>카테고리</option>
             <option value="1">디지털기기</option>
             <option value="2">가구</option>
-            <option value="3">기전</option>
-            <option value="4">기전</option>
-            <option value="5">기전</option>
-            <option value="6">기전</option>
+            <option value="3">가전</option>
+            <option value="4">의류</option>
+            <option value="5">게임</option>
+            <option value="6">기타</option>
     </select>
+    </div>
     </div>
 
     <div class="row">
     <div class="mb-3 col-md-6">
-            <label for="exampleFormControlInput1" class="form-label">제품명</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="제품명을 입력해주세요.">
+            <label for="product_name" class="form-label">제품명</label>
+            <input type="text" class="form-control" id="product_name" placeholder="제품명을 입력해주세요.">
+            </div>
             </div>
 
             <div class="row">
-            <div class="mb-3"col-12>
-            <label for="exampleFormControlTextarea1" class="form-label">제품 설명</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="제품에 대한 설명을 입력해주세요." rows="3"></textarea>
+    <div class="mb-3 col-md-6">
+            <label for="product_price" class="form-label">가격</label>
+            <input type="text" class="form-control" id="product_price" placeholder="">
+            </div>
+            </div>
+            
+            <div class="row">
+            <div class="mb-3 col-md-6">
+                <label for="product_region" class="form-label">지역</label>
+                <select class="form-select" id="product_region">
+            <option selected>지역을 선택해주세요.</option>
+            <option value="gangwon">강원특별자치도</option>
+        <option value="gyeonggi">경기도</option>
+        <option value="gyeongnam">경상남도</option>
+        <option value="gyeongbuk">경상북도</option>
+        <option value="gwangju">광주광역시</option>
+        <option value="daegu">대구광역시</option>
+        <option value="daejeon">대전광역시</option>
+        <option value="busan">부산광역시</option>
+        <option value="seoul">서울특별시</option>
+        <option value="sejong">세종특별자치시</option>
+        <option value="ulsan">울산광역시</option>
+        <option value="incheon">인천광역시</option>
+        <option value="jeonnam">전라남도</option>
+        <option value="jeonbuk">전북특별자치도</option>
+        <option value="jeju">제주특별자치도</option>
+        <option value="chungnam">충청남도</option>
+        <option value="chungbuk">충청북도</option>
+    </select>
+</div>
+</div>
+            <div class="row">
+            <div class="mb-3 col-12">
+            <label for="product_description" class="form-label">제품 설명</label>
+            <textarea class="form-control" id="product_description" placeholder="제품에 대한 설명을 입력해주세요." rows="3"></textarea>
             </div>
         </div>
         <div class="mb-3">
