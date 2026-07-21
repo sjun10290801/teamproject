@@ -7,6 +7,10 @@ ini_set('display_errors', 1);
     $name = trim($_POST["name"]);
     $price = trim($_POST["price"]);
     $text = trim($_POST["text"]);
+    $juso3 = trim($_POST["juso3"]);
+    $juso = trim($_POST["juso"]);
+
+    [$juso1, $juso2] = explode(" ", $juso);
 
     // $cookie_id = $_COOKIE["id"];  로그인 기능 구현 후 추가
 
@@ -44,8 +48,8 @@ ini_set('display_errors', 1);
 
 
     // db 데이터 삽입
-    $sql = "insert into product(member_id, image, price, address, memo, category, view, reg_date, state) 
-    values(1, '$fname', $price, '주소', '$text', $category, 0, sysdate(), 0)";  // 로그인 구현 후 cookie_id 수정 필요
+    $sql = "insert into product(member_id, image, price, memo, category, view, reg_date, state, juso1, juso2, juso3) 
+    values(1, '$fname', $price, '$text', $category, 0, sysdate(), 0, '$juso1', '$juso2', '$juso3')";  // 로그인 구현 후 cookie_id 수정 필요
 
     $result = mysqli_query($db, $sql);
     if(!$result) exit("에러 : $sql");

@@ -13,7 +13,15 @@
 </head>
 
 <body>
-    <form method="post" action="product_insert.php" enctype="multipart/form-data"> <!-- 제출용 폼 태그 추가  -->
+
+<script>
+    function FindZip(zip_kind) 
+	{
+		w=window.open("zipcode.php?zip_kind="+zip_kind, "zip", 
+			"width=440,height=320,scrollbars=no");
+	}
+</script>
+    <form method="post" name="form2" action="product_insert.php" enctype="multipart/form-data"> <!-- 제출용 폼 태그 추가  -->
         <div class="container">
             <h2 class="text-center mb-4">제품 등록</h2>
 
@@ -48,31 +56,13 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="mb-3 col-md-6">
-                    <label for="product_region" class="form-label">지역</label>
-                    <select class="form-select" name="region" id="product_region">
-                        <option selected>지역을 선택해주세요.</option>
-                        <option value="gangwon">강원특별자치도</option>
-                        <option value="gyeonggi">경기도</option>
-                        <option value="gyeongnam">경상남도</option>
-                        <option value="gyeongbuk">경상북도</option>
-                        <option value="gwangju">광주광역시</option>
-                        <option value="daegu">대구광역시</option>
-                        <option value="daejeon">대전광역시</option>
-                        <option value="busan">부산광역시</option>
-                        <option value="seoul">서울특별시</option>
-                        <option value="sejong">세종특별자치시</option>
-                        <option value="ulsan">울산광역시</option>
-                        <option value="incheon">인천광역시</option>
-                        <option value="jeonnam">전라남도</option>
-                        <option value="jeonbuk">전북특별자치도</option>
-                        <option value="jeju">제주특별자치도</option>
-                        <option value="chungnam">충청남도</option>
-                        <option value="chungbuk">충청북도</option>
-                    </select>
-                </div>
-            </div>
+            <div class="d-flex gap-2 mb-2">
+				<input type="text" name="juso" id="zip11" class="form-control custom-dark-input" style="max-width: 140px;" readonly>
+				<a href="javascript:FindZip(0);" class="btn btn-premium-inline text-nowrap">
+					<i class="bi bi-geo-alt me-1"></i> 주소찾기
+			    </a>
+		    </div>
+				<input type="text" name="juso3" id="juso11" class="form-control custom-dark-input" placeholder="상세 주소를 입력하세요">
             <div class="row">
                 <div class="mb-3 col-12">
                     <label for="product_description" class="form-label">제품 설명</label>
