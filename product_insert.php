@@ -55,4 +55,5 @@ ini_set('display_errors', 1);
     if(!$result) exit("에러 : $sql");
 
     header("Location:product_create.php");
+    exit();
 ?>

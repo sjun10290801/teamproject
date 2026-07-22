@@ -7,8 +7,6 @@
 	$sel=$_REQUEST["sel"]?$_REQUEST["sel"]:"1";
 	$text1=$_REQUEST["text1"]?$_REQUEST["text1"]:"";
 
-    var_dump($text1);
-    var_dump($sel);
 ?>
 <!doctype html>
 <html lang="kr" style="overflow:hidden">

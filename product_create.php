@@ -15,9 +15,44 @@
 <body>
 
 <script>
+    function Submit() {
+        if(form2.category.value == 0) {
+            alert("카테고리를 선택해주세요.");
+            form2.category.focus();
+            return;
+        }
+        if(!form2.name.value) {
+            alert("제품명을 입력해주세요.");
+            form2.name.focus();
+            return;
+        }
+        if(!form2.price.value) {
+            alert("가격을 입력해주세요.");
+            form2.price.focus();
+            return;
+        }
+        if(!form2.juso.value) {
+            alert("주소를 입력해주세요.");
+            form2.juso.focus();
+            return;
+        }
+        if(!form2.text.value) {
+            alert("제품 설명을 입력해주세요.");
+            form2.text.focus();
+            return;
+        }
+        if(!form2.text.value) {
+            alert("제품 설명을 입력해주세요.");
+            form2.text.focus();
+            return;
+        }
+
+        form2.submit();
+
+    }
     function FindZip(zip_kind) 
 	{
-		w=window.open("zipcode.php?zip_kind="+zip_kind, "zip", 
+		w=window.open("zipcode.php?zip_kind=", "zip", 
 			"width=440,height=320,scrollbars=no");
 	}
 </script>
@@ -75,7 +110,7 @@
                 <input class="form-control" type="file" id="formFileMultiple" multiple name="image">
             </div>
             <div class="text-center">
-                <button type="submit"  class="btn btn-primary">등록</button> <!-- 제출 버튼 추가  -->
+                <a href="javascript:Submit();" class="btn btn-sm btn-dark text-white myfont">등록</a><!-- 제출 버튼 추가  -->
             </div>
         </div>
     </form>
