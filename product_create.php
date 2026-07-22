@@ -52,7 +52,7 @@
     }
     function FindZip(zip_kind) 
 	{
-		w=window.open("zipcode.php?zip_kind=", "zip", 
+		w=window.open("zipcode.php", "zip", 
 			"width=440,height=320,scrollbars=no");
 	}
 </script>

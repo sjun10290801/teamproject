@@ -1,11 +1,11 @@
-<?
+<?php
 	include "common.php";
 
    $a_juso = ["주소", "서울", "경기", "인천", "강원", "충청북도", "세종", "충청남도", "대전", "경상북도", "대구", "울산", "부산", "경상남도", "전라북도", "전라남도", "광주", "제주"];
    $n_juso = count($a_juso);
 	
-	$sel=$_REQUEST["sel"]?$_REQUEST["sel"]:"1";
-	$text1=$_REQUEST["text1"]?$_REQUEST["text1"]:"";
+	$sel = $_REQUEST["sel"] ?? "1";
+	$text1 = $_REQUEST["text1"] ?? "";
 
 ?>
 <!doctype html>
