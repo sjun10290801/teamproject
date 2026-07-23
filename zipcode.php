@@ -84,7 +84,7 @@
 		<form name="form1">
 		<div class="d-inline-flex w-100 mb-1">
 			<select name="post_no" class="form-select form-select-sm bg-light" style="font-size:13px">
-				<?
+				<?php
 					if($text1)
 					{
 						$sql="select * from juso where juso1 like '%$a_juso[$sel]%' and juso2 like '%$text1%'";
