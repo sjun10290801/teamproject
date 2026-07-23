@@ -1,3 +1,21 @@
+<?php
+    if(!isset($_COOKIE["cookie_id"])) {
+            echo("<script>alert('로그인이 필요한 서비스입니다.');</script>");
+            echo("<script>location.href='login.html'</script>"); // 로그인 화면으로 돌아감.
+            exit();
+        }
+
+
+    include "common.php";
+    
+    $cookie_id = $_COOKIE["cookie_id"];
+
+    $sql = "select * from member where id = '$cookie_id'";
+    $result = mysqli_query($db, $sql);
+    if(!$result) exit('에러:$sql');
+
+    $row = mysqli_fetch_assoc($result);
+?>
 <!doctype html>
 <html lang="ko">
 
@@ -31,7 +49,7 @@
                         <label for="user_id" class="form-label">아이디</label>
 
                         <div class="input-group">
-                            <input type="text" name="id" id="user_id" value="aaa123" class="form-control"
+                            <input type="text" name="id" id="user_id" value="<?php echo("$cookie_id");?>" class="form-control"
                                 placeholder="아이디는 변경할 수 없습니다." readonly>
 
 
@@ -56,7 +74,7 @@
                     <div class="row mb-3">
                         <div class="col">
                             <label for="user_name" class="form-label">이름 변경</label>
-                            <input type="text" name="name" id="user_name" value="홍길동" class="form-control"
+                            <input type="text" name="name" id="user_name" value="" class="form-control"
                                 placeholder="이름을 입력해주세요.">
                         </div>
                     </div>
