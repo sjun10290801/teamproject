@@ -10,7 +10,7 @@ ini_set('display_errors', 1);
     $juso3 = trim($_POST["juso3"]);
     $juso = trim($_POST["juso"]);
 
-    [$juso1, $juso2] = explode(" ", $juso);
+    [$juso1, $juso2] = explode(" ", $juso, 2);
 
     // $cookie_id = $_COOKIE["id"];  로그인 기능 구현 후 추가
 

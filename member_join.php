@@ -1,3 +1,7 @@
+<?php
+    $a_bank = ["은행 선택", "국민", "신한", "기업", "하나", "우리"];
+    $n_bank = count($a_bank);
+?>
 <!doctype html>
 <html lang="ko">
 
@@ -34,19 +38,19 @@
         function Submit() {
             if(form2.check.value == 0) {
                 alert("중복 확인을 해주세요");
-                form2.check.focus();
+                form2.id.focus();
                 return;
             }
 
             if(!form2.pwd.value) {
                 alert("비밀번호를 입력해주세요");
-                form2.check.focus();
+                form2.pwd.focus();
                 return;
             }
 
-            if(form2.pwd.value == form2.pwd1.value) {
+            if(form2.pwd.value != form2.pwd1.value) {
                 alert("비밀번호가 일치하지 않습니다.");
-                form2.pwd.focus();
+                form2.pwd1.focus();
                 return;
             }
 
@@ -68,21 +72,9 @@
                 return;
             }
 
-            if(!form2.birthday1.value || !form2.birthday2.value || !form2.birthday3.value) {
+            if(!form2.birthday.value) {
                 alert("생년월일을 입력해주세요.");
-                form2.birthday1.focus();
-                return;
-            }
-
-            if(form2.birthday2.value < 1 || form2.birthday2.value > 12) {
-                alert("1 ~ 12의 숫자를 입력해주세요.");
-                form2.birthday2.focus();
-                return;
-            }
-
-            if(form2.birthday3.value < 0 || form2.birthday2.value > 31) {
-                alert("1 ~ 31 의 숫자를 입력해주세요.");
-                form2.birthday3.focus();
+                form2.birthday.focus();
                 return;
             }
 
@@ -98,6 +90,30 @@
                 return;
             }
 
+            if(!form2.juso3.value) {
+                alert("상세주소를 입력해주세요.");
+                form2.juso3.focus();
+                return;
+            }
+
+            if(form2.bank_name.value == 0) {
+                alert("은행명을 입력해주세요.");
+                form2.bank_name.focus();
+                return;
+            }
+
+            if(!form2.bank_num.value) {
+                alert("계좌번호을 입력해주세요.");
+                form2.bank_num.focus();
+                return;
+            }
+
+            if(form2.bank_num.value.indexOf('-') != -1) {
+                alert("-를 제외하고 입력해주세요.");
+                form2.bank_num.focus();
+                return;
+            }
+
             form2.submit();
         }
     </script>
@@ -110,7 +126,7 @@
             <div class="col-12 col-md-6">
                 <h2 class="text-center mb-4">회원가입</h2>
 
-                <form name="form2" method="post" action="member_join.php">
+                <form name="form2" method="post" action="member_insert.php">
                     <div class="mb-3">
                         <label for="user_id" class="form-label">아이디</label>
 
@@ -179,18 +195,8 @@
                         <label class="form-label">생년월일</label>
 
                         <div class="d-flex align-items-center gap-2">
-                            <input type="text" name="birthday1" class="form-control" maxlength="4" inputmode="numeric"
-                                placeholder="연도" aria-label="출생 연도" style="max-width: 100px;">
-
-                            <span>-</span>
-
-                            <input type="text" name="birthday2" class="form-control" maxlength="2" inputmode="numeric"
-                                placeholder="월" aria-label="출생 월" style="max-width: 80px;">
-
-                            <span>-</span>
-
-                            <input type="text" name="birthday3" class="form-control" maxlength="2" inputmode="numeric"
-                                placeholder="일" aria-label="출생 일" style="max-width: 80px;">
+                            <input type="date" name="birthday" class="form-control" maxlength="4" inputmode="numeric"
+                                placeholder="연도" aria-label="출생 연도" style="max-width: 300px;">
                         </div>
                     </div>
 
@@ -209,6 +215,24 @@
 
                         <input type="text" name="juso3" class="form-control mt-2" placeholder="상세 주소를 입력해주세요.">
                     </div>
+
+                    <div class="mb-3">
+                        <label for="user_bank" class="form-label">은행명</label>
+                        <select class="form-select" aria-label="Default select example" name="bank_name">
+                        <?php
+                            for($i = 0; $i < $n_bank; $i++) {
+                                 echo("<option value='$i'>$a_bank[$i]</option>");
+                            }
+                        ?>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="user_bank_num" class="form-label">계좌번호(-제외)</label>
+
+                        <input type="text" name="bank_num" id="user_bank_num" class="form-control"
+                            placeholder="계좌번호를 입력해주세요.(- 제외하고 입력)">
+                    </div>
+
                     <div class="text-center">
                         <a href="javascript:Submit();" class="btn btn-sm btn-dark text-white myfont">회원가입</a>
                     </div>
