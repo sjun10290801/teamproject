@@ -26,6 +26,6 @@
     $result = mysqli_query($db, $sql);
     if(!$result) exit('에러:$sql');
 
-    header("Location:index.html");
+    header("Location:member_joinend.html");
     exit();
 ?>

@@ -1,5 +1,6 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
     include "common.php";
     $category = trim($_POST["category"]);
@@ -11,7 +12,7 @@
 
     [$juso1, $juso2] = explode(" ", $juso, 2);
 
-    // $cookie_id = $_COOKIE["id"];  로그인 기능 구현 후 추가
+    $cookie_id = $_COOKIE["cookie_id"];  //로그인 기능 구현 후 추가
 
     // 이미지 확장자 검사
     $filename = $_FILES["image"]["name"]; // 이미지 이름
@@ -46,9 +47,16 @@
 	}
 
 
+    $sql = "select * from member where id = '$cookie_id'"; // id에 해당하는 회원번호 찾기
+     $result = mysqli_query($db, $sql);
+    if(!$result) exit("에러 : $sql");
+
+    $row = mysqli_fetch_assoc($result);
+    $member_id = $row["member_id"];
+
     // db 데이터 삽입
     $sql = "insert into product(member_id, image, price, memo, category, view, reg_date, state, juso1, juso2, juso3) 
-    values(1, '$fname', $price, '$text', $category, 0, sysdate(), 0, '$juso1', '$juso2', '$juso3')";  // 로그인 구현 후 cookie_id 수정 필요
+    values($member_id, '$fname', $price, '$text', $category, 0, sysdate(), 0, '$juso1', '$juso2', '$juso3')";  // 로그인 구현 후 cookie_id 수정 필요
 
     $result = mysqli_query($db, $sql);
     if(!$result) exit("에러 : $sql");
