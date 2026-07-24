@@ -8,6 +8,18 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+      <style>
+    body {
+        padding-top: 50px; 
+    }
+    </style>
+
+          <style>
+    body {
+        padding-bottom: 50px; 
+    }
+    </style>
+
     <style>
         .search-container {
             display: flex;
@@ -38,7 +50,48 @@
 </head>
 
 <body>
-    <h1 class="text-center">중고거래</h1>
+<nav class="navbar bg-body-tertiary fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">중고거래</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex mt-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>
+
     <div class="search-container">
         <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
@@ -77,7 +130,7 @@
             </optgroup>
         </select>
     </fieldset>
-<button type="button" class="btn btn-outline-secondary">현재위치로 찾기</button>
+<button type="button" class="btn btn-outline-secondary">위치검색하기</button>
 </form>
 
     <div class="card-list">
@@ -222,6 +275,26 @@
             </div>
         </div>
     </div>
+
+<nav class="navbar bg-body-tertiary fixed-bottom">
+    <div class="container-fluid justify-content-end">
+    <button type="button" class="btn btn-outline-warning">새 글쓰기</button>
+    </div>
+</nav>
+
+
+<div class="container d-flex justify-content-end">
+  <dl>
+    <dt>회사명</dt>
+    <dd>인덕대 중고거래 사이트</dd>
+    <dt>대표명</dt>
+    <dd>허유정</dd>
+    <dt>전화번호</dt>
+    <dd>010-1111-1111</dd>
+    <dt>위치</dt>
+    <dd>서울특별시 노원구</dd>
+  </dl>
+</div>
 
 </body>
 
