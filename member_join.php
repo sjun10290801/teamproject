@@ -1,6 +1,5 @@
 <?php
-    $a_bank = ["은행 선택", "국민", "신한", "기업", "하나", "우리"];
-    $n_bank = count($a_bank);
+    include "common.php";
 ?>
 <!doctype html>
 <html lang="ko">
@@ -81,12 +80,6 @@
             if(!form2.juso.value) {
                 alert("주소를 입력해주세요.");
                 form2.juso.focus();
-                return;
-            }
-
-            if(!form2.juso3.value) {
-                alert("상세주소를 입력해주세요.");
-                form2.juso3.focus();
                 return;
             }
 
