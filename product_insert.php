@@ -39,7 +39,7 @@ ini_set('display_errors', 1);
         $product_id = 1;
     }
 
-    $fname = "image".$product_id;
+    $fname = "image".$product_id.".".$tmp;
     if($_FILES["image"]["error"] == 0)
 	{
 		if(!move_uploaded_file($_FILES["image"]["tmp_name"],"product/$fname")) // 업로드
