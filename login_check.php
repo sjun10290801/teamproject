@@ -1,9 +1,6 @@
 <?php
     include "common.php";
 
-    error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
     // id, pwd 받기
     $id = $_POST["id"];
     $pwd = $_POST["pwd"];
