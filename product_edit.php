@@ -136,12 +136,14 @@ ini_set('display_errors', 1);
                 <div class="mb-3 col-12">
                     <label for="product_description" class="form-label">제품 설명</label>
                     <textarea class="form-control" name="text" id="product_description" placeholder="제품에 대한 설명을 입력해주세요."
-                        rows="3" value = "<?php echo $row["memo"];?>"></textarea>
+                        rows="3"><?php echo $row["memo"];?></textarea>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="formFileMultiple" class="form-label" >제품 사진 등록</label>
-                <input class="form-control" type="file" id="formFileMultiple" multiple name="image" value = "product/<?php echo $row["price"];?>">
+                <img src="product/<?php echo $row["image"];?>" width="50" height="50" class="img-thumbnail" 
+								style='cursor:pointer' data-bs-toggle="modal" data-bs-target="#zoomModal">
+                <input class="form-control" type="file" id="formFileMultiple" multiple name="image" value = "product/<?php echo $row["image"];?>">
             </div>
             <div class="text-center">
                 <a href="javascript:Submit();" class="btn btn-sm btn-dark text-white myfont">등록</a><!-- 제출 버튼 추가  -->
