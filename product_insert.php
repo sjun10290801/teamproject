@@ -55,8 +55,8 @@ ini_set('display_errors', 1);
     $member_id = $row["member_id"];
 
     // db 데이터 삽입
-    $sql = "insert into product(member_id, image, price, memo, category, view, reg_date, state, juso1, juso2, juso3) 
-    values($member_id, '$fname', $price, '$text', $category, 0, sysdate(), 0, '$juso1', '$juso2', '$juso3')";  // 로그인 구현 후 cookie_id 수정 필요
+    $sql = "insert into product(member_id, image, price, memo, category, view, reg_date, state, juso1, juso2, juso3, name) 
+    values($member_id, '$fname', $price, '$text', $category, 0, sysdate(), 0, '$juso1', '$juso2', '$juso3', '$name')";
 
     $result = mysqli_query($db, $sql);
     if(!$result) exit("에러 : $sql");
