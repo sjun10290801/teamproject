@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 
     if(!isset($_COOKIE["cookie_id"])) {
             echo("<script>alert('로그인이 필요한 서비스입니다.');</script>");
-            echo("<script>location.href='login.html'</script>"); // 로그인 화면으로 돌아감.
+            echo("<script>location.href='login.php'</script>"); // 로그인 화면으로 돌아감.
             exit();
         }
 

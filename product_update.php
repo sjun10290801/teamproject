@@ -51,6 +51,6 @@
         $new_image = $fname;
     }
 
-    $sql = "update member"
+    $sql = "update member set ";
     
 ?>
