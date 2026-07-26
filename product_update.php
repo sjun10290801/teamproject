@@ -29,18 +29,28 @@
     
 
 
-        $fname = "image".$product_id.".".$tmp;
+        
         if($_FILES["image"]["error"] == 0)
         {
-            if(!move_uploaded_file($_FILES["image"]["tmp_name"],"product/$fname")) // 업로드
+            $newname = "image".$product_id.".".$tmp;
+            if(!move_uploaded_file($_FILES["image"]["tmp_name"],"product/$newname")) // 업로드
                 exit("업로드 실패");
+            if(file_exists("product/".$fname)) {
+                unlink("product/".$fname); // 파일 삭제
+            }
+
+            $new_image = $newname;
         }
     }
 
     else if($fname && $_POST["check"] == 1) { // 원래파일이 존재 하며 파일삭제 체크박스 체크 시
         if(file_exists("product/".$fname))
         unlink("product/".$fname); // 파일 삭제
-        $fname = NULL; // db에 저장할 이미지 이름
+        $new_image = NULL;
+    } else {
+        $new_image = $fname;
     }
 
+    $sql = "update member"
+    
 ?>
