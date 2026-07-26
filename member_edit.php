@@ -233,6 +233,7 @@
 
                     <div class="text-center">
                          <a href="javascript:Submit();" class="btn btn-sm btn-dark text-white myfont">회원가입</a>
+                         <a href="javascript:history.back();"  class="btn btn-sm btn-dark text-white myfont">돌아가기</a>
                     </div>
 
                 </form>
