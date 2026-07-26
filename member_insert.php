@@ -1,7 +1,6 @@
 <?php
     include "common.php";
 
-    $a_bank = ["은행 선택", "국민", "신한", "기업", "하나", "우리"];
 
     // post로 넘겨준 데이터 받기
     $id = $_POST["id"];

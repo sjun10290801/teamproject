@@ -1,20 +1,32 @@
 <?php
     if(!isset($_COOKIE["cookie_id"])) {
-            echo("<script>alert('로그인이 필요한 서비스입니다.');</script>");
-            echo("<script>location.href='login.html'</script>"); // 로그인 화면으로 돌아감.
-            exit();
-        }
+        echo("<script>alert('로그인이 필요한 서비스입니다.');</script>");
+        echo("<script>location.href='login.html'</script>"); // 로그인 화면으로 돌아감.
+        exit();
+    }
 
 
     include "common.php";
     
     $cookie_id = $_COOKIE["cookie_id"];
 
-    $sql = "select * from member where id = '$cookie_id'";
+    $sql = "select * from member where id = '$cookie_id'"; // 쿠키 id에 맞는 회원정보 레코드 불러오기
     $result = mysqli_query($db, $sql);
     if(!$result) exit('에러:$sql');
 
     $row = mysqli_fetch_assoc($result);
+
+
+    // 전화번호 쪼개기
+    $tel = $row['tel'];
+    $tel1 = substr($tel, 0, 3);
+    $tel2 = substr($tel, 3, 4);
+    $tel3 = substr($tel, 7, 4);
+
+    // 주소 합치기
+    $juso1 = $row['juso1'];
+    $juso2 = $row['juso2'];
+    $juso = $juso1." ".$juso2;
 ?>
 <!doctype html>
 <html lang="ko">
@@ -34,6 +46,71 @@
                 "width=440,height=320,scrollbars=no"
             );
         }
+
+        function Submit() {
+
+            if(form2.pwd.value != form2.pwd1.value) {
+                alert("비밀번호가 일치하지 않습니다.");
+                form2.pwd1.focus();
+                return;
+            }
+
+            if(!form2.name.value) {
+                alert("이름을 입력해주세요.");
+                form2.name.focus();
+                return;
+            }
+
+            if(!form2.tel1.value || !form2.tel2.value || !form2.tel3.value) {
+                alert("전화번호를 입력해주세요.");
+                form2. tel1.focus();
+                return;
+            }
+
+            if(!form2.email.value) {
+                alert("이메일을 입력해주세요.");
+                form2.email.focus();
+                return;
+            }
+
+            if(!form2.birthday.value) {
+                alert("생년월일을 입력해주세요.");
+                form2.birthday.focus();
+                return;
+            }
+
+            if(!form2.juso.value) {
+                alert("주소를 입력해주세요.");
+                form2.juso.focus();
+                return;
+            }
+
+            if(!form2.juso3.value) {
+                alert("상세주소를 입력해주세요.");
+                form2.juso3.focus();
+                return;
+            }
+
+            if(form2.bank_name.value == 0) {
+                alert("은행명을 입력해주세요.");
+                form2.bank_name.focus();
+                return;
+            }
+
+            if(!form2.bank_num.value) {
+                alert("계좌번호을 입력해주세요.");
+                form2.bank_num.focus();
+                return;
+            }
+
+            if(form2.bank_num.value.indexOf('-') != -1) {
+                alert("-를 제외하고 입력해주세요.");
+                form2.bank_num.focus();
+                return;
+            }
+
+            form2.submit();
+        }
     </script>
 </head>
 
@@ -44,12 +121,12 @@
             <div class="col-12 col-md-6">
                 <h2 class="text-center mb-4">회원 정보 수정</h2>
 
-                <form name="form2">
+                <form name="form2" method="post" action="member_update.php">
                     <div class="mb-3">
                         <label for="user_id" class="form-label">아이디</label>
 
                         <div class="input-group">
-                            <input type="text" name="id" id="user_id" value="<?php echo("$cookie_id");?>" class="form-control"
+                            <input type="text" name="id" id="user_id" value="<?php echo($cookie_id);?>" class="form-control"
                                 placeholder="아이디는 변경할 수 없습니다." readonly>
 
 
@@ -74,7 +151,7 @@
                     <div class="row mb-3">
                         <div class="col">
                             <label for="user_name" class="form-label">이름 변경</label>
-                            <input type="text" name="name" id="user_name" value="" class="form-control"
+                            <input type="text" name="name" id="user_name" value="<?php echo $row['name'];?>" class="form-control"
                                 placeholder="이름을 입력해주세요.">
                         </div>
                     </div>
@@ -84,17 +161,17 @@
                         <label class="form-label">휴대폰 변경</label>
 
                         <div class="d-flex align-items-center gap-2">
-                            <input type="text" name="tel1" value="010" class="form-control" maxlength="3"
+                            <input type="text" name="tel1" value="<?php echo($tel1);?>" class="form-control" maxlength="3"
                                 inputmode="numeric" placeholder="" aria-label="앞자리" style="max-width: 60px;">
 
 
 
-                            <input type="text" name="tel2" value="1234" class="form-control" maxlength="4"
+                            <input type="text" name="tel2" value="<?php echo($tel2);?>" class="form-control" maxlength="4"
                                 inputmode="numeric" placeholder="" aria-label="중간자리" style="max-width: 80px;">
 
 
 
-                            <input type="text" name="tel3" value="1234" class="form-control" maxlength="4"
+                            <input type="text" name="tel3" value="<?php echo($tel3);?>" class="form-control" maxlength="4"
                                 inputmode="numeric" placeholder="" aria-label="뒤자리" style="max-width: 80px;">
                         </div>
                     </div>
@@ -103,7 +180,7 @@
                     <div class="mb-3">
                         <label for="user_email" class="form-label">이메일 변경</label>
 
-                        <input type="email" name="email" id="user_email" value="test@example.com" class="form-control"
+                        <input type="email" name="email" id="user_email" value="<?php echo $row['email'];?>" class="form-control"
                             placeholder="이메일을 입력해주세요.">
                     </div>
 
@@ -113,7 +190,7 @@
                         <label for="user_birthday" class="form-label">생년월일 변경</label>
 
                         <div class="d-flex align-items-center gap-2">
-                            <input type="date" name="birthday"  id="user_birthday" value="2000-10-10" class="form-control">
+                            <input type="date" name="birthday"  id="user_birthday" value="<?php echo $row['birthday'];?>" class="form-control">
 
                         </div>
                     </div>
@@ -123,7 +200,7 @@
                         <label for="user_address" class="form-label">주소 변경</label>
 
                         <div class="input-group">
-                            <input type="text" name="juso" id="user_address" value="서울특별시 강남구" class="form-control"
+                            <input type="text" name="juso" id="user_address" value="<?php echo($juso);?>" class="form-control"
                                 placeholder="주소를 검색해주세요." readonly>
 
                             <button type="button" class="btn btn-outline-secondary" onclick="FindZip()">
@@ -131,7 +208,7 @@
                             </button>
                         </div>
 
-                        <input type="text" name="juso3" value="11" class="form-control mt-2"
+                        <input type="text" name="juso3" value="<?php echo $row['juso3'];?>" class="form-control mt-2"
                             placeholder="상세 주소를 입력해주세요.">
                     </div>
 
@@ -140,7 +217,9 @@
                         <select class="form-select" aria-label="Default select example" name="bank_name">
                         <?php
                             for($i = 0; $i < $n_bank; $i++) {
-                                 echo("<option value='$i'>$a_bank[$i]</option>");
+                                if($a_bank[$i] == $row["bank_name"]) $tmp = "selected";
+                                else $tmp = "";
+                                 echo("<option value='$i' $tmp>$a_bank[$i]</option>");
                             }
                         ?>
                     </div>
@@ -149,13 +228,12 @@
                         <label for="user_bank_num" class="form-label">계좌번호(-제외)</label>
 
                         <input type="text" name="bank_num" id="user_bank_num" class="form-control"
-                            placeholder="계좌번호를 입력해주세요.(- 제외하고 입력)">
+                            placeholder="계좌번호를 입력해주세요.(- 제외하고 입력)" value="<?php echo $row['bank_num'];?>">
                     </div>
 
                     <div class="text-center">
-                        <button type="button" class="btn btn-dark">
-                            회원 정보 수정
-                        </button>
+                         <a href="javascript:Submit();" class="btn btn-sm btn-dark text-white myfont">회원가입</a>
+                         <a href="javascript:history.back();"  class="btn btn-sm btn-dark text-white myfont">돌아가기</a>
                     </div>
 
                 </form>
