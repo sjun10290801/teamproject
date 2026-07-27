@@ -110,7 +110,7 @@ ini_set('display_errors', 1);
                     </select>
                 </div>
             </div>
-                    <input type="hidden" name="product_id" class="form-control" id="product_id" value = "<?php echo $product_id;?>"> // 제품 id
+                    <input type="hidden" name="product_id" class="form-control" id="product_id" value = "<?php echo $product_id;?>"> <!-- 제품 id -->
             <div class="row">
                 <div class="mb-3 col-md-6">
                     <label for="product_name" class="form-label">제품명</label>
@@ -136,12 +136,12 @@ ini_set('display_errors', 1);
                 <div class="mb-3 col-12">
                     <label for="product_description" class="form-label">제품 설명</label>
                     <textarea class="form-control" name="text" id="product_description" placeholder="제품에 대한 설명을 입력해주세요."
-                        rows="3"><?php echo $row["memo"];?></textarea>
+                        rows="3"><?php echo stripslashes($row["memo"]);?></textarea>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="formFileMultiple" class="form-label" >제품 사진 수정 (이미지 삭제 시 체크) </label>
-                <input type="checkbox" name="checkno1" value="1"> <!--체크박스 체크 시 1 전송-->
+                <input type="checkbox" name="check" value="1"> <!--체크박스 체크 시 1 전송-->
                 <img src="product/<?php echo $row["image"];?>" width="100" height="100" class="img-thumbnail">
                 <input type="hidden" name="image_name" value="<?php echo $row["image"];?>">
                 <input class="form-control" type="file" id="formFileMultiple" multiple name="image">

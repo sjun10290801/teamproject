@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
     include "common.php";
 
     $product_id = $_POST["product_id"];
@@ -8,7 +10,7 @@
     $juso = $_POST["juso"];
     [$juso1, $juso2] = explode(" ", $juso, 2);
     $juso3 = $_POST["juso3"];
-    $memo = $_POST["memo"];
+    $memo = addslashes($_POST["text"]);
 
 
     $fname=$_POST["image_name"];
@@ -51,6 +53,12 @@
         $new_image = $fname;
     }
 
-    $sql = "update member set ";
+    $sql = "update product set category = $category, name = '$name', 
+    price = $price, juso1 = '$juso1', juso2 = '$juso2', juso3 = '$juso3', memo = '$memo', image = '$new_image' where product_id = $product_id";
+    $result = mysqli_query($db, $sql);
+    if(!$result) exit("에러 : $sql");
+
+    echo("<script>alert('수정이 완료되었습니다.');</script>");
+    echo("<script>location.href='product_edit.php?id=$product_id'</script>");
     
 ?>

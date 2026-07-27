@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
     $category = trim($_POST["category"]);
     $name = trim($_POST["name"]);
     $price = trim($_POST["price"]);
-    $text = trim($_POST["text"]);
+    $text = addslashes(trim($_POST["text"]));
     $juso3 = trim($_POST["juso3"]);
     $juso = trim($_POST["juso"]);
 
