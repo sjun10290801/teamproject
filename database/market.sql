@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 호스트: localhost
--- 생성 시간: 26-07-27 07:06
+-- 생성 시간: 26-07-27 12:08
 -- 서버 버전: 12.3.2-MariaDB
 -- PHP 버전: 8.5.8
 
@@ -340,7 +340,9 @@ INSERT INTO `member` (`member_id`, `password`, `tel`, `rating`, `bank_name`, `id
 (4, '123', '01000001111', NULL, '하나', 'aaa', '1231231', 'asdasdasd', '2026-06-17', 'abc@naver.com', '충청남도', '천안시 동남구', 'ㅁㅁㅁ', NULL),
 (5, '1234', '01066665678', NULL, '우리', 'qwer', '12331231', '가가', '2026-07-15', '111', '경기도', '고양시 일산동구', 'ㄱㄴ동', NULL),
 (6, '123', '01056782222', NULL, '기업', 'qwer1234', '2132131232131', 'aa', '2026-07-09', '111', '서울특별시', '노원구', 'xx동', NULL),
-(7, '1234', '01011112222', NULL, '하나', 'ㅁㅁㅁㅁㅁ', '123123123', 'ㅁㅁㅁ', '2026-07-15', 'sanss11@naver.com', '서울특별시', '중구', 'ㅂㅂㅂ', NULL);
+(7, '1234', '01011112222', NULL, '하나', 'ㅁㅁㅁㅁㅁ', '123123123', 'ㅁㅁㅁ', '2026-07-15', 'sanss11@naver.com', '서울특별시', '중구', 'ㅂㅂㅂ', NULL),
+(9, '1234', '01066661111', NULL, '하나', 'aa', '1231231', '가가', '2026-07-02', '111', '서울특별시', '노원구', 'qweqwe', ''),
+(10, '1234', '01011112222', 4, '신한', 'sj', '111123', 'ㅁㅁㅁ', '2026-07-15', 'sj1212@gmail.com', '경기도', '구리시', '1111', 'member10.png');
 
 -- --------------------------------------------------------
 
@@ -352,8 +354,19 @@ CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `buyer_id` int(11) NOT NULL,
-  `reg_date` datetime NOT NULL
+  `reg_date` datetime NOT NULL,
+  `seller_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- 테이블의 덤프 데이터 `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `product_id`, `buyer_id`, `reg_date`, `seller_id`) VALUES
+(3, 16, 10, '2026-07-27 11:36:34', 6),
+(4, 21, 10, '2026-07-27 11:36:34', 9),
+(7, 19, 7, '2026-07-27 11:37:03', 10),
+(8, 20, 5, '2026-07-27 11:37:03', 10);
 
 -- --------------------------------------------------------
 
@@ -382,8 +395,11 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `member_id`, `image`, `price`, `memo`, `category`, `view`, `reg_date`, `state`, `juso1`, `juso2`, `juso3`, `name`) VALUES
-(16, 6, '', 30000, '12321312', 3, 0, '2026-07-27 15:57:23', 0, '서울특별시', '노원구', 'asdas', 'aa'),
-(17, 6, 'image17.png', 23234234, 'ㅂㅂㄷㅈㅇㅁㄴㅁㄴ\'ㅇㄴㅁㅇㅁㄴㅇㄴㅁㅇ\'ㅁㄴㅇㄴㅁㅇㄴㅁㅁ\'ㄴㅇㅁ', 1, 0, '2026-07-27 15:58:11', 0, '서울특별시', '성북구', '123123', '12312');
+(16, 6, '', 30000, '12321312', 3, 0, '2026-07-27 15:57:23', 2, '서울특별시', '노원구', 'asdas', 'aa'),
+(18, 6, 'image18.jpg', 50000, 'ㅇㅇㅇㅇㅇ', 5, 0, '2026-07-27 16:46:54', 2, '강원특별자치도', '홍천군', 'ㅁㅁㅁㅁ리', '게임팩'),
+(19, 10, 'image19.png', 500000, '급처합니다', 4, 0, '2026-07-27 20:30:01', 1, '경기도', '구리시', 'XX아파트 앞', '스위치2'),
+(20, 10, 'image20.jpg', 600000, '생활 기스 있음', 1, 0, '2026-07-27 20:31:50', 2, '서울특별시', '노원구', '노원역 부근', '아이폰 15 공기계'),
+(21, 9, 'image21.png', 20000, 'xl', 4, 0, '2026-07-27 20:33:07', 1, '서울특별시', '중구', 'ㅁㅁㄴㅇㅁㄴㅇ', '남성 후드 집업');
 
 -- --------------------------------------------------------
 
@@ -396,8 +412,17 @@ CREATE TABLE `rating` (
   `to_member_id` int(11) NOT NULL,
   `from_member_id` int(11) NOT NULL,
   `score` double NOT NULL,
-  `reg_date` datetime NOT NULL
+  `reg_date` datetime NOT NULL,
+  `order_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- 테이블의 덤프 데이터 `rating`
+--
+
+INSERT INTO `rating` (`rating_id`, `to_member_id`, `from_member_id`, `score`, `reg_date`, `order_id`) VALUES
+(2, 10, 7, 5, '2026-07-27 11:38:53', 7),
+(3, 10, 5, 3, '2026-07-27 11:39:38', 8);
 
 --
 -- 덤프된 테이블의 인덱스
@@ -459,25 +484,25 @@ ALTER TABLE `juso`
 -- 테이블의 AUTO_INCREMENT `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- 테이블의 AUTO_INCREMENT `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- 테이블의 AUTO_INCREMENT `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- 테이블의 AUTO_INCREMENT `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
