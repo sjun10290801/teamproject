@@ -37,7 +37,7 @@ ini_set('display_errors', 1);
             $newname = "image".$product_id.".".$tmp;
             if(!move_uploaded_file($_FILES["image"]["tmp_name"],"product/$newname")) // 업로드
                 exit("업로드 실패");
-            if(file_exists("product/".$fname)) {
+            if($fname != $newname && file_exists("product/".$fname)) {
                 unlink("product/".$fname); // 파일 삭제
             }
 
