@@ -21,6 +21,7 @@ ini_set('display_errors', 1);
     $member_id = $row["member_id"];
 
     $image = $row["image"] ?: "default_profile.jpg";
+    $rating = $row["rating"] ?: 0;
 
 
     // 평점 개수 불러오기
@@ -54,7 +55,7 @@ ini_set('display_errors', 1);
 
                             <div class="mb-2" aria-label="평점">
                                 <i class="bi bi-star-fill text-warning"></i>
-                                <strong id="rating_score"><?php echo $row["rating"];?></strong>
+                                <strong id="rating_score"><?php echo $rating;?></strong>
                                 <span class="text-secondary">(평가 <?php echo $count;?>개)</span>
                             </div>
 
