@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 신고 화면</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+
+                <h2 class="text-center mb-4">
+                    회원 신고
+                </h2>
+
+                <form name="form2" method="post" action=""  enctype="multipart/form-data">
+                    <!-- 신고 대상 -->
+                    <div class="mb-4">
+                        <label for="target_member" class="form-label">신고 대상</label>
+                        <input type="text" class="form-control" id="target_member" placeholder="test111">
+                    </div>
+                    <!-- 신고 사유 -->
+                    <div class="mb-3">
+                        <label for="report_reason" class="form-label">신고 사유</label>
+                        <select class="form-select" id="report_reason" name="reason" aria-label=" Default select
+                            example">
+                            <option  value="" selected>신고 사유</option>
+                            <option value="1">사기</option>
+                            <option value="2">욕설·위협</option>
+                            <option value="3">거래 약속 불이행</option>
+                            <option value="4">반복적인 광고·도배</option>
+                            <option value="5">타인 사칭</option>
+                            <option value="6">개인정보 침해</option>
+                            <option value="7">부적절한 프로필·게시물</option>
+                            <option value="8">기타</option>
+
+                        </select>
+                    </div>
+                    <!-- 신고에 대한 상세 내용 -->
+                    <div class="mb-3">
+                        <label for="report_detail" class="form-label">상세 내용</label>
+                        <textarea class="form-control" id="report_detail" name="detail" 
+                            rows="3" placeholder="신고 내용을 입력해주세요."></textarea>
+                    </div>
+                    <!-- 증거이미지첨부기능 필요없다면 빼도될뜻 -->
+                    <div class="mb-5">
+                        <label for="report_image" class="form-label">(선택)신고 내용을 확인할 수 있는 이미지를 첨부해주세요.</label>
+                        <input class="form-control" type="file" id="report_image" name="report_image" multiple>
+                    </div>
+                    <!-- 하단 신고,취소버튼 -->
+                    <div class="text-center">
+                        <button type="button" class="btn btn-outline-danger">
+                            신고하기
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary">취소하기</button>
+                    </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
