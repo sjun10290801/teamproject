@@ -3,37 +3,10 @@
 ?>
 
 
-<form>
-    <fieldset>
-        <legend>위치정보</legend>
-        <label for="city">지역 선택: </label>
-        <select name="city" id="city">
-            <option value="" disabled selected>지역을 선택해주세요</option>
-            
-            <optgroup label="서울시">
-                <option value="강북구">강북구</option>
-                <option value="강남구">강남구</option>
-                <option value="서초구">서초구</option>
-                <option value="노원구">노원구</option>
-                <option value="도봉구">도봉구</option>
-                <option value="중랑구">중랑구</option>
-                <option value="관악구">관악구</option>
-            </optgroup>
-
-            <optgroup label="경기도">
-                <option value="가평군">가평군</option>
-                <option value="고양시">고양시</option>
-                <option value="과천시">과천시</option>
-                <option value="광명시">광명시</option>
-                <option value="광주시">광주시</option>
-                <option value="구리시">구리시</option>
-                <option value="군포시">군포시</option>
-                <option value="남양주시">남양주시</option>
-                <option value="시흥시">시흥시</option>
-            </optgroup>
-        </select>
-    </fieldset>
-<button type="button" class="btn btn-outline-secondary">위치검색하기</button>
+<form class="d-flex mt-3" role="search" style="max-width: 500px;">
+  <input class="form-control me-2" type="search" placeholder="물건" aria-label="Search"/>
+  <input class="form-control me-2" type="search" placeholder="위치" aria-label="Search"/>
+  <button class="btn btn-outline-success text-nowrap" type="submit">검색하기</button>
 </form>
 
 <ul class="nav align-items-center">

@@ -10,7 +10,7 @@
 
       <style>
     body {
-        padding-top: 80px; 
+        padding-top: 50px; 
     }
     </style>
 
@@ -55,11 +55,6 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="#">중고거래</a>
 
-        <form class="d-flex mt-3" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -82,7 +77,7 @@
             </a>
           </button>
           <ul class="dropdown-menu dropdown-menu-lights">
-            <li><a class="dropdown-item" href="member_mypage.html">내정보</a></li>
+            <li><a class="dropdown-item" href="member_mypage.php">내정보</a></li>
             <li><a class="dropdown-item" href="#">찜한목록</a></li>
             <li><a class="dropdown-item" href="#">상품등록</a></li>
             <li><a class="dropdown-item" href="#">판매관리</a></li>
