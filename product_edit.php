@@ -14,7 +14,7 @@ ini_set('display_errors', 1);
     $cookie_id = $_COOKIE["cookie_id"];
 
     $sql = "select p.category, p.name, p.price, p.juso1, p.juso2, p.juso3, p.memo, p.image, m.id as member_id
-            from product p inner join member m on p.member_id = m.member_id where p.product_id = '$product_id'";
+            from product p inner join member m on p.member_id = m.member_id where p.product_id = '$product_id'";    
     // id에 해당하는 상품 찾기, id검증을 위해 멤버테이블 join
     $result = mysqli_query($db, $sql);
     if(!$result) exit("에러 : $sql");
