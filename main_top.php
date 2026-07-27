@@ -82,7 +82,7 @@
             </a>
           </button>
           <ul class="dropdown-menu dropdown-menu-lights">
-            <li><a class="dropdown-item" href="#">내정보</a></li>
+            <li><a class="dropdown-item" href="member_mypage.html">내정보</a></li>
             <li><a class="dropdown-item" href="#">찜한목록</a></li>
             <li><a class="dropdown-item" href="#">상품등록</a></li>
             <li><a class="dropdown-item" href="#">판매관리</a></li>

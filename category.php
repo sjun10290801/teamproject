@@ -58,6 +58,7 @@
             <div class="card-body">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
+                <a href="member_profile.html" class="card-link">프로필보기</a>
             </div>
         </div>
 
@@ -75,6 +76,7 @@
             <div class="card-body">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
+                <a href="member_profile.html" class="card-link">프로필보기</a>
             </div>
         </div>
 
@@ -92,6 +94,7 @@
             <div class="card-body">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
+                <a href="member_profile.html" class="card-link">프로필보기</a>
             </div>
         </div>
 
@@ -110,6 +113,7 @@
             <div class="card-body">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
+                <a href="member_profile.html" class="card-link">프로필보기</a>
             </div>
         </div>
 
@@ -128,6 +132,7 @@
             <div class="card-body">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
+                <a href="member_profile.html" class="card-link">프로필보기</a>
             </div>
         </div>
 
@@ -146,6 +151,7 @@
             <div class="card-body">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
+                <a href="member_profile.html" class="card-link">프로필보기</a>
             </div>
         </div>
 
@@ -163,6 +169,7 @@
             <div class="card-body">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
+                <a href="member_profile.html" class="card-link">프로필보기</a>
             </div>
         </div>
 
@@ -181,6 +188,7 @@
             <div class="card-body">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
+                <a href="member_profile.html" class="card-link">프로필보기</a>
             </div>
         </div>
     </div>
