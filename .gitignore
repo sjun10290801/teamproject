@@ -1,2 +1,5 @@
 product/*
 !product/.gitkeep
+
+images/*
+!images/.gitkeep

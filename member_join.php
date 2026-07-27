@@ -1,16 +1,7 @@
 <?php
     include "common.php";
+    include "main_top.php";
 ?>
-<!doctype html>
-<html lang="ko">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>회원가입</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <script>
         function FindZip() {
             window.open(
@@ -110,16 +101,12 @@
             form2.submit();
         }
     </script>
-</head>
-
-
-<body>
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-12 col-md-6">
                 <h2 class="text-center mb-4">회원가입</h2>
 
-                <form name="form2" method="post" action="member_insert.php">
+                <form name="form2" method="post" action="member_insert.php" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="user_id" class="form-label">아이디</label>
 
@@ -226,6 +213,11 @@
                             placeholder="계좌번호를 입력해주세요.(- 제외하고 입력)">
                     </div>
 
+                    <div class="mb-3">
+                        <label for="formFileMultiple" class="form-label" >프로필 사진 등록</label>
+                        <input class="form-control" type="file" id="formFileMultiple" multiple name="image">
+                    </div>
+
                     <div class="text-center">
                         <a href="javascript:Submit();" class="btn btn-sm btn-dark text-white myfont">회원가입</a>
                     </div>
@@ -234,6 +226,6 @@
             </div>
         </div>
     </div>
-</body>
-
-</html>
+<?php
+    include "main_bottom.php";
+?>

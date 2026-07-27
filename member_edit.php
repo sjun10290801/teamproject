@@ -27,6 +27,9 @@
     $juso1 = $row['juso1'];
     $juso2 = $row['juso2'];
     $juso = $juso1." ".$juso2;
+
+    $image = $row["image"] ?: "default_profile.jpg";
+
 ?>
 <!doctype html>
 <html lang="ko">
@@ -121,10 +124,10 @@
             <div class="col-12 col-md-6">
                 <h2 class="text-center mb-4">회원 정보 수정</h2>
 
-                <form name="form2" method="post" action="member_update.php">
+                <form name="form2" method="post" action="member_update.php" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="user_id" class="form-label">아이디</label>
-
+                        <input type="hidden" name="member_id" id="user_id" value="<?php echo $row['member_id'];?>" class="form-control">
                         <div class="input-group">
                             <input type="text" name="id" id="user_id" value="<?php echo($cookie_id);?>" class="form-control"
                                 placeholder="아이디는 변경할 수 없습니다." readonly>
@@ -230,11 +233,22 @@
                         <input type="text" name="bank_num" id="user_bank_num" class="form-control"
                             placeholder="계좌번호를 입력해주세요.(- 제외하고 입력)" value="<?php echo $row['bank_num'];?>">
                     </div>
-
+                    <div>
+                        <label for="formFileMultiple" class="form-label" >프로필 사진 변경 (이미지 삭제 시 체크) </label>
+                        <input type="checkbox" name="check" value="1"> <!--체크박스 체크 시 1 전송-->
+                        <img src="images/<?php echo $image;?>" alt="프로필 사진"
+                                        class="rounded-circle object-fit-cover border" style="width: 120px; height: 120px;">
+                        <input type="hidden" name="image_name" value="<?php echo $row["image"];?>">
+                        <input class="form-control" type="file" id="formFileMultiple" multiple name="image">
+                    </div><br>
                     <div class="text-center">
-                         <a href="javascript:Submit();" class="btn btn-sm btn-dark text-white myfont">회원가입</a>
+                         <a href="javascript:Submit();" class="btn btn-sm btn-dark text-white myfont">수정</a>
                          <a href="javascript:history.back();"  class="btn btn-sm btn-dark text-white myfont">돌아가기</a>
                     </div>
+
+                     <div class="mb-3">
+                
+            </div>
 
                 </form>
 
