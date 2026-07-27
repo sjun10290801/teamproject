@@ -40,29 +40,6 @@
   <li class="nav-item">
     <span class="nav-link fw-bold text-dark ps-0">카테고리</span>
   </li>
-
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="category.php">디지털기기</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="category.php">가구</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="category.php">가전</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="category.php">의류</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="category.php">게임</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="category.php">음악</a>
-  </li>
-    </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="category.php">기타</a>
-  </li>
 </ul>
 
     <div class="card-list">
