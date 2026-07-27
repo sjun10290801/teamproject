@@ -13,7 +13,7 @@ ini_set('display_errors', 1);
     $product_id = $_GET["id"];
     $cookie_id = $_COOKIE["cookie_id"];
 
-    $sql = "select p.category, p.name, p.price, p.juso1, p.juso2, p.juso3, p.memo, p.image, m.id as member_id
+    $sql = "select p.category, p.name, p.price, p.juso1, p.juso2, p.juso3, p.memo, p.image, m.id as member_id, p.state
             from product p inner join member m on p.member_id = m.member_id where p.product_id = '$product_id'";    
     // id에 해당하는 상품 찾기, id검증을 위해 멤버테이블 join
     $result = mysqli_query($db, $sql);
@@ -146,6 +146,25 @@ ini_set('display_errors', 1);
                 <input type="hidden" name="image_name" value="<?php echo $row["image"];?>">
                 <input class="form-control" type="file" id="formFileMultiple" multiple name="image">
             </div>
+            <?php if($row["state"] != 2) { ?>
+                <div>
+                    <label for="formFileMultiple" class="form-label" >판매 상태</label>
+                    <select class="form-select" aria-label="Default select example" name="state">
+                        <?php if($row["state"] == 0)  {?>
+                        <option value="0" selected>판매 중</option>
+                        <option value="1">예약됨</option>
+                        <?php } else { ?>
+                        <option value="0">판매 중</option>
+                        <option value="1" selected>예약됨</option>
+                        <?php }?>
+                    </select>
+                </div>
+            <?php } else { ?>
+                <div>
+                    <label for="formFileMultiple" class="form-label" >판매 상태</label>
+                    <span class="badge text-bg-success">판매 완료</span>
+                </div>
+            <?php } ?>
             <div class="text-center">
                 <a href="javascript:Submit();" class="btn btn-sm btn-dark text-white myfont">등록</a><!-- 제출 버튼 추가  -->
             </div>

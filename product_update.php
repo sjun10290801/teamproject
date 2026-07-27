@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
     include "common.php";
 
     $product_id = $_POST["product_id"];
@@ -11,7 +9,8 @@ ini_set('display_errors', 1);
     [$juso1, $juso2] = explode(" ", $juso, 2);
     $juso3 = $_POST["juso3"];
     $memo = addslashes($_POST["text"]);
-
+    $juso3 = $_POST["juso3"];
+    $state = $_POST["state"] ?? 2;
 
     $fname=$_POST["image_name"];
     
@@ -53,7 +52,7 @@ ini_set('display_errors', 1);
         $new_image = $fname;
     }
 
-    $sql = "update product set category = $category, name = '$name', 
+    $sql = "update product set category = $category, name = '$name', state = $state,
     price = $price, juso1 = '$juso1', juso2 = '$juso2', juso3 = '$juso3', memo = '$memo', image = '$new_image' where product_id = $product_id";
     $result = mysqli_query($db, $sql);
     if(!$result) exit("에러 : $sql");
