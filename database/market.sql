@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 호스트: localhost
--- 생성 시간: 26-07-23 11:28
+-- 생성 시간: 26-07-27 07:06
 -- 서버 버전: 12.3.2-MariaDB
 -- PHP 버전: 8.5.8
 
@@ -328,18 +328,19 @@ CREATE TABLE `member` (
   `email` varchar(30) DEFAULT NULL,
   `juso1` varchar(20) DEFAULT NULL,
   `juso2` varchar(20) DEFAULT NULL,
-  `juso3` varchar(255) DEFAULT NULL
+  `juso3` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 --
 -- 테이블의 덤프 데이터 `member`
 --
 
-INSERT INTO `member` (`member_id`, `password`, `tel`, `rating`, `bank_name`, `id`, `bank_num`, `name`, `birthday`, `email`, `juso1`, `juso2`, `juso3`) VALUES
-(1, '1234', '010-1234-1234', NULL, '국민', 'aaa123', '123-12-1234', '홍길동', '2000-10-10', NULL, NULL, NULL, NULL),
-(4, '1234', '01066665678', NULL, '신한', 'aaa', '123131231', '가가', '2026-06-30', '1231', '서울특별시', '중구', 'xx동'),
-(5, '1234', '01066665678', NULL, '우리', 'qwer', '12331231', '가가', '2026-07-15', '111', '경기도', '고양시 일산동구', 'ㄱㄴ동'),
-(6, '1234', '01056782222', NULL, '기업', 'qwer1234', '2132131232131', 'aa', '2026-07-09', '111', '서울특별시', '노원구', 'xx동');
+INSERT INTO `member` (`member_id`, `password`, `tel`, `rating`, `bank_name`, `id`, `bank_num`, `name`, `birthday`, `email`, `juso1`, `juso2`, `juso3`, `image`) VALUES
+(4, '123', '01000001111', NULL, '하나', 'aaa', '1231231', 'asdasdasd', '2026-06-17', 'abc@naver.com', '충청남도', '천안시 동남구', 'ㅁㅁㅁ', NULL),
+(5, '1234', '01066665678', NULL, '우리', 'qwer', '12331231', '가가', '2026-07-15', '111', '경기도', '고양시 일산동구', 'ㄱㄴ동', NULL),
+(6, '123', '01056782222', NULL, '기업', 'qwer1234', '2132131232131', 'aa', '2026-07-09', '111', '서울특별시', '노원구', 'xx동', NULL),
+(7, '1234', '01011112222', NULL, '하나', 'ㅁㅁㅁㅁㅁ', '123123123', 'ㅁㅁㅁ', '2026-07-15', 'sanss11@naver.com', '서울특별시', '중구', 'ㅂㅂㅂ', NULL);
 
 -- --------------------------------------------------------
 
@@ -372,21 +373,17 @@ CREATE TABLE `product` (
   `state` tinyint(4) NOT NULL,
   `juso1` varchar(20) DEFAULT NULL,
   `juso2` varchar(20) DEFAULT NULL,
-  `juso3` varchar(255) DEFAULT NULL
+  `juso3` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 --
 -- 테이블의 덤프 데이터 `product`
 --
 
-INSERT INTO `product` (`product_id`, `member_id`, `image`, `price`, `memo`, `category`, `view`, `reg_date`, `state`, `juso1`, `juso2`, `juso3`) VALUES
-(4, 1, 'image4', 65700, 'ㅂㅈㄷㅂㅈㄷㅈㅂㄷㅂㅈㄷㅈㅂ', 2, 0, '2026-07-21 23:48:08', 0, NULL, NULL, NULL),
-(5, 1, 'image5', 21500, '123414ㄴㄻㄴㄹㄴ', 1, 0, '2026-07-21 23:48:36', 0, NULL, NULL, NULL),
-(6, 1, 'image6', 100000, 'ㅁㄴㅇㅁㄴㅇㅁㄴ', 6, 0, '2026-07-22 01:07:33', 0, '서울특별시', '노원구', '상계동'),
-(7, 1, 'image7', 30000, 'ㅁㅁㅁㅁㅁㅁㅁ', 2, 0, '2026-07-22 16:23:58', 0, '서울특별시', '중구', 'xx역'),
-(8, 1, 'image8', 65700, 'ㅁㅁㅁㅁㅁㅁㅁㅁ', 2, 0, '2026-07-22 16:57:04', 0, '서울특별시', '노원구', '상계동'),
-(9, 6, 'image9', 79000, 'qwewqeqwewqe', 2, 0, '2026-07-23 20:14:00', 0, '서울특별시', '노원구', 'xx동'),
-(10, 6, 'image10', 121212, '12321312312', 3, 0, '2026-07-23 20:14:35', 0, '경기도', '수원시 권선구', 'xx역');
+INSERT INTO `product` (`product_id`, `member_id`, `image`, `price`, `memo`, `category`, `view`, `reg_date`, `state`, `juso1`, `juso2`, `juso3`, `name`) VALUES
+(16, 6, '', 30000, '12321312', 3, 0, '2026-07-27 15:57:23', 0, '서울특별시', '노원구', 'asdas', 'aa'),
+(17, 6, 'image17.png', 23234234, 'ㅂㅂㄷㅈㅇㅁㄴㅁㄴ\'ㅇㄴㅁㅇㅁㄴㅇㄴㅁㅇ\'ㅁㄴㅇㄴㅁㅇㄴㅁㅁ\'ㄴㅇㅁ', 1, 0, '2026-07-27 15:58:11', 0, '서울특별시', '성북구', '123123', '12312');
 
 -- --------------------------------------------------------
 
@@ -462,7 +459,7 @@ ALTER TABLE `juso`
 -- 테이블의 AUTO_INCREMENT `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- 테이블의 AUTO_INCREMENT `orders`
@@ -474,7 +471,7 @@ ALTER TABLE `orders`
 -- 테이블의 AUTO_INCREMENT `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- 테이블의 AUTO_INCREMENT `rating`
