@@ -2,13 +2,6 @@
     include "main_top.php";
 ?>
 
-
-<form class="d-flex mt-3" role="search" style="max-width: 500px;">
-  <input class="form-control me-2" type="search" placeholder="물건" aria-label="Search"/>
-  <input class="form-control me-2" type="search" placeholder="위치" aria-label="Search"/>
-  <button class="btn btn-outline-success text-nowrap" type="submit">검색하기</button>
-</form>
-
 <ul class="nav align-items-center">
   <li class="nav-item">
     <span class="nav-link fw-bold text-dark ps-0">카테고리</span>

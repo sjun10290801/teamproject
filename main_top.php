@@ -85,11 +85,13 @@
           </ul>
           </li>
         </ul>
-        <form class="d-flex mt-3" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
       </div>
     </div>
   </div>
 </nav>
+
+  <form class="d-flex mt-3" role="search" style="max-width: 500px;">
+  <input class="form-control me-2" type="search" placeholder="물건" aria-label="Search"/>
+  <input class="form-control me-2" type="search" placeholder="위치" aria-label="Search"/>
+  <button class="btn btn-outline-success text-nowrap" type="submit">검색하기</button>
+</form>
