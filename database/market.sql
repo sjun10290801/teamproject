@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 호스트: localhost
--- 생성 시간: 26-07-27 12:08
+-- 생성 시간: 26-07-28 10:58
 -- 서버 버전: 12.3.2-MariaDB
 -- PHP 버전: 8.5.8
 
@@ -32,8 +32,30 @@ CREATE TABLE `chat` (
   `to_member_id` int(11) NOT NULL,
   `from_member_id` int(11) NOT NULL,
   `text` text NOT NULL,
-  `reg_date` int(11) NOT NULL
+  `reg_date` datetime DEFAULT NULL,
+  `state` tinyint(4) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- 테이블의 덤프 데이터 `chat`
+--
+
+INSERT INTO `chat` (`chat_id`, `to_member_id`, `from_member_id`, `text`, `reg_date`, `state`, `product_id`, `image`) VALUES
+(1, 9, 10, '안녕하세요. 아직 판매중인가요?', '2026-07-28 10:00:00', 1, 21, NULL),
+(2, 10, 9, '네 판매중입니다.', '2026-07-28 10:01:20', 1, 21, NULL),
+(3, 9, 10, '오늘 거래 가능할까요?', '2026-07-28 10:03:00', 1, 21, NULL),
+(4, 10, 9, '오후 3시 가능합니다.', '2026-07-28 10:04:30', 0, 21, NULL),
+(5, 6, 10, '게임팩 구성품 있나요?', '2026-07-28 09:00:00', 1, 18, NULL),
+(6, 10, 6, '네 전부 있습니다.', '2026-07-28 09:05:00', 1, 18, NULL),
+(7, 6, 10, '예약 가능할까요?', '2026-07-28 09:07:00', 0, 18, NULL),
+(8, 10, 9, '스위치2 아직 있나요?', '2026-07-28 11:00:00', 1, 19, NULL),
+(9, 9, 10, '네 있습니다.', '2026-07-28 11:02:00', 1, 19, NULL),
+(10, 10, 9, '오늘 저녁 거래 가능해요.', '2026-07-28 11:05:00', 0, 19, NULL),
+(11, 10, 6, '아이폰 아직 판매중인가요?', '2026-07-28 12:00:00', 1, 20, NULL),
+(12, 6, 10, '네 판매중입니다.', '2026-07-28 12:01:00', 1, 20, NULL),
+(13, 10, 6, '직거래 원합니다.', '2026-07-28 12:03:00', 0, 20, NULL);
 
 -- --------------------------------------------------------
 
@@ -472,7 +494,7 @@ ALTER TABLE `rating`
 -- 테이블의 AUTO_INCREMENT `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- 테이블의 AUTO_INCREMENT `juso`
