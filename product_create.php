@@ -6,6 +6,19 @@
         }
 
     include "common.php";
+
+    $cookie_id = $_COOKIE["cookie_id"];
+
+    $sql = "select * from member where id = '$cookie_id'";
+    $result = mysqli_query($db, $sql);
+    if(!$result) exit("에러 : $sql");
+
+    $row = mysqli_fetch_assoc($result);
+    $juso1 = $row["juso1"];
+    $juso2 = $row["juso2"];
+    $juso3 = $row["juso3"];
+    $juso = $juso1." ".$juso2;
+
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -98,12 +111,12 @@
             </div>
 
             <div class="d-flex gap-2 mb-2">
-				<input type="text" name="juso" id="zip11" class="form-control custom-dark-input" style="max-width: 140px;" readonly>
+				<input type="text" name="juso" id="zip11" class="form-control custom-dark-input" style="max-width: 140px;" readonly value="<?php echo $juso;?>">
 				<a href="javascript:FindZip(0);" class="btn btn-premium-inline text-nowrap">
 					<i class="bi bi-geo-alt me-1"></i> 주소찾기
 			    </a>
 		    </div>
-				<input type="text" name="juso3" id="juso11" class="form-control custom-dark-input" placeholder="상세 주소를 입력하세요">
+				<input type="text" name="juso3" id="juso11" class="form-control custom-dark-input" placeholder="상세 주소를 입력하세요" value="<?php echo $juso3;?>">
             <div class="row">
                 <div class="mb-3 col-12">
                     <label for="product_description" class="form-label">제품 설명</label>

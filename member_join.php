@@ -193,7 +193,7 @@
                             </button>
                         </div>
 
-                        <input type="text" name="juso3" class="form-control mt-2" placeholder="상세 주소를 입력해주세요.">
+                        <input type="text" name="juso3" class="form-control mt-2" placeholder="거래에 사용할 상세 주소를 입력해주세요.">
                     </div>
 
                     <div class="mb-3">
