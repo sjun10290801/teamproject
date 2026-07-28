@@ -50,7 +50,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
             </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
             </div>
             </div>
         </div>
@@ -117,7 +117,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
             </div>
             </div>
         </div>
@@ -140,7 +140,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
 </div>
             </div>
         </div>
@@ -162,7 +162,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
             </div>
             </div>
         </div>
@@ -184,7 +184,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
             </div>
             </div>
         </div>
@@ -207,7 +207,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
             </div>
             </div>
         </div>
