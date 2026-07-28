@@ -2,13 +2,6 @@
     include "main_top.php";
 ?>
 
-
-<form class="d-flex mt-3" role="search" style="max-width: 500px;">
-  <input class="form-control me-2" type="search" placeholder="물건" aria-label="Search"/>
-  <input class="form-control me-2" type="search" placeholder="위치" aria-label="Search"/>
-  <button class="btn btn-outline-success text-nowrap" type="submit">검색하기</button>
-</form>
-
 <ul class="nav align-items-center">
   <li class="nav-item">
     <span class="nav-link fw-bold text-dark ps-0">카테고리</span>
@@ -57,7 +50,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
 </div>
             </div>
         </div>
@@ -79,7 +72,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
             </div>
             </div>
         </div>
@@ -101,7 +94,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
             </div>
             </div>
         </div>
@@ -124,7 +117,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
             </div>
             </div>
         </div>
@@ -147,7 +140,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
 </div>
             </div>
         </div>
@@ -169,7 +162,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
             </div>
             </div>
         </div>
@@ -191,7 +184,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
             </div>
             </div>
         </div>
@@ -214,7 +207,7 @@
                 <div class="position-relative" style="z-index: 2;">
                 <a href="#" class="card-link">찜하기</a>
                 <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.html" class="card-link">프로필보기</a>
+                <a href="member_profile.php" class="card-link">프로필보기</a>
             </div>
             </div>
         </div>
