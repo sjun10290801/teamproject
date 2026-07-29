@@ -18,13 +18,13 @@
             exit();
         } else {
             echo("<script>alert('비밀번호가 일치하지 않습니다.');</script>"); // id가 없으면 종료
-            echo("<script>location.href='login.html'</script>"); // 로그인 화면으로 돌아감.
+            echo("<script>location.href='login.php'</script>"); // 로그인 화면으로 돌아감.
             exit();
         exit();
         }
     } else {
         echo("<script>alert('계정 정보가 존재하지 않습니다.');</script>"); // id가 없으면 종료
-        echo("<script>location.href='login.html'</script>");
+        echo("<script>location.href='login.php'</script>");
         exit();
     }
 ?>

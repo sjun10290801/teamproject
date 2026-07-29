@@ -70,19 +70,19 @@
             <a class="nav-link active" aria-current="page" href="login.php">로그인</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">채팅</a>
+            <a class="nav-link" href="chat_list.php">채팅</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="member_mypage.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               마이페이지
             </a>
           </button>
           <ul class="dropdown-menu dropdown-menu-lights">
             <li><a class="dropdown-item" href="member_mypage.php">내정보</a></li>
             <li><a class="dropdown-item" href="#">찜한목록</a></li>
-            <li><a class="dropdown-item" href="#">상품등록</a></li>
-            <li><a class="dropdown-item" href="#">판매관리</a></li>
-            <li><a class="dropdown-item" href="#">구매내역</a></li>
+            <li><a class="dropdown-item" href="product_create.php">상품등록</a></li>
+            <li><a class="dropdown-item" href="member_mypage.php?kind=sell">판매관리</a></li>
+            <li><a class="dropdown-item" href="member_mypage.php?kind=buy">구매내역</a></li>
           </ul>
           </li>
         </ul>
