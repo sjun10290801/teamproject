@@ -17,10 +17,11 @@
     $row = mysqli_fetch_assoc($result);
     $member_id = $row["member_id"];
 
-    // 회원 id를 토대로 채팅방 검색
-    //1. case문을 통해 상대방의 id, 최근 메시지 시간 가져오기(서브쿼리) + 상품 id 가져오기
-    //2. 해당 정보로 조인, 서브쿼리 작성하여 상대방 id, 최근 메시지 가져오기 + 상품 이름
-    $sql = "select c.target_id, m.id, c.last_date, p.name, p.product_id, m.image,
+    //서브쿼리로 가상의 테이블 제작 ==> 상대방 id, 최근 메시지 시간, 상품id.
+    // 대상은 같아도 상품별로 채팅을 구성하기 위해 group by target_id, product_id 를 사용
+    // 서브쿼리를 사용해 마지막 채팅 내용과 안읽은 메시지 수를 가져옴
+    // 멤버, 상품 테이블을 조인하여 대상의 아이디(이름)와 상품 이름을 가져옴
+    $sql = "select c.target_id, m.id, c.last_date, p.name, p.product_id, m.image, 
             (select text from chat where ((from_member_id = c.target_id and to_member_id = $member_id) or 
             (to_member_id = c.target_id and from_member_id = $member_id)) and product_id = p.product_id order by reg_date desc, chat_id desc limit 1) as last_text,
             (select count(*) from chat where from_member_id = c.target_id and to_member_id = $member_id
@@ -72,7 +73,8 @@
                                 // 마지막 메시지가 비어있는 경우, 사진 데이터
                                 $last = $row["last_text"] ?: "사진을 보냈습니다.";
                         ?>
-                                <a href="chat_room.html" class="list-group-item list-group-item-action p-3">
+                                <a href="chat_room.php?my_id=<?php echo $member_id;?>&target_id=<?php echo $row['target_id'];?>&product_id=<?php echo $row['product_id'];?>"
+                                 class="list-group-item list-group-item-action p-3">
                                     <div class="d-flex align-items-center gap-3">
                                         <!-- 프로필 사진 -->
                                         <img src="images/<?php echo $image;?>" alt="프로필 사진"
