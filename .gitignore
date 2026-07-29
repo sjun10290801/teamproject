@@ -3,3 +3,6 @@ product/*
 
 images/*
 !images/.gitkeep
+
+chat/*
+!chat/.gitkeep
