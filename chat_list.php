@@ -122,6 +122,6 @@
             </div>
         </div>
     </div>
-</body>
-
-</html>
+<?php
+    include "main_bottom.php"'
+?>
