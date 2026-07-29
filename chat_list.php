@@ -123,5 +123,5 @@
         </div>
     </div>
 <?php
-    include "main_bottom.php"'
+    include "main_bottom.php"
 ?>
