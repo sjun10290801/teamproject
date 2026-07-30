@@ -2,10 +2,10 @@
     include "main_top.php";
 ?>
 
-<div class="card mx-auto" style="width: 50rem;">
+<div class="card mx-auto" style="width: 50rem; ">
   <img src="..." class="card-img-top" alt="...">
   
-  <div class="card-body text-center border-bottom">
+  <div class="card-body text-center border-bottom ">
     <div class="bg-secondary-subtle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
       <i class="bi bi-person-fill text-secondary" style="font-size: 3.5rem;"></i>
     </div>

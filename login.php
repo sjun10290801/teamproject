@@ -18,9 +18,9 @@
             form.submit();
         }
     </script>
-
+    <div style="max-width: 400px; margin: 50px auto; padding: 20px;">
     <form name="form" method="post" action="login_check.php">
-        <fieldset>
+        <fieldset style="border: 1px solid #ccc; padding: 20px; border-radius: 5px;">
             <legend>로그인화면</legend>
     <p>
         <label for="userid">아이디</label>
@@ -42,5 +42,6 @@
     <br>
         </fieldset>
     </form>
+</div>
 </body>
 </html>
