@@ -39,7 +39,7 @@ ini_set('display_errors', 1);
 
 
             $sql = "select product_id, member_id, image, price, category, reg_date, state, juso1, juso2, juso3, name 
-                    from product where state != 2 $tmp ";
+                    from product where state != 2 $tmp limit 12";
             $result = mysqli_query($db, $sql);
             if(!$result) exit("에러 : $sql");
 
