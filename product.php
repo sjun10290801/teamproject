@@ -1,28 +1,58 @@
 <?php
-    include "main_top.php";
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+  include "main_top.php";
+  include "common.php";
+
+  $cookie_id = $_COOKIE["cookie_id"] ?? "";
+  if($cookie_id) { // 로그인한 상태라면 채팅, 찜 링크 전달용 본인 id 가져오기
+                $sql = "select member_id from member where id = '$cookie_id'";
+                $result = mysqli_query($db, $sql);
+                if(!$result) exit("에러 : $sql");
+
+                $row = mysqli_fetch_assoc($result);
+                $member_id = $row["member_id"];
+            } else { 
+                $member_id = "";
+            }
+
+  $product_id = $_GET["product_id"];
+
+  // 상품 id에 해당하는 상품의 상세, 올린 회원의 정보 표시
+  $sql = "select p.name, p.price, p.memo, p.reg_date, p.member_id, m.id, p.juso1, p.juso2, p.juso3, p.image, m.image as member_image , m.rating
+          from product p inner join member m on p.member_id = m.member_id where product_id = $product_id";
+  $result = mysqli_query($db, $sql);
+  if(!$result) exit("에러 : $sql");
+
+  $row = mysqli_fetch_assoc($result);
+
+  $product_image = $row["image"] ?: "default.jpg";
+  $member_image = $row["member_image"] ?: "default_profile.jpg";
+  $rating = $row["member_image"] ?: 0;
 ?>
 
 <div class="card mx-auto" style="width: 50rem; ">
-  <img src="..." class="card-img-top" alt="...">
+  <img src="product/<?php echo $product_image;?>" class="card-img-top" alt="...">
   
   <div class="card-body text-center border-bottom ">
     <div class="bg-secondary-subtle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
       <i class="bi bi-person-fill text-secondary" style="font-size: 3.5rem;"></i>
     </div>
-    <h5 class="card-title">Name</h5>
-    <p class="card-text">서울시 노원구</p>
+    <h5 class="card-title"><?php echo $row["id"];?></h5>
+    <p class="card-text"><?php echo $row["juso1"]." ".$row["juso2"]." ".$row["juso3"];?></p>
   </div>
       <ul class="list-group list-group-flush">
-    <li class="list-group-item">삼성 갤럭시 북</li>
-    <li class="list-group-item">500,000</li>
-    <li class="list-group-item">하루전</li>
-    <p class="card-text">구매 한지 얼마 안된 신형 노트북 팝니다</p>
+    <li class="list-group-item"><?php echo $row["name"];?></li>
+    <li class="list-group-item"><?php echo number_format($row["price"]);?>원</li>
+    <li class="list-group-item">등록일 : <?php echo $row["reg_date"];?></li>
+    <p class="card-text"><?php echo $row["memo"];?></p>
     </ul>
     <div class="card-body">
                 <div class="position-relative" style="z-index: 2;">
-                <a href="#" class="card-link text-decoration-none">찜하기</a>
-                <a href="#" class="card-link text-decoration-none">채팅하기</a>
-                <a href="member_profile.php" class="card-link text-decoration-none">프로필보기</a>
+                <a href="good_insert.php?product_id=$product_id" class="card-link text-decoration-none">찜하기</a>
+                <a href="chat_room.php?my_id=<?php echo $member_id;?>&target_id=<?php echo $row["member_id"];?>&product_id=<?php echo $product_id;?>"
+                 class="card-link text-decoration-none">채팅하기</a>
+                <a href="member_profile.php?id=<?php echo $row["member_id"];?>" class="card-link text-decoration-none">프로필보기</a>
 </div>
 
 

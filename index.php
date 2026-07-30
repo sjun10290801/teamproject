@@ -1,10 +1,8 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+
     include "main_top.php";
     include "common.php";
     
-    $page_line = 12;
 ?>
 
 <ul class="nav align-items-center">
@@ -39,7 +37,7 @@ ini_set('display_errors', 1);
 
 
             $sql = "select product_id, member_id, image, price, category, reg_date, state, juso1, juso2, juso3, name 
-                    from product where state != 2 $tmp limit 12";
+                    from product where state != 2 $tmp limit 12"; // limit 12로 12개만 보이도록 함.(너무 길어지는 것 방지)
             $result = mysqli_query($db, $sql);
             if(!$result) exit("에러 : $sql");
 
@@ -59,12 +57,14 @@ ini_set('display_errors', 1);
                 } else {
                     $time_text = "방금";
                 }
+
+                $product_image = $row["image"] ?: "default.jpg";
         ?>
             <div class="card">
-                <img src="product/<?php echo $row["image"];?>" class="card-img-top" alt="...">
+                <img src="product/<?php echo $product_image;?>" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">
-                <a href="product.php" class="text-decoration-none text-dark stretched-link"><?php echo $row["name"];?></a>
+                <a href="product.php?product_id=<?php echo $row["product_id"];?>" class="text-decoration-none text-dark stretched-link"><?php echo $row["name"];?></a>
             </h5>
                     <p class="card-text"><?php echo $a_category[$row["category"]];?></p>
                 </div>
