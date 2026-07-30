@@ -1,217 +1,90 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
     include "main_top.php";
+    include "common.php";
+    
+    $page_line = 12;
 ?>
 
 <ul class="nav align-items-center">
   <li class="nav-item">
     <span class="nav-link fw-bold text-dark ps-0">카테고리</span>
   </li>
-
+<?php
+    for($i = 1; $i < $n_category; $i++) {
+?>
   <li class="nav-item">
-    <a class="nav-link text-secondary" href="category.php">디지털기기</a>
+    <a class="nav-link text-secondary" href="category.php?menu=<?php echo $i ?>"><?php echo $a_category[$i]; ?></a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="category.php">가구</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="category.php">가전</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="category.php">의류</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="category.php">게임</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="category.php">음악</a>
-  </li>
-    </li>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="category.php">기타</a>
-  </li>
+<?php } ?>
+  
 </ul>
-
+    
     <div class="card-list">
+        <?php
+            $cookie_id = $_COOKIE["cookie_id"] ?? "";
+            if($cookie_id) { // 로그인한 상태라면 sql문으로 자신의 id를 조회하여 해당 상품이 안뜨도록 함.
+                $sql = "select member_id from member where id = '$cookie_id'";
+                $result = mysqli_query($db, $sql);
+                if(!$result) exit("에러 : $sql");
 
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">
-            <a href="product.php" class="text-decoration-none text-dark stretched-link">메리다 로드자전거</a>
-        </h5>
-                <p class="card-text">자전거</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">서울시 상계동</li>
-                <li class="list-group-item">15분 전</li>
-                <li class="list-group-item">700,000원</li>
-            </ul>
-            <div class="card-body">
-                <div class="position-relative" style="z-index: 2;">
-                <a href="#" class="card-link">찜하기</a>
-                <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.php" class="card-link">프로필보기</a>
-</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">
-            <a href="product.php" class="text-decoration-none text-dark stretched-link">삼성 갤럭시 북</a>
-        </h5>
-                <p class="card-text">노트북</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">서울시 중계동</li>
-                <li class="list-group-item">하루전</li>
-                <li class="list-group-item">500,000원</li>
-            </ul>
-            <div class="card-body">
-                <div class="position-relative" style="z-index: 2;">
-                <a href="#" class="card-link">찜하기</a>
-                <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.php" class="card-link">프로필보기</a>
-            </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">
-            <a href="product.php" class="text-decoration-none text-dark stretched-link">로지텍 102 마우스</a>
-        </h5>
-                <p class="card-text">마우스</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">서울시 노원구</li>
-                <li class="list-group-item">1시간 전</li>
-                <li class="list-group-item">20,000원</li>
-            </ul>
-            <div class="card-body">
-                <div class="position-relative" style="z-index: 2;">
-                <a href="#" class="card-link">찜하기</a>
-                <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.php" class="card-link">프로필보기</a>
-            </div>
-            </div>
-        </div>
+                $row = mysqli_fetch_assoc($result);
+                $member_id = $row["member_id"];
+                $tmp = "and member_id != $member_id";
+            } else { 
+                $member_id = "";
+                $tmp = "";
+            }
 
 
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">
-            <a href="product.php" class="text-decoration-none text-dark stretched-link">5060 컴퓨터 본체</a>
-        </h5>
-                <p class="card-text">컴퓨터</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">서울시 공릉동</li>
-                <li class="list-group-item">3시간 전</li>
-                <li class="list-group-item">,1500,000원</li>
-            </ul>
-            <div class="card-body">
-                <div class="position-relative" style="z-index: 2;">
-                <a href="#" class="card-link">찜하기</a>
-                <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.php" class="card-link">프로필보기</a>
-            </div>
-            </div>
-        </div>
+            $sql = "select product_id, member_id, image, price, category, reg_date, state, juso1, juso2, juso3, name 
+                    from product where state != 2 $tmp ";
+            $result = mysqli_query($db, $sql);
+            if(!$result) exit("에러 : $sql");
 
+            while($row = mysqli_fetch_assoc($result)) {
+                // 채팅 리스트의 시간 표기 방식 그대로 활용
+                date_default_timezone_set('Asia/Seoul');
+                $time = $row["reg_date"];
+                $diff = (strtotime(date('Y-m-d H:i:s')) - strtotime($time));
+                if($diff >= 2678400) {
+                    $time_text = "1달 이상";
+                } else if($diff >= 86400) {
+                    $time_text = floor($diff/86400)."일 전";
+                } else if($diff >= 3600) {
+                    $time_text = floor($diff/3600)."시간 전";
+                } else if($diff >= 60) {
+                    $time_text = floor($diff/60)."분 전";
+                } else {
+                    $time_text = "방금";
+                }
+        ?>
+            <div class="card">
+                <img src="product/<?php echo $row["image"];?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                <a href="product.php" class="text-decoration-none text-dark stretched-link"><?php echo $row["name"];?></a>
+            </h5>
+                    <p class="card-text"><?php echo $a_category[$row["category"]];?></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><?php echo $row["juso1"]." ".$row["juso2"]." ".$row["juso3"];?></li>
+                    <li class="list-group-item"><?php echo $time_text;?></li>
+                    <li class="list-group-item"><?php echo number_format($row["price"]);?>원</li>
+                </ul>
+                <div class="card-body">
+                    <div class="position-relative" style="z-index: 2;">
+                    <a href="#" class="card-link">찜하기</a>
+                    <a href="chat_room.php?my_id=<?php echo $member_id;?>&target_id=<?php echo $row["member_id"];?>&product_id=<?php echo $row["product_id"];?>
+                    " class="card-link">채팅하기</a>
+                    <a href="member_profile.php?id=<?php echo $row["member_id"];?>" class="card-link">프로필보기</a>
+                </div>
+            </div>
+        <?php } ?>
 
-                <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">
-            <a href="product.php" class="text-decoration-none text-dark stretched-link">메리다 로드자전거</a>
-        </h5>
-                <p class="card-text">자전거</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">서울시 상계동</li>
-                <li class="list-group-item">15분 전</li>
-                <li class="list-group-item">700,000원</li>
-            </ul>
-            <div class="card-body">
-                <div class="position-relative" style="z-index: 2;">
-                <a href="#" class="card-link">찜하기</a>
-                <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.php" class="card-link">프로필보기</a>
-</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">
-            <a href="product.php" class="text-decoration-none text-dark stretched-link">삼성 갤럭시 북</a>
-        </h5>
-                <p class="card-text">노트북</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">서울시 중계동</li>
-                <li class="list-group-item">하루전</li>
-                <li class="list-group-item">500,000원</li>
-            </ul>
-            <div class="card-body">
-                <div class="position-relative" style="z-index: 2;">
-                <a href="#" class="card-link">찜하기</a>
-                <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.php" class="card-link">프로필보기</a>
-            </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">
-            <a href="product.php" class="text-decoration-none text-dark stretched-link">로지텍 102 마우스</a>
-        </h5>
-                <p class="card-text">마우스</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">서울시 노원구</li>
-                <li class="list-group-item">1시간 전</li>
-                <li class="list-group-item">20,000원</li>
-            </ul>
-            <div class="card-body">
-                <div class="position-relative" style="z-index: 2;">
-                <a href="#" class="card-link">찜하기</a>
-                <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.php" class="card-link">프로필보기</a>
-            </div>
-            </div>
-        </div>
-
-
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">
-            <a href="product.php" class="text-decoration-none text-dark stretched-link">5060 컴퓨터 본체</a>
-        </h5>
-                <p class="card-text">컴퓨터</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">서울시 공릉동</li>
-                <li class="list-group-item">3시간 전</li>
-                <li class="list-group-item">,1500,000원</li>
-            </ul>
-            <div class="card-body">
-                <div class="position-relative" style="z-index: 2;">
-                <a href="#" class="card-link">찜하기</a>
-                <a href="#" class="card-link">채팅하기</a>
-                <a href="member_profile.php" class="card-link">프로필보기</a>
-            </div>
-            </div>
-        </div>
-        </div>
+        
+    </div>
 
     <?php
     include "main_bottom.php";

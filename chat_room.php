@@ -1,6 +1,14 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
     include "main_top.php";
     include "common.php";
+
+    if(!isset($_COOKIE["cookie_id"])) {
+            echo("<script>alert('로그인이 필요한 서비스입니다.');</script>");
+            echo("<script>location.href='login.php'</script>"); // 로그인 화면으로 돌아감.
+            exit();
+        }
 
     $member_id = $_GET["my_id"];
     $target_id = $_GET["target_id"];
@@ -98,8 +106,9 @@
                     <div class="card-body" style="min-height: 300px;">
                     <?php
                         while($row = mysqli_fetch_assoc($result)) {
+                            $ampm = date("A", strtotime($row["reg_date"])) == "AM" ? "오전" : "오후";
                             if($row["from_member_id"] == $target_id) {
-                                $ampm = date("A", strtotime($row["reg_date"])) == "AM" ? "오전" : "오후";
+                                
                     ?>
                                 <!-- 상대방 메시지 -->
                                 <div class="d-flex justify-content-start align-items-center mb-3">

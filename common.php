@@ -8,6 +8,9 @@
     $a_bank = ["은행 선택", "국민", "신한", "기업", "하나", "우리"];
     $n_bank = count($a_bank);
 
+	$page_line=5;
+	$page_block=5;
+
     function mypagination($query, $args, &$count, &$pagebar)
 	{
 		global $db, $page_line, $page_block;			// 서버DB 정보
