@@ -81,6 +81,7 @@ ini_set('display_errors', 1);
                     <a href="member_profile.php?id=<?php echo $row["member_id"];?>" class="card-link">프로필보기</a>
                 </div>
             </div>
+            </div>
         <?php } ?>
 
         
