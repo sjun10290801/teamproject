@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
     include "main_top.php";
     include "common.php";
     
-    $page_line = 12;
+    $page_line = 12; // 한 페이지에 검색 결과 12개만 보이도록 함.
 
     $cookie_id = $_COOKIE["cookie_id"] ?? "";
             if($cookie_id) { // 로그인한 상태라면 sql문으로 자신의 id를 조회하여 해당 상품이 안뜨도록 함.
@@ -28,6 +28,7 @@ ini_set('display_errors', 1);
                 $l_text = $location;
             }
 
+            // 상세주소, 시/도, 시/군/구 중 하나라도 검색어가 포함되면 검색 되도록 함.
             $args = "text=$text&location=$location";
             $sql = "select product_id, member_id, image, price, category, reg_date, state, juso1, juso2, juso3, name 
                     from product where state != 2 $tmp and name like '%$text%' 
@@ -81,7 +82,7 @@ ini_set('display_errors', 1);
                 </ul>
                 <div class="card-body">
                     <div class="position-relative" style="z-index: 2;">
-                    <a href="#" class="card-link">찜하기</a>
+                    <a href="good_insert.php?product_id=<?php echo $row["product_id"];?>" class="card-link">찜하기</a>
                     <a href="chat_room.php?my_id=<?php echo $member_id;?>&target_id=<?php echo $row["member_id"];?>&product_id=<?php echo $row["product_id"];?>
                     " class="card-link">채팅하기</a>
                     <a href="member_profile.php?id=<?php echo $row["member_id"];?>" class="card-link">프로필보기</a>
