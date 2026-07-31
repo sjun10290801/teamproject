@@ -25,7 +25,7 @@
             (select text from chat where ((from_member_id = c.target_id and to_member_id = $member_id) or 
             (to_member_id = c.target_id and from_member_id = $member_id)) and product_id = p.product_id order by reg_date desc, chat_id desc limit 1) as last_text,
             (select count(*) from chat where from_member_id = c.target_id and to_member_id = $member_id
-            and product_id = p.product_id and state = 0) as chat_state
+            and product_id = p.product_id) as chat_state
             from (select case when to_member_id = $member_id then from_member_id 
             when from_member_id = $member_id then to_member_id end as target_id, product_id, max(reg_date) as last_date from chat
             group by target_id, product_id) as c inner join member m on c.target_id = m.member_id 

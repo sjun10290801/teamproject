@@ -75,7 +75,7 @@
                 </ul>
                 <div class="card-body">
                     <div class="position-relative" style="z-index: 2;">
-                    <a href="#" class="card-link">찜하기</a>
+                    <a href="good_insert.php?product_id=<?php echo $row["product_id"];?>" class="card-link">찜하기</a>
                     <a href="chat_room.php?my_id=<?php echo $member_id;?>&target_id=<?php echo $row["member_id"];?>&product_id=<?php echo $row["product_id"];?>
                     " class="card-link">채팅하기</a>
                     <a href="member_profile.php?id=<?php echo $row["member_id"];?>" class="card-link">프로필보기</a>

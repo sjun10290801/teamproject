@@ -17,6 +17,11 @@
 
   $product_id = $_GET["product_id"];
 
+  // 상품 조회수 증가
+  $sql = "update product set view = view + 1 where product_id = $product_id";
+  $result = mysqli_query($db, $sql);
+  if(!$result) exit("에러 : $sql");
+
   // 상품 id에 해당하는 상품의 상세, 올린 회원의 정보 표시
   $sql = "select p.name, p.price, p.memo, p.reg_date, p.member_id, m.id, p.juso1, p.juso2, p.juso3, p.image, m.image as member_image , m.rating
           from product p inner join member m on p.member_id = m.member_id where product_id = $product_id";
