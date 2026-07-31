@@ -15,7 +15,7 @@
 	{
 		global $db, $page_line, $page_block;			// 서버DB 정보
 
-		$page=$_REQUEST["page"] ? $_REQUEST["page"] : 1;	// page초기화
+		$page=$_REQUEST["page"] ?? 1;	// page초기화
 		
 		$url=basename($_SERVER['PHP_SELF']) . "?" . $args;    // 문서이름?전송할 변수들
 		
@@ -70,6 +70,7 @@
 				
 		$pagebar .="</ul>
 			</nav>";
+			
 			
 		return $result;
 	}
