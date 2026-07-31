@@ -1,5 +1,6 @@
 product/*
 !product/.gitkeep
+!product/default.jpg
 
 images/*
 !images/.gitkeep
