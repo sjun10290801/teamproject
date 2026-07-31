@@ -5,19 +5,8 @@ ini_set('display_errors', 1);
     include "common.php";
     
     $page_line = 12;
-?>
-<div class="my-4 px-2">
-  <div class="d-flex align-items-center gap-2 border-bottom pb-3">
-    <h3><span class="badge text-bg-secondary">스위치</span> 에대한 검색 결과</h3>
-    <span class="badge bg-secondary rounded-pill">12개</span>
-  </div>
-</div>
-  
-</ul>
-    
-    <div class="card-list">
-        <?php
-            $cookie_id = $_COOKIE["cookie_id"] ?? "";
+
+    $cookie_id = $_COOKIE["cookie_id"] ?? "";
             if($cookie_id) { // 로그인한 상태라면 sql문으로 자신의 id를 조회하여 해당 상품이 안뜨도록 함.
                 $sql = "select member_id from member where id = '$cookie_id'";
                 $result = mysqli_query($db, $sql);
@@ -31,11 +20,32 @@ ini_set('display_errors', 1);
                 $tmp = "";
             }
 
+            if(!$location) {
+                $l_tmp = "";
+                $l_text = "모든 지역";
+            } else {
+                $l_tmp = "and (juso1 like '%$location%' or juso2 like '%$location%' or juso3 like '%$location%')";
+                $l_text = $location;
+            }
 
+            $args = "text=$text&location=$location";
             $sql = "select product_id, member_id, image, price, category, reg_date, state, juso1, juso2, juso3, name 
-                    from product where state != 2 $tmp limit 12";
-            $result = mysqli_query($db, $sql);
+                    from product where state != 2 $tmp and name like '%$text%' 
+                    $l_tmp";
+            $result = mypagination($sql, $args, $count, $pagebar);
             if(!$result) exit("에러 : $sql");
+?>
+<div class="my-4 px-2">
+  <div class="d-flex align-items-center gap-2 border-bottom pb-3">
+    <h3><span class="badge text-bg-secondary"><?php echo '"'.$text.'"'.", (지역 : ".$l_text.")";?></span> 에대한 검색 결과</h3>
+    <span class="badge bg-secondary rounded-pill"><?php echo $count; ?>건</span>
+  </div>
+</div>
+  
+</ul>
+    
+    <div class="card-list">
+        <?php
 
             while($row = mysqli_fetch_assoc($result)) {
                 // 채팅 리스트의 시간 표기 방식 그대로 활용
@@ -53,12 +63,14 @@ ini_set('display_errors', 1);
                 } else {
                     $time_text = "방금";
                 }
+
+                $product_image = $row["image"] ?: "default.jpg";
         ?>
             <div class="card">
-                <img src="product/<?php echo $row["image"];?>" class="card-img-top" alt="...">
+                <img src="product/<?php echo $product_image;?>" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">
-                <a href="product.php" class="text-decoration-none text-dark stretched-link"><?php echo $row["name"];?></a>
+                <a href="product.php?product_id=<?php echo $row["product_id"];?>" class="text-decoration-none text-dark stretched-link"><?php echo $row["name"];?></a>
             </h5>
                     <p class="card-text"><?php echo $a_category[$row["category"]];?></p>
                 </div>
@@ -80,6 +92,7 @@ ini_set('display_errors', 1);
 
         
     </div>
+    <?php echo $pagebar;?>
 
     <?php
     include "main_bottom.php";
