@@ -39,9 +39,13 @@
   <img src="product/<?php echo $product_image;?>" class="card-img-top" alt="...">
   
   <div class="card-body text-center border-bottom ">
-    <div class="bg-secondary-subtle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
-      <i class="bi bi-person-fill text-secondary" style="font-size: 3.5rem;"></i>
+
+    <div class="col-12 col-md-auto text-center mx-auto mb-3">
+      <a href="member_profile.php?id=<?php echo $row["member_id"];?>">
+      <img src="images/<?php echo $member_image;?>" alt="프로필 사진" class="rounded-circle object-fit-cover border" style="width: 120px; height: 120px;">
+      </a>
     </div>
+
     <h5 class="card-title"><?php echo $row["id"];?></h5>
     <p class="card-text"><?php echo $row["juso1"]." ".$row["juso2"]." ".$row["juso3"];?></p>
   </div>
@@ -57,12 +61,14 @@
                 <a href="chat_room.php?my_id=<?php echo $member_id;?>&target_id=<?php echo $row["member_id"];?>&product_id=<?php echo $product_id;?>"
                  class="card-link text-decoration-none">채팅하기</a>
                 <a href="member_profile.php?id=<?php echo $row["member_id"];?>" class="card-link text-decoration-none">프로필보기</a>
+                <a href="report.html" class="card-link text-decoration-none text-danger">신고하기</a>
 </div>
 
 
 <div class="d-grid gap-2 col-6 mx-auto">
   <button class="btn btn-primary w-100 fw-bold" type="button">구매하기</button>
 </div>
+
 </div>
 </div>
 

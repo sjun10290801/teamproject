@@ -1,0 +1,39 @@
+<?php
+    include "main_top.php";
+    include "common.php";
+?>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">신고하기</h2>
+
+    <div class="card border-danger mb-3 mx-auto" style="max-width: 25rem;">
+        <div class="card-header bg-transparent border-danger text-dark fw-bold">게시물 신고하기</div>
+            
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">신고 사유</label>
+                    <select class="form-select" name="reason" required>
+                        <option value="">사유를 선택해주세요</option>
+                        <option value="거래금지">거래 금지 물품이에요</option>
+                        <option value="판매업자">전문판매업자 같아요</option>
+                        <option value="사기피해">사기피해를 입었어요</option>
+                        <option value="부적절한 행위">부적절한 행위가 있거나 중고거래 목적이 아니에요</option>
+                        <option value="기타">적절한 신고 항목을 찾지 못했어요</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label fw-bold">상세 내용</label>
+                    <textarea class="form-control" name="content" rows="4" placeholder="상세한 신고 사유를 입력해주세요." required></textarea>
+                </div>
+            </div> 
+            
+            <div class="card-footer bg-transparent border-danger text-center">
+                <button type="submit" class="btn btn-danger w-100 fw-bold">신고 접수</button>
+            </div>
+    </div> 
+</div>
+
+<?php
+    include "main_bottom.php";
+?>

@@ -18,6 +18,20 @@
 <?php } ?>
   
 </ul>
+
+<div class="d-flex justify-content-end px-4 mt-3 mb-2">
+      <div class="dropdown">
+        <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          정렬방법
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">최신순</a></li>
+          <li><a class="dropdown-item" href="#">낮은가격순</a></li>
+          <li><a class="dropdown-item" href="#">높은순</a></li>
+          <li><a class="dropdown-item" href="#">추천순</a></li>
+        </ul>
+      </div>
+    </div>
     
     <div class="card-list">
         <?php
@@ -86,6 +100,10 @@
 
         
     </div>
+
+<div class="d-grid gap-2">
+  <button class="btn btn-outline-dark" type="button">더보기</button>
+</div>
 
     <?php
     include "main_bottom.php";
