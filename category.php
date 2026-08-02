@@ -68,7 +68,7 @@ $cookie_id = $_COOKIE["cookie_id"] ?? "";
                 $product_image = $row["image"] ?: "default.jpg";
         ?>
         <div class="card">
-                <img src="product/<?php echo $product_image;?>" class="card-img-top" alt="...">
+                <img src="product/<?php echo $product_image;?>" class="card-img-top object-fit-contain bg-light" style="height: 400px;" " alt="...">
                 <div class="card-body">
                     <h5 class="card-title">
                 <a href="product.php?product_id=<?php echo $row["product_id"];?>" class="text-decoration-none text-dark stretched-link"><?php echo $row["name"];?></a>
