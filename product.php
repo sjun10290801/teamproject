@@ -36,7 +36,7 @@
 ?>
 
 <div class="card mx-auto" style="width: 50rem; ">
-  <img src="product/<?php echo $product_image;?>" class="card-img-top" alt="...">
+  <img src="product/<?php echo $product_image;?>" class="card-img-top object-fit-contain bg-light" style="height: 400px;" " alt="...">
   
   <div class="card-body text-center border-bottom ">
 
