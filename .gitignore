@@ -8,5 +8,5 @@ images/*
 chat/*
 !chat/.gitkeep
 
-admin/chat/*
-!admin/chat/.gitkeep
+admin/report/*
+!admin/report/.gitkeep

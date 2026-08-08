@@ -61,7 +61,7 @@
                 <a href="chat_room.php?my_id=<?php echo $member_id;?>&target_id=<?php echo $row["member_id"];?>&product_id=<?php echo $product_id;?>"
                  class="card-link text-decoration-none">채팅하기</a>
                 <a href="member_profile.php?id=<?php echo $row["member_id"];?>" class="card-link text-decoration-none">프로필보기</a>
-                <a href="report.html" class="card-link text-decoration-none text-danger">신고하기</a>
+                <a href="report.php?member_id=<?php echo $row["member_id"];?>" class="card-link text-decoration-none text-danger">신고하기</a>
 </div>
 
 
