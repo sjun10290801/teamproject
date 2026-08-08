@@ -66,7 +66,7 @@
 
 
 <div class="d-grid gap-2 col-6 mx-auto">
-  <button class="btn btn-primary w-100 fw-bold" type="button">구매하기</button>
+  <a class="btn btn-primary w-100 fw-bold" href="order_pay.html">구매하기</a>
 </div>
 
 </div>
