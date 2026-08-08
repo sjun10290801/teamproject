@@ -19,9 +19,15 @@
 
     // 전화번호 쪼개기
     $tel = $row['tel'];
-    $tel1 = substr($tel, 0, 3);
-    $tel2 = substr($tel, 3, 4);
-    $tel3 = substr($tel, 7, 4);
+    if(substr($tel, 0, 2) == "02") {
+        $tel1 = substr($tel, 0, 2);
+        $tel2 = substr($tel, 2, 4);
+        $tel3 = substr($tel, 6, 4);
+    } else {
+        $tel1 = substr($tel, 0, 3);
+        $tel2 = substr($tel, 3, 4);
+        $tel3 = substr($tel, 7, 4);
+    }
 
     // 주소 합치기
     $juso1 = $row['juso1'];

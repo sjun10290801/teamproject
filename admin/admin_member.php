@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
     include "../common.php";
 
     $text = $_POST["text"] ?? "";
@@ -58,10 +60,12 @@
             while($row = mysqli_fetch_assoc($result)) {
 
             // 전화번호 형식 지정
-            $tel1 = substr($row["tel"], 0, 3);
-            $tel2 = substr($row["tel"], 3, 4);
-            $tel3 = substr($row["tel"], 7, 4);
-            $tel = $tel1."-".$tel2."-".$tel3;
+            $tel1 = $row["tel"]; 
+            if(substr($tel1, 0, 2) == "02") {
+			$tel = substr($tel1, 0, 2)."-".substr($tel1, 2, 4)."-".substr($tel1, 6, 4);
+		    } else {
+			$tel =  substr($tel1, 0, 3)."-".substr($tel1, 3, 4)."-".substr($tel1, 7, 4);
+		    }
 
             $member_id = $row["member_id"];
 

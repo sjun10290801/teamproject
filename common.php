@@ -8,9 +8,13 @@
     $a_bank = ["은행 선택", "국민", "신한", "기업", "하나", "우리"];
     $n_bank = count($a_bank);
 
+	$a_report = ["사기", "욕설·위협", "거래 약속 불이행", "반복적인 광고·도배", "타인 사칭", "개인정보 침해", "부적절한 프로필·게시물", "기타"];
+	$n_report = count($a_report);
+
 	$page_line=5;
 	$page_block=5;
 
+	// 로그인 했는지 확인
 	function loginCheck() {
 		if(!isset($_COOKIE["cookie_id"])) {
             echo("<script>alert('로그인이 필요한 서비스입니다.');</script>");
@@ -19,6 +23,7 @@
         }
 	}
 
+	// 쿠키 기반으로 id가져오기
 	function getId() {
 		global $db;
 		$cookie_id = $_COOKIE["cookie_id"];
@@ -32,6 +37,51 @@
 		return $id;
 	}
 
+	// 이미지 업로드
+	function imageUpload($name, $direct, $table) {
+		global $db;
+
+		$target = $table."_id";
+
+		$filename = $_FILES["image"]["name"]; // 이미지 이름
+    	if($filename) { // 확장자 검사 
+        $tmp = strtolower(pathinfo($filename, PATHINFO_EXTENSION)); // strtolower => 영어 소문자로 변경하는 함수
+        // pathinfo(경로, PATHINFO_EXTENSION) => 파일의 확장자만 추출하기 위한 함수
+
+        switch($tmp) { // 확장자가 이미지가 아니면 종료
+            case "png": case "jpg": case "jpeg":
+                break;
+            default:
+                echo("이미지(png, jpg, jpeg) 파일만 업로드 가능합니다.");
+                exit();
+        }
+
+			// 파일 이름 중복 방지 -> "$name" + id
+			$sql = "select * from $table order by $target desc"; // 제품 id 내림차순 정렬
+			$result = mysqli_query($db, $sql);
+			if(!$result) exit("에러 : $sql");
+
+			if($row = mysqli_fetch_assoc($result)) { // 제품이 없다면 제품 id는 1. 제품이 있다면 마지막 제품id + 1
+				$num = $row["$target"] + 1;
+			} else {
+				$num = 1;
+			}
+
+			$fname = $name.$num.".".$tmp;
+			if($_FILES["image"]["error"] == 0)
+			{
+				if(!move_uploaded_file($_FILES["image"]["tmp_name"],$direct."/".$fname)) // 업로드
+					exit("업로드 실패");
+			}
+
+
+			return $fname;
+		}
+
+		return "";
+	}
+
+	// 페이지네이션
     function mypagination($query, $args, &$count, &$pagebar)
 	{
 		global $db, $page_line, $page_block;			// 서버DB 정보
