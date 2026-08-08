@@ -1,7 +1,8 @@
 <?php
-    loginCheck();
+    
 
     include "common.php";
+    loginCheck();
 
     $product_id = $_GET["id"];
     $cookie_id = $_COOKIE["cookie_id"];

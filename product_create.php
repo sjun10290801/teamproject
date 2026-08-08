@@ -1,7 +1,7 @@
 <?php
-    loginCheck();
 
     include "common.php";
+    loginCheck();
 
     $cookie_id = $_COOKIE["cookie_id"];
 
