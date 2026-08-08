@@ -18,6 +18,6 @@
     $result = mysqli_query($db, $sql);
     if(!$result) exit("에러 : $sql");
 
-    echo("<script>alert('찜 목록에 추가되었습니다.');</script>");
+    echo("<script>alert('삭제되었습니다.');</script>");
     echo("<script>location.href='good.php'</script>");
 ?>
