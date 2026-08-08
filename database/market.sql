@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 호스트: localhost
--- 생성 시간: 26-07-30 11:19
+-- 생성 시간: 26-08-08 10:59
 -- 서버 버전: 12.3.2-MariaDB
 -- PHP 버전: 8.5.8
 
@@ -62,7 +62,30 @@ INSERT INTO `chat` (`chat_id`, `to_member_id`, `from_member_id`, `text`, `reg_da
 (18, 6, 10, 'ㅋㅋㅋㅋㅋㅋㅋㅋ', '2026-07-29 21:36:17', 0, 20, ''),
 (19, 9, 10, 'asdasdas', '2026-07-29 21:37:55', 0, 19, ''),
 (20, 9, 10, '', '2026-07-29 22:03:51', 0, 19, 'chat20.png'),
-(21, 9, 10, '11111', '2026-07-29 22:03:55', 0, 19, '');
+(21, 9, 10, '11111', '2026-07-29 22:03:55', 0, 19, ''),
+(22, 9, 10, 'qweqwe', '2026-07-31 17:05:56', 0, 19, ''),
+(23, 9, 10, '', '2026-07-31 17:06:02', 0, 19, 'chat23.png'),
+(24, 9, 10, 'qweqwe', '2026-07-31 17:08:49', 0, 19, '');
+
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `good`
+--
+
+CREATE TABLE `good` (
+  `good_id` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- 테이블의 덤프 데이터 `good`
+--
+
+INSERT INTO `good` (`good_id`, `member_id`, `product_id`) VALUES
+(1, 10, 23),
+(2, 10, 24);
 
 -- --------------------------------------------------------
 
@@ -427,11 +450,13 @@ CREATE TABLE `product` (
 INSERT INTO `product` (`product_id`, `member_id`, `image`, `price`, `memo`, `category`, `view`, `reg_date`, `state`, `juso1`, `juso2`, `juso3`, `name`) VALUES
 (16, 6, '', 30000, '12321312', 3, 0, '2026-07-27 15:57:23', 2, '서울특별시', '노원구', 'asdas', 'aa'),
 (18, 6, 'image18.jpg', 50000, 'ㅇㅇㅇㅇㅇ', 5, 0, '2026-07-27 16:46:54', 2, '강원특별자치도', '홍천군', 'ㅁㅁㅁㅁ리', '게임팩'),
-(19, 10, 'image19.png', 500000, '급처합니다', 4, 0, '2026-07-27 20:30:01', 1, '경기도', '구리시', 'XX아파트 앞', '스위치2'),
+(19, 10, 'image19.png', 500000, '급처합니다', 4, 1, '2026-07-27 20:30:01', 1, '경기도', '구리시', 'XX아파트 앞', '스위치2'),
 (20, 10, 'image20.jpg', 600000, '생활 기스 있음', 1, 0, '2026-07-27 20:31:50', 2, '서울특별시', '노원구', '노원역 부근', '아이폰 15 공기계'),
-(21, 9, 'image21.png', 20000, 'xl', 4, 0, '2026-07-27 20:33:07', 1, '서울특별시', '중구', 'ㅁㅁㄴㅇㅁㄴㅇ', '남성 후드 집업'),
+(21, 9, '', 20000, 'xl', 4, 4, '2026-07-27 20:33:07', 1, '서울특별시', '중구', 'ㅁㅁㄴㅇㅁㄴㅇ', '남성 후드 집업'),
 (22, 11, 'image22.png', 15000, '네고 X', 5, 0, '2026-07-30 17:40:02', 0, '서울특별시', '중구', 'XX동', '사이버펑크 게임팩'),
-(23, 11, 'image23.png', 500, '샘플이고 한장당 500원이요', 6, 0, '2026-07-30 17:40:31', 0, '서울특별시', '중구', 'ㅂㅂㅂ', '집냥이 사진');
+(23, 11, 'image23.png', 500, '샘플이고 한장당 500원이요', 6, 7, '2026-07-30 17:40:31', 0, '서울특별시', '중구', 'ㅂㅂㅂ', '집냥이 사진'),
+(24, 4, 'image24.png', 12000, '책 판매합니다', 6, 4, '2026-07-30 21:06:07', 0, '강원특별자치도', '횡성군', 'ㅂㅂㅂ', '투명한 나선 - 히가시노 게이고'),
+(25, 6, '', 30000, '선반 팝니다. 관심있으면 채팅 주세요.', 2, 0, '2026-07-30 23:40:05', 0, '서울특별시', '도봉구', 'xx동', '선반');
 
 -- --------------------------------------------------------
 
@@ -456,6 +481,21 @@ INSERT INTO `rating` (`rating_id`, `to_member_id`, `from_member_id`, `score`, `r
 (2, 10, 7, 5, '2026-07-27 11:38:53', 7),
 (3, 10, 5, 3, '2026-07-27 11:39:38', 8);
 
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `report`
+--
+
+CREATE TABLE `report` (
+  `report_id` int(11) NOT NULL,
+  `to_member_id` int(11) NOT NULL,
+  `from_member_id` int(11) NOT NULL,
+  `reason` int(11) NOT NULL,
+  `text` text NOT NULL,
+  `image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
 --
 -- 덤프된 테이블의 인덱스
 --
@@ -465,6 +505,12 @@ INSERT INTO `rating` (`rating_id`, `to_member_id`, `from_member_id`, `score`, `r
 --
 ALTER TABLE `chat`
   ADD PRIMARY KEY (`chat_id`);
+
+--
+-- 테이블의 인덱스 `good`
+--
+ALTER TABLE `good`
+  ADD PRIMARY KEY (`good_id`);
 
 --
 -- 테이블의 인덱스 `juso`
@@ -497,6 +543,12 @@ ALTER TABLE `rating`
   ADD PRIMARY KEY (`rating_id`);
 
 --
+-- 테이블의 인덱스 `report`
+--
+ALTER TABLE `report`
+  ADD PRIMARY KEY (`report_id`);
+
+--
 -- 덤프된 테이블의 AUTO_INCREMENT
 --
 
@@ -504,7 +556,13 @@ ALTER TABLE `rating`
 -- 테이블의 AUTO_INCREMENT `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- 테이블의 AUTO_INCREMENT `good`
+--
+ALTER TABLE `good`
+  MODIFY `good_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 테이블의 AUTO_INCREMENT `juso`
@@ -528,13 +586,19 @@ ALTER TABLE `orders`
 -- 테이블의 AUTO_INCREMENT `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- 테이블의 AUTO_INCREMENT `rating`
 --
 ALTER TABLE `rating`
   MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- 테이블의 AUTO_INCREMENT `report`
+--
+ALTER TABLE `report`
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
