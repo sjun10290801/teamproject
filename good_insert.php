@@ -1,8 +1,11 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
     include "common.php";
 
     loginCheck();
 
+    $cookie_id = $_COOKIE["cookie_id"];
     // 자신의 멤버id를 조회
     $sql = "select member_id from member where id = '$cookie_id'";
     $result = mysqli_query($db, $sql);
