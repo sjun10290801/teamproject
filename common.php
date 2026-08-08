@@ -11,6 +11,27 @@
 	$page_line=5;
 	$page_block=5;
 
+	function loginCheck() {
+		if(!isset($_COOKIE["cookie_id"])) {
+            echo("<script>alert('로그인이 필요한 서비스입니다.');</script>");
+            echo("<script>location.href='login.php'</script>"); // 로그인 화면으로 돌아감.
+            exit();
+        }
+	}
+
+	function getId() {
+		global $db;
+		$cookie_id = $_COOKIE["cookie_id"];
+    	$sql = "select * from member where id = '$cookie_id'";
+    	$result = mysqli_query($db, $sql);
+    	if(!$result) exit("에러 : $sql");
+
+		$row = mysqli_fetch_assoc($result);
+    	$id = $row["member_id"];
+
+		return $id;
+	}
+
     function mypagination($query, $args, &$count, &$pagebar)
 	{
 		global $db, $page_line, $page_block;			// 서버DB 정보
