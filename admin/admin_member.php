@@ -56,6 +56,8 @@
             $tel3 = substr($row["tel"], 7, 4);
             $tel = $tel1."-".$tel2."-".$tel3;
 
+            $member_id = $row["member_id"];
+
         ?>
             <tr>
                 <th scope="row"><?php echo $row["member_id"];?></th>
@@ -68,8 +70,10 @@
                 <td><?php echo $row["bank_name"]."은행";?></td>
                 <td>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-sm btn-outline-primary">수정</button>
-                        <button type="button" class="btn btn-sm btn-outline-danger">삭제</button>
+                        <button type="button" class="btn btn-sm btn-outline-primary" 
+                        onclick="location.href='member_edit.php?member_id=<?php echo $member_id;?>'">수정</button>
+                        <button type="button" class="btn btn-sm btn-outline-danger"
+                        onclick="location.href='member_delete.php?member_id=<?php echo $member_id;?>'">삭제</button>
                     </div>
                 </td>
             </tr>

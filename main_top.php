@@ -53,12 +53,12 @@
 <body>
   <script>
     function Submit() {
-            if(form2.text.value == 0) {
+            if(form1.text.value == 0) {
                 alert("검색어를 입력 해주세요");
-                form2.text.focus();
+                form1.text.focus();
                 return;
             }
-            form2.submit();
+            form1.submit();
     }
   </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -104,7 +104,7 @@
   $text = $_POST["text"] ?? "";
   $location = $_POST["location"] ?? "";
 ?>
-  <form class="d-flex mt-3" action="search.php" role="search" style="max-width: 500px;" method="post" name="form2">
+  <form class="d-flex mt-3" action="search.php" role="search" style="max-width: 500px;" method="post" name="form1">
   <input class="form-control me-2" type="search" placeholder="물건" aria-label="Search" name="text" value="<?php echo $text;?>"/>
   <input class="form-control me-2" type="search" placeholder="위치" aria-label="Search" name="location" value="<?php echo $location;?>"/>
   <a href="javascript:Submit();" class="btn btn-sm btn-dark text-white text-nowrap">검색하기</a>
