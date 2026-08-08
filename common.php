@@ -11,6 +11,7 @@
 	$page_line=5;
 	$page_block=5;
 
+	// 로그인 했는지 확인
 	function loginCheck() {
 		if(!isset($_COOKIE["cookie_id"])) {
             echo("<script>alert('로그인이 필요한 서비스입니다.');</script>");
@@ -19,6 +20,7 @@
         }
 	}
 
+	// 쿠키 기반으로 id가져오기
 	function getId() {
 		global $db;
 		$cookie_id = $_COOKIE["cookie_id"];
@@ -32,6 +34,15 @@
 		return $id;
 	}
 
+	function phoneFormat($tel) {
+		if(substr($tel, 0, 2) == "02") {
+			return substr($tel, 0, 2)."-".substr($tel, 2, 4)."-".substr($tel, 6, 4);
+		} else {
+			return substr($tel, 0, 3)."-".substr($tel, 3, 4)."-".substr($tel, 7, 4);
+		}
+	}
+
+	// 페이지네이션
     function mypagination($query, $args, &$count, &$pagebar)
 	{
 		global $db, $page_line, $page_block;			// 서버DB 정보
