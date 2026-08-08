@@ -89,7 +89,7 @@
           </button>
           <ul class="dropdown-menu dropdown-menu-lights">
             <li><a class="dropdown-item" href="member_mypage.php">내정보</a></li>
-            <li><a class="dropdown-item" href="good.html">찜한목록</a></li>
+            <li><a class="dropdown-item" href="good.php">찜한목록</a></li>
             <li><a class="dropdown-item" href="product_create.php">상품등록</a></li>
             <li><a class="dropdown-item" href="member_mypage.php?kind=sell">판매관리</a></li>
             <li><a class="dropdown-item" href="member_mypage.php?kind=buy">구매내역</a></li>

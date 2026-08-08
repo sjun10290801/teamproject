@@ -49,7 +49,7 @@ ini_set('display_errors', 1);
 
 ?>
 <div class="card container" style="width: 18rem;">
-  <img src="product/<?php echo $image;?>" class="card-img-top" alt="...">
+  <img src="product/<?php echo $image;?>" class="card-img-top object-fit-contain bg-light" style="height: 200px;" alt="...">
   <div class="card-body">
     <div class="card-body">
     <h5 class="card-title">
@@ -61,7 +61,7 @@ ini_set('display_errors', 1);
     <p class="card-text text-muted"><?php echo $row["juso1"]." ".$row["juso2"]." ".$row["juso3"];?> · <?php echo $time_text;?></p>
     <h5 class="card-text fw-bold mt-2"><?php echo number_format($row["price"]);?>원</h5>
   </div>
-  <a href="good_delete.php?member_id=<?php echo $member_id;?>&product_id=<?php echo $row["product_id"];?>" class="btn btn-sm btn-dark text-white myfont">삭제</a>
+  <a href="good_delete.php?member_id=<?php echo $member_id;?>&product_id=<?php echo $row["product_id"];?>" class="btn btn-sm btn-dark text-white myfont position-relative z-3">삭제</a>
 </div>
 </div>
 
