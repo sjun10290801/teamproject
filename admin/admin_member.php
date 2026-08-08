@@ -20,8 +20,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<div class="container mt-5 mb-5">
-    <h2 class="text-center fw-bold">관리자-회원관리</h2>
+<div class="container-fluid mt-5 mb-5">
+    <div class="d-flex justify-content-between align-items-center">
+    <h2 class="fw-bold">관리자-회원관리</h2>
+    <ul class="nav nav-pills">
+    <li class="nav-item">
+    <a class="nav-link active bg-dark" aria-current="page" href="admin_report.html">신고관리</a>
+  </li>
+</ui>
+</div>
 </div>
 
 <form class="d-flex mt-3" action="admin_member.php" role="search" style="max-width: 300px;" method="post" name="form2">
