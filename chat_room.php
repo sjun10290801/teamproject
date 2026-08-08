@@ -4,11 +4,7 @@ ini_set('display_errors', 1);
     include "main_top.php";
     include "common.php";
 
-    if(!isset($_COOKIE["cookie_id"])) {
-            echo("<script>alert('로그인이 필요한 서비스입니다.');</script>");
-            echo("<script>location.href='login.php'</script>"); // 로그인 화면으로 돌아감.
-            exit();
-        }
+    loginCheck();
 
     $member_id = $_GET["my_id"];
     $target_id = $_GET["target_id"];

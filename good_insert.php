@@ -1,11 +1,7 @@
 <?php
     include "common.php";
 
-    $cookie_id = $_COOKIE["cookie_id"] ?? "";
-    if(!$cookie_id) {
-        echo("<script>alert('로그인이 필요한 서비스입니다.');</script>");
-        echo("<script>location.href='login.php'</script>"); // 로그인 화면으로 돌아감.
-    }
+    loginCheck();
 
     // 자신의 멤버id를 조회
     $sql = "select member_id from member where id = '$cookie_id'";
