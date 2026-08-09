@@ -1,9 +1,11 @@
 <?php
-    loginCheck();
+include "common.php";
+loginCheck();
 
     include "main_top.php";
-    include "common.php";
+    
 
+    
     // 본인의 회원 id를 가져오기
     $cookie_id = $_COOKIE["cookie_id"];
     $sql = "select * from member where id = '$cookie_id'";
