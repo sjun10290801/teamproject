@@ -37,6 +37,14 @@
 		return $id;
 	}
 
+	function adminCheck() {
+		if(!isset($_COOKIE["admin_id"])) {
+            echo("<script>alert('권한이 없습니다.');</script>");
+            echo("<script>location.href='admin_login.html'</script>"); // 로그인 화면으로 돌아감.
+            exit();
+        }
+	}
+
 	// 이미지 업로드
 	function imageUpload($name, $direct, $table) {
 		global $db;

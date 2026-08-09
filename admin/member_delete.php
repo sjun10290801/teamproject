@@ -1,6 +1,6 @@
 <?php
     include "../common.php";
-    
+    adminCheck();
     $member_id = $_GET["member_id"];
 
     $sql = "delete from member where member_id = $member_id";
