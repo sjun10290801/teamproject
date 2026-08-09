@@ -1,12 +1,41 @@
 <?php
-include "common.php";
-include "main_top.php";
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+    include "common.php";
+    loginCheck();
+
+    $member_id = getId();
+
+    $order_id = $_GET["id"];
+
+    $sql = "select buyer_id from orders where order_id = $order_id";
+    $result = mysqli_query($db, $sql);
+    if(!$result) exit("에러 : $sql");
+
+    $row = mysqli_fetch_assoc($result);
+
+    // 구매자 아이디와 접속자의 아이디가 불일치 시 접근 불가
+    if($member_id != $row["buyer_id"]) {
+        echo("<script>alert('권한이 없습니다.');</script>");
+        echo("<script>location.href='index.php'</script>"); // 메인화면으로 돌아감.
+        exit();
+    }
+
+    // 주문번호를 기준으로 상대방의 아이디 및 상품 이름 조회
+    $sql = "select m.id, od.seller_id, p.name, p.id from orders od inner join member m on m.member_id = od.seller_id inner join product p on 
+            p.product_id = od.product_id where order_id = $order_id";
+    $result = mysqli_query($db, $sql);
+    if(!$result) exit("에러 : $sql");
+
+    $row = mysqli_fetch_assoc($result);
+
+    include "main_top.php";
 ?>
 
 <div class="container py-5">
     <h2 class="text-center mb-4">거래 평가</h2>
 
-    <form name="form2" method="post" action="">
+    <form name="rating_form" method="post" action="rating_insert.php">
         <div class="card mx-auto shadow-sm" style="max-width: 600px;">
             <div class="card-header bg-transparent fw-bold">별점 등록</div>
 
@@ -14,13 +43,16 @@ include "main_top.php";
                 <!-- 평가 대상 -->
                 <div class="mb-3">
                     <label for="target_member" class="form-label fw-bold">평가 대상</label>
-                    <input type="text" name="target_member" id="target_member" class="form-control" value="test111" readonly>
+                    <input type="text" name="target_member" id="target_member" class="form-control" value="<?php echo $row["id"];?>" readonly>
+                    <input type="hidden" name="to_member_id" id="to_member_id" class="form-control" value="<?php echo $row["seller_id"];?>">
+                    <input type="hidden" name="from_member_id" id="from_member_id" class="form-control" value="<?php echo $member_id;?>">
+                    <input type="hidden" name="product_id" id="product_id" class="form-control" value="<?php echo $row["product_id"];?>">
                 </div>
 
                 <!-- 거래 상품 -->
                 <div class="mb-4">
                     <label for="product_name" class="form-label fw-bold">거래 상품</label>
-                    <input type="text" name="product_name" id="product_name" class="form-control" value="테스트 상품" readonly>
+                    <input type="text" name="product_name" id="product_name" class="form-control" value="<?php echo $row["name"];?>" readonly>
                 </div>
 
                 <!-- 별점 -->
