@@ -37,7 +37,6 @@ $juso = $row["juso1"] . " " . $row["juso2"] . " " . $row["juso3"];
       <li class="nav-item">
         <a class="nav-link active bg-dark" aria-current="page" href="admin_member.php">회원관리</a>
       </li>
-      </ul>
   </div>
 </div>
 
@@ -121,81 +120,69 @@ $juso = $row["juso1"] . " " . $row["juso2"] . " " . $row["juso3"];
       </div>
     </div>
 
-    <!-- 휴대폰번호 -->
     <div class="mb-3">
       <div class="col-md-6 mx-auto">
-        <label class="form-label">휴대폰번호</label>
-
+        <label for="formGroupExampleInput" class="form-label">휴대폰번호</label>
         <div class="d-flex align-items-center gap-2">
-          <input type="text" name="tel1" value="<?php echo $tel1; ?>" maxlength="3" class="form-control text-center">
+          <input type="text" class="form-control text-center" value="<?php echo $tel1; ?>" maxlength="3" name="tel1">
           <span>-</span>
-          <input type="text" name="tel2" value="<?php echo $tel2; ?>" maxlength="4" class="form-control text-center">
+          <input type="text" class="form-control text-center" maxlength="4" value="<?php echo $tel2; ?>" name="tel2">
           <span>-</span>
-          <input type="text" name="tel3" value="<?php echo $tel3; ?>" maxlength="4" class="form-control text-center">
+          <input type="text" class="form-control text-center" maxlength="4" value="<?php echo $tel3; ?>" name="tel3">
         </div>
       </div>
-    </div>
 
-    <!-- 이메일 -->
-    <div class="mb-3">
-      <div class="col-md-6 mx-auto">
-        <label for="email" class="form-label">이메일</label>
-        <input type="text" name="email" id="email" value="<?php echo $row["email"]; ?>" class="form-control" placeholder="이메일">
+      <div class="mb-3">
+        <div class="col-md-6 mx-auto">
+          <label for="formGroupExampleInput" class="form-label">이메일</label>
+          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="이메일" value="<?php echo $row["email"]; ?>" name="email">
+        </div>
       </div>
-    </div>
 
-    <!-- 생년월일 -->
-    <div class="mb-3">
-      <div class="col-md-6 mx-auto">
-        <label for="birthday" class="form-label">생년월일</label>
-        <input type="date" name="birthday" id="birthday" value="<?php echo $row["birthday"]; ?>" class="form-control">
+      <div class="mb-3">
+        <div class="col-md-6 mx-auto">
+          <label for="formGroupExampleInput" class="form-label">생년월일</label>
+          <input type="date" class="form-control" id="formGroupExampleInput" placeholder="0000-00-00" value="<?php echo $row["birthday"]; ?>" name="birthday">
+        </div>
       </div>
-    </div>
 
-    <!-- 주소 -->
-    <div class="mb-3">
-      <div class="col-md-6 mx-auto">
+      <div class="mb-3">
         <label for="user_address" class="form-label">주소 변경</label>
 
         <div class="input-group">
-          <input type="text" name="juso" id="user_address" value="<?php echo $juso; ?>" class="form-control" placeholder="주소를 검색해주세요." readonly>
+          <input type="text" name="juso" id="user_address" value="<?php echo ($juso); ?>" class="form-control"
+            placeholder="주소를 검색해주세요." name="juso" readonly>
 
           <button type="button" class="btn btn-outline-secondary" onclick="FindZip()">
             주소 검색
           </button>
         </div>
 
-        <input type="text" name="juso3" value="<?php echo $row["juso3"]; ?>" class="form-control mt-2" placeholder="상세 주소를 입력해주세요.">
+        <input type="text" name="juso3" value="<?php echo $row['juso3']; ?>" class="form-control mt-2"
+          placeholder="상세 주소를 입력해주세요." name="juso3">
       </div>
-    </div>
 
-    <!-- 은행 -->
-    <div class="mb-3">
-      <div class="col-md-6 mx-auto">
-        <label for="bank_name" class="form-label">은행</label>
-
-        <select name="bank_name" id="bank_name" class="form-select">
-          <?php
-          for ($i = 0; $i < $n_bank; $i++) {
-            if ($a_bank[$i] == $row["bank_name"]) $tmp = "selected";
-            else $tmp = "";
-
-            echo ("<option value='$i' $tmp>$a_bank[$i]</option>");
-          }
-          ?>
-        </select>
+      <div class="mb-3">
+        <div class="col-md-6 mx-auto">
+          <label for="formGroupExampleInput" class="form-label">은행</label>
+          <select class="form-select" aria-label="Default select example" name="bank_name">
+                        <?php
+                            for($i = 0; $i < $n_bank; $i++) {
+                                if($a_bank[$i] == $row["bank_name"]) $tmp = "selected";
+                                else $tmp = "";
+                                 echo("<option value='$i' $tmp>$a_bank[$i]</option>");
+                            }
+                        ?>
+        </div>
       </div>
-    </div>
 
-    <!-- 하단 버튼 -->
-    <div class="col-md-6 mx-auto">
-      <div class="d-flex justify-content-end gap-2 mt-4">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
         <a href="admin_member.php" class="btn btn-secondary px-4">취소</a>
         <a href="javascript:Submit();" class="btn btn-primary px-4">수정 완료</a>
       </div>
     </div>
-
-  </form>
+    </div>
+    </div>
 
 </body>
 
