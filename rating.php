@@ -22,7 +22,7 @@ ini_set('display_errors', 1);
     }
 
     // 주문번호를 기준으로 상대방의 아이디 및 상품 이름 조회
-    $sql = "select m.id, od.seller_id, p.name, p.id from orders od inner join member m on m.member_id = od.seller_id inner join product p on 
+    $sql = "select m.id, od.seller_id, p.name, p.product_id from orders od inner join member m on m.member_id = od.seller_id inner join product p on 
             p.product_id = od.product_id where order_id = $order_id";
     $result = mysqli_query($db, $sql);
     if(!$result) exit("에러 : $sql");
@@ -44,9 +44,11 @@ ini_set('display_errors', 1);
                 <div class="mb-3">
                     <label for="target_member" class="form-label fw-bold">평가 대상</label>
                     <input type="text" name="target_member" id="target_member" class="form-control" value="<?php echo $row["id"];?>" readonly>
+
                     <input type="hidden" name="to_member_id" id="to_member_id" class="form-control" value="<?php echo $row["seller_id"];?>">
                     <input type="hidden" name="from_member_id" id="from_member_id" class="form-control" value="<?php echo $member_id;?>">
                     <input type="hidden" name="product_id" id="product_id" class="form-control" value="<?php echo $row["product_id"];?>">
+                    <input type="hidden" name="order_id" id="order_id" class="form-control" value="<?php echo $order_id;?>">
                 </div>
 
                 <!-- 거래 상품 -->
