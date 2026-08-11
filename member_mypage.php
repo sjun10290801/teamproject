@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
     include "common.php";
     include "main_top.php";
 
@@ -67,9 +69,10 @@
                 
                 // 상대방의 id(멤버), 상품정보(상품), 주문 시각(주문)을 알기 위해 테이블 3개 조인
                 if($kind == "buy") { // 구매 내역일 경우 구매자 id가 본인의 id
-                    $sql = "select orders.order_id, product.name, product.price, member.id, orders.reg_date, product.state, product.product_id
+                    $sql = "select orders.order_id, product.name, product.price, member.id, orders.reg_date, product.state, product.product_id, r.score
                     from orders inner join product on orders.product_id = product.product_id
-                    inner join member on member.member_id = orders.seller_id where buyer_id = '$member_id'";
+                    inner join member on member.member_id = orders.seller_id 
+                    inner join rating r on r.order_id = orders.order_id where buyer_id = '$member_id'";
                     $result = mysqli_query($db, $sql);
                     if(!$result) exit('에러:$sql');
                 } else { // 판매 내역일 경우 판매자 id가 본인의 id
@@ -115,7 +118,11 @@
                             if($kind == "buy") {
                         ?>
                                 <a href="rating.php?id=<?php echo $row['order_id']; ?>" class='btn btn-sm btn-dark text-white myfont'>평점 매기기</a>
+                        <?php if($row["score"]) { ?>
+                                <span class="badge text-bg-info">평점 작성 완료</span>
+                        
                         <?php
+                                }
                             } else {
                         ?>
                                 <a href="product_edit.php?id=<?php echo $row['product_id'];?>" class="btn btn-sm btn-dark text-white myfont">상품 수정</a>
