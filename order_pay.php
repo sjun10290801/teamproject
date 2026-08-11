@@ -1,16 +1,52 @@
-<!DOCTYPE html>
-<html lang="ko">
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+    include "main_top.php";
+    include "common.php";
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    loginCheck();
 
-    <title>구매 확인</title>
+    $product_id = $_GET["product_id"];
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+    $sql = "select p.image, p.memo, p.price, p.name, m.id from product p inner join member m 
+            on p.member_id = m.member_id where product_id = $product_id";
+    $result = mysqli_query($db, $sql);
+    if(!$result) exit("에러 : $sql");
 
-<body>
+    $row = mysqli_fetch_assoc($result);
+
+    $product_image = $row["image"] ?: "default.jpg";
+    
+?>
+<script>
+    function Submit() {
+        if(!pay_form.payment_method.value) {
+            alert("결제방법을 선택해주세요.");
+            pay_form.payment_method.focus();
+            return;
+        }
+
+        if(pay_form.payment_method.value == 0 && pay_form.bank_name.value == 0) {
+            alert("은행을 선택해주세요.");
+            pay_form.bank_name.focus();
+            return;
+        }
+
+        if(pay_form.payment_method.value == 0 && !pay_form.bank_num.value) {
+            alert("카드번호를 입력해주세요.");
+            pay_form.bank_name.focus();
+            return;
+        }
+
+        if(pay_form.payment_method.value == 0 && pay_form.bank_num.value.indexOf('-') != -1) {
+                alert("-를 제외하고 입력해주세요.");
+                pay_form.bank_num.focus();
+                return;
+        }
+
+        pay_form.submit();
+    }
+</script>
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-12 col-md-6">
@@ -19,7 +55,7 @@
                     구매 확인
                 </h2>
 
-                <form name="form1" method="post" action="">
+                <form name="pay_form" method="post" action="order_insert.php">
 
                     <!-- 구매할 상품 -->
                     <div class="card mb-4">
@@ -30,20 +66,20 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
 
-                                <img src="images/default_profile.jpg" alt="상품 이미지"
+                                <img src="product/<?php echo $product_image;?>" alt="상품 이미지"
                                     class="rounded border object-fit-cover me-3" style="width: 100px; height: 100px;">
 
                                 <div>
                                     <h5 class="mb-2">
-                                        로지텍 무선 마우스
+                                        <?php echo $row["name"];?>
                                     </h5>
 
                                     <p class="mb-1">
-                                        30,000원
+                                        <?php echo number_format($row["price"]);?>
                                     </p>
 
                                     <p class="text-secondary mb-0">
-                                        판매자: test111
+                                        판매자: <?php echo $row["id"];?>
                                     </p>
                                 </div>
 
@@ -62,11 +98,11 @@
                                 결제 방법을 선택해주세요.
                             </option>
 
-                            <option value="bank">
+                            <option value="0">
                                 지금 결제
                             </option>
 
-                            <option value="cash">
+                            <option value="1">
                                 만나서 현금결제
                             </option>
                         </select>
@@ -75,44 +111,33 @@
                     <!-- 은행 선택 -->
                     <div class="mb-4">
                         <label for="bank_name" class="form-label">
-                            은행 선택
+                            은행 선택 * 지금 결제 선택 시에만 작성
                         </label>
 
                         <select name="bank_name" id="bank_name" class="form-select">
                             <option value="0" selected>
                                 은행 선택
                             </option>
-
-                            <option value="1">
-                                국민
+                        <?php
+                            for($i = 1; $i < $n_bank; $i++) {
+                        ?>
+                            <option value="<?php echo $i; ?>">
+                                <?php echo $a_bank[$i]; ?>
                             </option>
-
-                            <option value="2">
-                                신한
-                            </option>
-
-                            <option value="3">
-                                기업
-                            </option>
-
-                            <option value="4">
-                                하나
-                            </option>
-
-                            <option value="5">
-                                우리
-                            </option>
+                        <?php
+                            }
+                        ?>
                         </select>
                     </div>
 
-                    <!-- 계좌번호 -->
+                    <!-- 카드번호 -->
                     <div class="mb-4">
                         <label for="bank_num" class="form-label">
-                            계좌번호
+                            카드번호(하이픈 제외하고 입력) * 지금 결제 선택 시에만 작성
                         </label>
 
                         <input type="text" name="bank_num" id="bank_num" class="form-control"
-                            placeholder="계좌번호를 입력해주세요.">
+                            placeholder="카드번호를 입력해주세요.">
                     </div>
 
                     <!-- 현금결제 안내 -->
@@ -124,17 +149,17 @@
                     <div class="border rounded p-3 mb-4">
                         <div class="d-flex justify-content-between">
                             <strong>결제 금액</strong>
-                            <strong>30,000원</strong>
+                            <strong><?php echo number_format($row["price"]);?>원</strong>
                         </div>
                     </div>
 
                     <!-- 하단 버튼 -->
                     <div class="d-flex gap-2">
-                        <a href="product.php" class="btn btn-outline-secondary flex-fill">
+                        <a href="javascript:history.back()" class="btn btn-outline-secondary flex-fill">
                             취소
                         </a>
 
-                        <button type="button" class="btn btn-dark flex-fill">
+                        <button type="button" class="btn btn-dark flex-fill" onclick="javascript:Submit()">
                             구매하기
                         </button>
                     </div>

@@ -53,7 +53,7 @@
     <li class="list-group-item"><?php echo $row["name"];?></li>
     <li class="list-group-item"><?php echo number_format($row["price"]);?>원</li>
     <li class="list-group-item">등록일 : <?php echo $row["reg_date"];?></li>
-    <p class="card-text"><?php echo $row["memo"];?></p>
+    <p class="card-text"><?php echo stripslashes($row["memo"]);?></p>
     </ul>
     <div class="card-body">
                 <div class="position-relative" style="z-index: 2;">
@@ -66,7 +66,7 @@
 
 
 <div class="d-grid gap-2 col-6 mx-auto">
-  <a class="btn btn-primary w-100 fw-bold" href="order_pay.html">구매하기</a>
+  <a class="btn btn-primary w-100 fw-bold" href="order_pay.php?product_id=<?php echo $product_id;?>">구매하기</a>
 </div>
 
 </div>
