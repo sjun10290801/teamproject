@@ -72,13 +72,13 @@ ini_set('display_errors', 1);
                     $sql = "select orders.order_id, product.name, product.price, member.id, orders.reg_date, product.state, product.product_id, r.score
                     from orders inner join product on orders.product_id = product.product_id
                     inner join member on member.member_id = orders.seller_id 
-                    inner join rating r on r.order_id = orders.order_id where buyer_id = '$member_id'";
+                    left join rating r on r.order_id = orders.order_id where buyer_id = '$member_id' order by reg_date desc";
                     $result = mysqli_query($db, $sql);
                     if(!$result) exit('에러:$sql');
                 } else { // 판매 내역일 경우 판매자 id가 본인의 id
                     $sql = "select orders.order_id, product.name, product.price, member.id, orders.reg_date, product.state, product.product_id
                     from orders inner join product on orders.product_id = product.product_id
-                    inner join member on member.member_id = orders.buyer_id where seller_id = '$member_id'";
+                    inner join member on member.member_id = orders.buyer_id where seller_id = '$member_id' order by reg_date desc";
                     $result = mysqli_query($db, $sql);
                     if(!$result) exit('에러:$sql');
                 }

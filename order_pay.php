@@ -8,7 +8,7 @@ ini_set('display_errors', 1);
 
     $product_id = $_GET["product_id"];
 
-    $sql = "select p.image, p.memo, p.price, p.name, m.id from product p inner join member m 
+    $sql = "select p.image, p.memo, p.price, p.name, m.id, p.member_id from product p inner join member m 
             on p.member_id = m.member_id where product_id = $product_id";
     $result = mysqli_query($db, $sql);
     if(!$result) exit("에러 : $sql");
@@ -56,6 +56,9 @@ ini_set('display_errors', 1);
                 </h2>
 
                 <form name="pay_form" method="post" action="order_insert.php">
+
+                <input type="hidden" name="product_id" id="product_id" class="form-control" value="<?php echo $product_id;?>">
+                <input type="hidden" name="seller_id" id="seller_id" class="form-control" value="<?php echo $row["member_id"];?>">
 
                     <!-- 구매할 상품 -->
                     <div class="card mb-4">
