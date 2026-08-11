@@ -14,13 +14,13 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="images/banner.png" class="d-block w-100 object-fit-cover" style="height: 500px;" alt="...">
+      <img src="images/banner-wide.png" class="d-block w-100 object-fit-cover" style="height: 450px;" object-position:  center; alt="...">
     </div>
     <div class="carousel-item">
-      <img src="images/banner2.png" class="d-block w-100 object-fit-cover" style="height: 500px;" alt="...">
+      <img src="images/banner2-wide.png" class="d-block w-100 object-fit-cover" style="height: 450px;" object-position:  center; alt="...">
     </div>
     <div class="carousel-item">
-      <img src="images/banner3.png" class="d-block w-100 object-fit-cover" style="height: 500px;" alt="...">
+      <img src="images/banner3-wide.png" class="d-block w-100 object-fit-cover" style="height: 450px;" object-position:  center; alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
