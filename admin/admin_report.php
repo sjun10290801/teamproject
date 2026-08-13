@@ -27,7 +27,6 @@
 </div>
 </div>
 
-<<<<<<< HEAD:admin/admin_report.html
 <div class="d-flex align-items-center gap-2">
 <select class="form-select w-auto" aria-label="Default select example">
     <option value="" selected disabled>정렬방법</option>
@@ -35,9 +34,6 @@
     <option value="reported">피신고자</option>
   </select>
   <form class="d-flex mt-3" action="#" role="search" style="max-width: 300px;" method="post" name="form2">
-=======
-<form class="d-flex mt-3" action="admin_report.php" role="search" style="max-width: 300px;" method="post" name="form2">
->>>>>>> 1eb1fd0036de5daeea51e9efcf5311e6b3ecf5e3:admin/admin_report.php
     <input class="form-control me-2" type="search" placeholder="아이디" aria-label="Search" name="text" value="">
     <button class="btn btn-danger text-nowrap" type="submit">검색</button>
 </form>
