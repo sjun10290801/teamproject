@@ -96,6 +96,7 @@
             <li><a class="dropdown-item" href="product_create.php">상품등록</a></li>
             <li><a class="dropdown-item" href="member_mypage.php?kind=sell">판매관리</a></li>
             <li><a class="dropdown-item" href="member_mypage.php?kind=buy">구매내역</a></li>
+            <li><a class="dropdown-item" href="reviews.html">내후기보기</a></li>
           </ul>
           </li>
         </ul>
