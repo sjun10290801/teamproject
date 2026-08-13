@@ -110,7 +110,7 @@ include "common.php";
 
 
   $sql = "select product_id, member_id, image, price, category, reg_date, state, juso1, juso2, juso3, name 
-                    from product where state != 2 $tmp limit 12"; // limit 12로 12개만 보이도록 함.(너무 길어지는 것 방지)
+                    from product where state != 2 $tmp order by product_id desc limit 12"; // limit 12로 12개만 보이도록 함.(너무 길어지는 것 방지)
   $result = mysqli_query($db, $sql);
   if (!$result) exit("에러 : $sql");
 

@@ -4,6 +4,12 @@
     loginCheck();
     $id = getId();
 
+    if(!isset($_POST["reason"])) {
+        echo("<script>alert('사유를 선택해주세요.');</script>");
+        echo("<script>window.history.back();</script>");
+        exit();
+    }
+
     $target = $_POST["target"];
     $reason = $_POST["reason"];
     $detail = $_POST["detail"] ?? "";
