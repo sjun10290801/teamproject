@@ -79,17 +79,13 @@ include "common.php";
 <div class="d-flex justify-content-between align-items-center px-4 mt-4 mb-3">
   <h4 class="mb-0 fw-bold section-title">최근 등록된 상품</h4>
 
-  <div class="dropdown">
-    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
-      정렬방법
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">최신순</a></li>
-      <li><a class="dropdown-item" href="#">낮은가격순</a></li>
-      <li><a class="dropdown-item" href="#">높은순</a></li>
-      <li><a class="dropdown-item" href="#">추천순</a></li>
-    </ul>
-  </div>
+<select class="form-select w-auto" aria-label="Default select example">
+    <option value="" selected disabled>정렬방법</option>
+    <option value="reporter">최신순</option>
+    <option value="reported">낮은가격순</option>
+    <option value="reporter">높은순</option>
+    <option value="reporter">낮은순</option>
+  </select>
 </div>
 
 <div class="card-list">
