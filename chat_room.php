@@ -52,8 +52,6 @@ $sql = "select from_member_id, text, reg_date, image, state from chat
             and product_id = $product_id order by reg_date, chat_id";
 $result = mysqli_query($db, $sql);
 if (!$result) exit("에러 : $sql");
-
-echo ("<script>form2.text.focus();</script>"); // 채팅 입력 창으로 이동
 ?>
 <script>
     function Submit() { // 사진도, 메시지 내용도 없는 경우 입력이 안되도록 함.
@@ -64,6 +62,10 @@ echo ("<script>form2.text.focus();</script>"); // 채팅 입력 창으로 이동
         }
 
         form2.submit();
+    }
+
+    window.onload=function(){ // 창 싨행시 바로 실행되는 함수
+        form2.text.focus();
     }
 </script>
 <div class="container py-5">
