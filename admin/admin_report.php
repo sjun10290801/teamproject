@@ -1,5 +1,15 @@
 <?php
-    include "common.php";
+    include "../common.php";
+
+    adminCheck();
+
+    $text = $_POST["text"] ?? "";
+
+    if($text) {
+        $tmp = "where id like '%$text%'";
+    } else {
+        $tmp = "";
+    }
 ?>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -8,7 +18,7 @@
 
 <div class="container-fluid mt-5 mb-5">
     <div class="d-flex justify-content-between align-items-center">
-    <h2 class="fw-bold">관리자-회원관리</h2>
+    <h2 class="fw-bold">관리자-신고관리</h2>
     <ul class="nav nav-pills">
     <li class="nav-item">
     <a class="nav-link active bg-danger" aria-current="page" href="admin_member.php">회원관리</a>
@@ -17,7 +27,7 @@
 </div>
 </div>
 
-<form class="d-flex mt-3" action="#" role="search" style="max-width: 300px;" method="post" name="form2">
+<form class="d-flex mt-3" action="admin_report.php" role="search" style="max-width: 300px;" method="post" name="form2">
     <input class="form-control me-2" type="search" placeholder="아이디" aria-label="Search" name="text" value="">
     <button class="btn btn-danger text-nowrap" type="submit">검색</button>
 </form>
@@ -36,6 +46,15 @@
                 <th scope="col">관리</th>
             </tr>
         </thead>
+        <?php
+            $page_line = 10; //페이지당 회원 10명만 표시(페이지네이션)
+            $args = "text=$text";
+
+            $sql = "select to_member_id, from_member_id, reason, image from report $tmp";
+            $result = mypagination($sql, $args, $count, $pagebar);
+            if(!$result) exit("에러 : $sql");
+
+        ?>
         <tbody>
             <tr>
                 <th scope="row">1</th>

@@ -29,7 +29,7 @@ ini_set('display_errors', 1);
     <h2 class="fw-bold">관리자-회원관리</h2>
     <ul class="nav nav-pills">
     <li class="nav-item">
-    <a class="nav-link active bg-dark" aria-current="page" href="admin_report.html">신고관리</a>
+    <a class="nav-link active bg-dark" aria-current="page" href="admin_report.php">신고관리</a>
   </li>
 </ui>
 </div>
