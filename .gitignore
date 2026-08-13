@@ -10,6 +10,7 @@ chat/*
 
 admin/report/*
 !admin/report/.gitkeep
+!admin/report/default.jpg
 
 !images/banner-wide.png
 !images/banner2-wide.png

@@ -4,11 +4,12 @@
     adminCheck();
 
     $text = $_POST["text"] ?? "";
+    $sel = $_POST["sel"] ?? 1;
 
-    if($text) {
-        $tmp = "where id like '%$text%'";
+    if($sel == 1) {
+        $tmp = "where from_member_id like '%$text%'";
     } else {
-        $tmp = "";
+        $tmp = "where to_member_id like '%$text%'";;
     }
 ?>
 
@@ -27,14 +28,21 @@
 </div>
 </div>
 
+<form class="d-flex mt-3" action="admin_report.php" role="search" style="max-width: 300px;" method="post" name="form2">
 <div class="d-flex align-items-center gap-2">
-<select class="form-select w-auto" aria-label="Default select example">
-    <option value="" selected disabled>정렬방법</option>
-    <option value="reporter">신고자</option>
-    <option value="reported">피신고자</option>
+<select class="form-select w-auto" aria-label="Default select example" name="sel">
+    <?php
+        if($sel == 1) {
+    ?>
+    <option value="1" selected>신고자</option>
+    <option value="2">피신고자</option>
+    <?php } else { ?>
+    <option value="1">신고자</option>
+    <option value="2" selected>피신고자</option>
+    <?php } ?>
   </select>
-  <form class="d-flex mt-3" action="#" role="search" style="max-width: 300px;" method="post" name="form2">
-    <input class="form-control me-2" type="search" placeholder="아이디" aria-label="Search" name="text" value="">
+  
+    <input class="form-control me-2" type="search" placeholder="아이디" aria-label="Search" name="text" value="<?php echo $text;?>">
     <button class="btn btn-danger text-nowrap" type="submit">검색</button>
 </form>
 </div>
@@ -53,65 +61,40 @@
                 <th scope="col">관리</th>
             </tr>
         </thead>
-        <?php
-            $page_line = 10; //페이지당 회원 10명만 표시(페이지네이션)
-            $args = "text=$text";
-
-            $sql = "select to_member_id, from_member_id, reason, image from report $tmp";
-            $result = mypagination($sql, $args, $count, $pagebar);
-            if(!$result) exit("에러 : $sql");
-
-        ?>
         <tbody>
+        <?php
+        $page_line = 10; //페이지당 회원 10명만 표시(페이지네이션)
+        $args = "text=$text&sel=$sel";
+
+        $sql = "select m1.id as target, m2.id as id, r.report_id, r.to_member_id, r.reason, r.image, m1.status from report r inner join member m1 on
+                r.to_member_id = m1.member_id inner join member m2 on r.from_member_id = m2.member_id $tmp and m1.status = 0";
+        $result = mypagination($sql, $args, $count, $pagebar);
+        if(!$result) exit("에러 : $sql");
+
+        while($row = mysqli_fetch_assoc($result)) {
+            $image = $row["image"] ?: "default.jpg"
+        ?>
             <tr>
-                <th scope="row">1</th>
-                <td>abc</td>
-                <td>cba</td>
-                <td>사기</td>
+                <th scope="row"><?php echo $row["report_id"];?></th>
+                <td><?php echo $row["id"];?></td>
+                <td><?php echo $row["target"];?></td>
+                <td><?php echo $a_report[$row["reason"]];?></td>
                 <td>
-            
-                <img src="../product/image19.png" alt="사진" class="img-thumbnail object-fit-cover" style="width: 50px; height: 50px;" data-bs-toggle="modal" data-bs-target="#imageModal">
+                <img src="report/<?php echo $image;?>" alt="사진" class="img-thumbnail object-fit-cover" style="width: 50px; height: 50px;" data-bs-toggle="modal" data-bs-target="#imageModal">
                 </td>
                 <td>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-sm btn-outline-primary">반려</button>
-                        <button type="button" class="btn btn-sm btn-outline-danger">제재</button>
+                        <a href="report_delete.php?id=<?php echo $row["report_id"];?>&<?php echo $args;?>" class="btn btn-sm btn-dark text-white myfont">반려</a>
+                        <a href="report_insert.php?id=<?php echo $row["to_member_id"];?>&<?php echo $args;?>&reason=<?php echo $row["reason"];?>" class="btn btn-sm btn-danger text-white myfont">제재</a>
                     </div>
                 </td>
             </tr>
-                        <tr>
-                <th scope="row">2</th>
-                <td>abc</td>
-                <td>cba</td>
-                <td>사기</td>
-                <td>
-                    <img src="../product/image22.png" alt="사진" class="img-thumbnail object-fit-cover" style="width: 50px; height: 50px;" data-bs-toggle="modal" data-bs-target="#imageModal">
-                </td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-sm btn-outline-primary">반려</button>                       
-                        <button type="button" class="btn btn-sm btn-outline-danger">제재</button>
-                    </div>
-                </td>
-            </tr>
-                        <tr>
-                <th scope="row">3</th>
-                <td>abc</td>
-                <td>cba</td>
-                <td>사기</td>
-                <td>
-                    <img src="#" alt="사진" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
-                </td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-sm btn-outline-primary">반려</button>
-                        <button type="button" class="btn btn-sm btn-outline-danger">제재</button>
-                    </div>
-                </td>
-            </tr>
+        <?php } ?>
         </tbody>
     </table>
 </div>
+
+<?php echo $pagebar;?>
 
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">

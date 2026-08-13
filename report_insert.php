@@ -18,7 +18,7 @@
     $fname = imageUpload("report", "admin/report", "report");
 
     $sql = "insert into report(to_member_id, from_member_id, reason, text, image) 
-            values($id, $target, '$reason', '$detail', '$fname')";
+            values($target, $id, '$reason', '$detail', '$fname')";
     $result = mysqli_query($db, $sql);
     if(!$result) exit("에러 : $sql");
 
