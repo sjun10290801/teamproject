@@ -123,7 +123,7 @@ $cookie_id = $_COOKIE["cookie_id"] ?? "";
 }
 </style>
 
-<ul class="nav align-items-center">
+<ul class="nav justify-content-center align-items-center gap-2 py-3 border-bottom bg-white w-100">
   <li class="nav-item">
     <span class="nav-link fw-bold text-dark ps-0">카테고리</span>
   </li>
