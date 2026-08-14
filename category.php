@@ -31,20 +31,7 @@ $cookie_id = $_COOKIE["cookie_id"] ?? "";
         
 ?>
 
-<ul class="nav align-items-center">
-  <li class="nav-item">
-    <span class="nav-link fw-bold text-dark ps-0">카테고리</span>
-  </li>
-<?php
-    for($i = 1; $i < $n_category; $i++) {
-        if($i == $category) $tmp = "color='blue'";
-        else $tmp = "";
-?>
-  <li class="nav-item">
-    <a class="nav-link text-secondary" href="category.php?menu=<?php echo $i ?>"><font <?php echo $tmp; ?>><?php echo $a_category[$i]; ?></font></a>
-  </li>
-<?php } ?>
-</ul>
+
 
     <div class="card-list">
         <?php

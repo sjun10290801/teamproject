@@ -32,48 +32,7 @@ include "common.php";
 </style>
 
 
-<div id="carouselExampleIndicators" class="carousel slide mt-3 mb-2">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="images/banner-wide.png" class="d-block w-100 object-fit-cover" style="height: 450px;" object-position: center; alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="images/banner2-wide.png" class="d-block w-100 object-fit-cover" style="height: 450px;" object-position: center; alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="images/banner3-wide.png" class="d-block w-100 object-fit-cover" style="height: 450px;" object-position: center; alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
 
-
-
-<ul class="nav justify-content-center align-items-center gap-2 py-3 border-bottom bg-white">
-  <li class="nav-item">
-    <span class="nav-link fw-bold text-dark ps-0">카테고리</span>
-  </li>
-  <?php
-  for ($i = 1; $i < $n_category; $i++) {
-  ?>
-    <li class="nav-item">
-      <a class="nav-link text-secondary rounded-pill px-3 category-link" href="category.php?menu=<?php echo $i ?>"><?php echo $a_category[$i]; ?></a>
-    </li>
-  <?php } ?>
-
-</ul>
 
 
 <div class="d-flex justify-content-between align-items-center px-4 mt-4 mb-3">
