@@ -6,13 +6,36 @@
     $pwd = $_POST["pwd"];
 
     // 입력한 id가 있는지 확인
-    $sql = "select * from member where id = '$id'";
+    $sql = "select member_id, password, status from member where id = '$id'";
     $result = mysqli_query($db, $sql);
-    if(!$result) exit("에러 : $sql");
+    if(!$result) {
+        echo("<script>alert('오류가 발생했습니다');</script>");
+        echo("<script>location.href='login.php'</script>");
+        exit();
+    }
 
     if($row = mysqli_fetch_assoc($result)) { // 해당하는(id가 같은) 계정이 있는지 확인
         
         if($row["password"] == $pwd) { // id와 비밀번호가 모두 일치하는 계정이 있다면
+            if($row["status"] == 1) {
+                $member_id = $row['member_id'];
+                $sql = "select reason from reportedmember where member_id = $member_id";
+                $result = mysqli_query($db, $sql);
+                if(!$result) {
+                    echo("<script>alert('오류가 발생했습니다');</script>");
+                    echo("<script>location.href='login.php'</script>");
+                    exit();
+                }
+
+                $row = mysqli_fetch_assoc($result);
+
+                $reason = $row["reason"];   
+
+                echo("<script>alert('정지된 계정입니다. 제재사유 : \"$a_report[$reason]\", 자세한 사항은 문의 바랍니다.');</script>");
+                echo("<script>location.href='login.php'</script>");
+                exit();
+            }
+
             setcookie("cookie_id", $id); // 쿠키 생성
             header("Location:index.html"); // 메인화면으로 되돌아감
             exit();
