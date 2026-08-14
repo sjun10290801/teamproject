@@ -48,6 +48,7 @@ include "common.php";
   <?php } ?>
 </ul>
 
+<main class="container py-4">
 
 
 <div class="d-flex justify-content-between align-items-center px-4 mt-4 mb-3">
@@ -133,6 +134,8 @@ include "common.php";
 <div class="d-grid gap-2">
   <button class="btn main-btn py-2" type="button">더보기</button>
 </div>
+
+</main>
 
 <?php
 include "main_bottom.php";
