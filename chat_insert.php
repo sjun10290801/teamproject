@@ -19,12 +19,18 @@
     mysqli_begin_transaction($db); // 트랜잭션 시작
 
     // 이미지 업로드
+    if($filename) {
     $fname = imageUpload("chat", "chat", "chat");
+    
     if(!$fname) {
         mysqli_rollback($db);
         echo("<script>alert('오류가 발생했습니다');</script>");
         echo("<script>window.history.back();</script>");
         exit();
+    }
+
+    } else {
+        $fname = "";
     }
 
     // 채팅 데이터 저장

@@ -1,13 +1,11 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
     include "main_top.php";
     include "common.php";
 
     $member_id = $_GET["id"];
 
     // 회원 정보 가져오기
-    $sql = "select * from member where member_id = $member_id";
+    $sql = "select image, rating, juso1, juso2, juso3, id from member where member_id = $member_id";
     $result = mysqli_query($db, $sql);
     if(!$result) exit('에러:$sql');
 

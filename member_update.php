@@ -24,6 +24,22 @@
     $bank_name = $a_bank[$bank_value];
     $bank_num = trim($_POST["bank_num"]);
 
+    // 데이터 입력 검증
+    if(!$name || !$tel1 || !$tel2 || !$tel3 || !$email || !$birthday || !$juso || !$juso3 || !$bank_name ||!$bank_num) {
+        echo("<script>alert('올바른 정보를 입력해주세요');</script>");
+        echo("<script>history.back();</script>");
+        exit();
+    }
+
+    // 비밀번호 일치 확인
+    if(($pwd )&& ($pwd != $_POST["pwd1"])) {
+        echo("<script>alert('비밀번호가 일치하지 않습니다.');</script>");
+        echo("<script>history.back();</script>");
+        exit();
+    }
+
+    mysqli_begin_transaction($db);
+
     // 이미지 수정
     $fname=$_POST["image_name"];
     
@@ -38,6 +54,7 @@
                 break;
             default:
                 echo("이미지(png, jpg, jpeg) 파일만 업로드 가능합니다.");
+                mysqli_rollback($db);
                 exit();
         }
     
@@ -47,8 +64,12 @@
         if($_FILES["image"]["error"] == 0)
         {
             $newname = "member".$member_id.".".$tmp;
-            if(!move_uploaded_file($_FILES["image"]["tmp_name"],"images/$newname")) // 업로드
-                exit("업로드 실패");
+            if(!move_uploaded_file($_FILES["image"]["tmp_name"],"images/$newname")) { // 업로드
+                mysqli_rollback($db);
+                echo("<script>alert('오류가 발생했습니다.');</script>");
+                echo("<script>window.history.back();</script>");
+                exit();
+            }
             if($fname != $newname && file_exists("images/".$fname)) {
                 unlink("images/".$fname); // 파일 삭제
             }
@@ -74,7 +95,14 @@
                 , juso2 = '$juso2', juso3 = '$juso3', bank_name = '$bank_name', bank_num = '$bank_num', image = '$new_image' where id = '$id'";
     }
     $result = mysqli_query($db, $sql);
-    if(!$result) exit("에러 : $sql");
+    if(!$result) {
+        mysqli_rollback($db);
+        echo("<script>alert('오류가 발생했습니다.');</script>");
+        echo("<script>window.history.back();</script>");
+        exit();
+    }
+
+    mysqli_commit($db);
 
     echo("<script>alert('수정이 완료되었습니다.');</script>");
     echo("<script>location.href='member_edit.php'</script>");
