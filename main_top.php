@@ -109,6 +109,11 @@
           마이페이지
         </a>
 
+        <a href="reviews.php"
+          class="text-dark text-decoration-none text-nowrap">
+          내 후기
+        </a>
+
         <?php
         $cookie_id = $_COOKIE["cookie_id"] ?? "";
 
