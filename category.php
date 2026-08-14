@@ -1,43 +1,46 @@
-<?php 
-error_reporting(E_ALL); 
-ini_set('display_errors', 1); 
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-include "main_top.php"; 
-include "common.php"; 
- 
-$category = $_GET["menu"]; 
- 
-$cookie_id = $_COOKIE["cookie_id"] ?? ""; 
+include "main_top.php";
+include "common.php";
+
+$category = $_GET["menu"];
+
+$cookie_id = $_COOKIE["cookie_id"] ?? "";
 
 if($cookie_id) { // 로그인한 상태라면 sql문으로 자신의 id를 조회하여 해당 상품이 안뜨도록 함.
 
-    $sql = "select member_id from member where id = '$cookie_id'"; 
-    $result = mysqli_query($db, $sql); 
+    $sql = "select member_id from member where id = '$cookie_id'";
+    $result = mysqli_query($db, $sql);
 
-    if(!$result) exit("에러 : $sql"); 
- 
-    $row = mysqli_fetch_assoc($result); 
+    if(!$result) exit("에러 : $sql");
 
-    $member_id = $row["member_id"]; 
-    $tmp = "and member_id != $member_id"; 
+    $row = mysqli_fetch_assoc($result);
 
-} else {  
+    $member_id = $row["member_id"];
+    $tmp = "and member_id != $member_id";
 
-    $member_id = ""; 
-    $tmp = ""; 
+} else {
 
-} 
-             
-$page_line = 12; //상품 12개만 표시(페이지네이션) 
- 
-$sql = "select product_id, member_id, image, price, category, reg_date, state, juso1, juso2, juso3, name  
-        from product where state != 2 $tmp and category = $category"; 
+    $member_id = "";
+    $tmp = "";
 
-$args = "menu=$category"; 
+}
 
-$result = mypagination($sql, $args, $count, $pagebar); 
 
-if(!$result) exit("에러 : $sql"); 
+$page_line = 12; // 상품 12개만 표시(페이지네이션)
+
+
+$sql = "select product_id, member_id, image, price, category, reg_date, state, juso1, juso2, juso3, name
+        from product
+        where state != 2 $tmp and category = $category";
+
+$args = "menu=$category";
+
+$result = mypagination($sql, $args, $count, $pagebar);
+
+if(!$result) exit("에러 : $sql");
 
 ?>
 
@@ -45,14 +48,10 @@ if(!$result) exit("에러 : $sql");
 <style>
 
 /* =========================================================
-   ★ 여기부터 카드 디자인
-   PHP 기능에는 영향을 주지 않음
+   카드 전체 영역
+   ★ 기존 main_top.php의 .card-list와 구분하기 위해
+     category.php에서 다시 설정
 ========================================================= */
-
-
-/* ---------------------------------------------------------
-   카드 전체 배치
---------------------------------------------------------- */
 
 .card-list {
 
@@ -67,89 +66,132 @@ if(!$result) exit("에러 : $sql");
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    상품 카드
---------------------------------------------------------- */
+   ★ 카드 높이를 고정하지 않음
+   → 하단 버튼이 잘리지 않음
+========================================================= */
 
-.card-list .product-item {
-
-    border: 1px solid #e2e8e6;
-
-    border-radius: 15px;
-
-    background: #fff;
-
-    overflow: hidden;
-
-    /*
-       카드 높이를 고정하지 않음
-       → 프로필보기까지 잘리지 않음
-    */
-    height: auto;
-
-    transition: 0.2s ease;
-
-}
-
-
-/* ---------------------------------------------------------
-   마우스를 올렸을 때
---------------------------------------------------------- */
-
-.card-list .product-item:hover {
-
-    transform: translateY(-5px);
-
-    box-shadow: 0 8px 20px rgba(24, 118, 109, 0.12);
-
-}
-
-
-/* ---------------------------------------------------------
-   이미지 영역
---------------------------------------------------------- */
-
-.card-image {
+.card-list .card {
 
     width: 100%;
 
-    height: 210px;
+    height: auto;
 
-    background: #fafcfc;
+    border: 1px solid #e5e9e8;
+
+    border-radius: 15px;
+
+    background-color: #fff;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+/* =========================================================
+   마우스를 올렸을 때
+========================================================= */
+
+.card-list .card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 8px 22px rgba(24, 118, 109, 0.13);
+
+}
+
+
+/* =========================================================
+   상품 이미지
+========================================================= */
+
+.card-list .card-img-top {
+
+    width: 100%;
+
+    height: 210px !important;
 
     object-fit: contain;
+
+    background-color: #fafcfc !important;
 
     display: block;
 
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    카드 내용
---------------------------------------------------------- */
+   ★ 기존 Bootstrap card-body의 느낌을 조금 부드럽게
+========================================================= */
 
-.product-content {
+.card-list .card-body {
 
-    padding: 17px 18px 18px;
+    padding: 16px 18px;
 
 }
 
 
-/* ---------------------------------------------------------
-   카테고리
---------------------------------------------------------- */
+/* =========================================================
+   상품명
+========================================================= */
 
-.product-category {
+.card-list .card-title {
+
+    margin-bottom: 8px;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    line-height: 1.4;
+
+}
+
+
+/* 상품명 링크 */
+
+.card-list .card-title a {
+
+    color: #222 !important;
+
+    transition: 0.2s;
+
+}
+
+
+/* 상품명에 마우스를 올렸을 때 */
+
+.card-list .card-title a:hover {
+
+    color: #18766d !important;
+
+}
+
+
+/* =========================================================
+   카테고리
+========================================================= */
+
+.card-list .card-text {
 
     display: inline-block;
 
-    padding: 4px 10px;
+    margin-bottom: 0;
 
-    margin-bottom: 10px;
+    padding: 4px 10px;
 
     border-radius: 20px;
 
-    background: #18766d;
+    background-color: #18766d;
 
     color: white;
 
@@ -158,135 +200,114 @@ if(!$result) exit("에러 : $sql");
 }
 
 
-/* ---------------------------------------------------------
-   상품명
---------------------------------------------------------- */
+/* =========================================================
+   상품 정보 영역
+   ★ 기존 list-group 느낌을 없애고 자연스럽게 표시
+========================================================= */
 
-.product-name {
+.card-list .list-group {
 
-    margin: 0 0 13px;
-
-    color: #222;
-
-    font-size: 17px;
-
-    font-weight: 600;
-
-    line-height: 1.4;
-
-    /*
-       상품명이 너무 길면 2줄까지만
-    */
-    display: -webkit-box;
-
-    -webkit-line-clamp: 2;
-
-    -webkit-box-orient: vertical;
-
-    overflow: hidden;
+    border: none;
 
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
+   주소 / 시간 / 가격
+========================================================= */
+
+.card-list .list-group-item {
+
+    padding: 4px 18px;
+
+    border: none;
+
+    background-color: transparent;
+
+    color: #7d8785;
+
+    font-size: 13px;
+
+}
+
+
+/* =========================================================
    가격
---------------------------------------------------------- */
+   ★ 가격만 강조
+========================================================= */
 
-.product-price {
+.card-list .list-group-item:last-child {
 
-    margin-bottom: 14px;
+    padding-top: 7px;
+
+    padding-bottom: 8px;
 
     color: #18766d;
 
-    font-size: 22px;
+    font-size: 21px;
 
     font-weight: 700;
 
 }
 
 
-/* ---------------------------------------------------------
-   주소 / 시간
---------------------------------------------------------- */
+/* =========================================================
+   하단 버튼 영역
+   ★ 찜하기 / 채팅하기 / 프로필보기
+========================================================= */
 
-.product-info {
+.card-list .card-body:last-child {
 
-    margin-bottom: 15px;
-
-    color: #8b9593;
-
-    font-size: 13px;
-
-    line-height: 1.8;
+    padding: 12px 18px 18px;
 
 }
 
 
-/* 아이콘 색상 */
+/* =========================================================
+   채팅 버튼
+   ★ #18766d 테마
+========================================================= */
 
-.product-info i {
+.btn-chat {
 
-    margin-right: 4px;
+    background-color: #18766d;
 
-    color: #18766d;
+    border-color: #18766d;
 
-}
-
-
-/* ---------------------------------------------------------
-   하단 링크
-   찜 / 채팅 / 프로필
---------------------------------------------------------- */
-
-.product-links {
-
-    display: flex;
-
-    gap: 15px;
-
-    /*
-       선을 넣지 않음
-       → 카드가 딱딱하게 나뉘지 않음
-    */
-}
-
-
-/* 링크 공통 */
-
-.product-links a {
-
-    color: #777;
-
-    font-size: 13px;
-
-    text-decoration: none;
-
-    transition: 0.2s;
+    color: #fff;
 
 }
 
 
-/* 마우스를 올렸을 때 */
+/* 채팅 버튼 Hover */
 
-.product-links a:hover {
+.btn-chat:hover {
 
-    color: #18766d;
+    background-color: #105f58;
 
-}
+    border-color: #105f58;
 
-
-/* 아이콘 */
-
-.product-links i {
-
-    margin-right: 3px;
+    color: #fff;
 
 }
 
 
-/* ---------------------------------------------------------
-   화면이 작아졌을 때
---------------------------------------------------------- */
+/* =========================================================
+   버튼 공통
+========================================================= */
+
+.card-list .card-body:last-child .btn {
+
+    font-size: 12px;
+
+    white-space: nowrap;
+
+}
+
+
+/* =========================================================
+   모바일 / 태블릿
+========================================================= */
 
 @media (max-width: 1000px) {
 
@@ -298,10 +319,6 @@ if(!$result) exit("에러 : $sql");
 
 }
 
-
-/* ---------------------------------------------------------
-   태블릿
---------------------------------------------------------- */
 
 @media (max-width: 750px) {
 
@@ -316,10 +333,6 @@ if(!$result) exit("에러 : $sql");
 }
 
 
-/* ---------------------------------------------------------
-   모바일
---------------------------------------------------------- */
-
 @media (max-width: 500px) {
 
     .card-list {
@@ -333,142 +346,135 @@ if(!$result) exit("에러 : $sql");
 </style>
 
 
-<div class="card-list"> 
+<!-- =========================================================
+     상품 카드 목록
+========================================================= -->
+
+<div class="card-list">
 
 
-<?php 
+<?php
 
-while($row = mysqli_fetch_assoc($result)) { 
+while($row = mysqli_fetch_assoc($result)) {
 
 
     // 채팅 리스트의 시간 표기 방식 그대로 활용
 
-    date_default_timezone_set('Asia/Seoul'); 
+    date_default_timezone_set('Asia/Seoul');
 
-    $time = $row["reg_date"]; 
+    $time = $row["reg_date"];
 
     $diff = (
-        strtotime(date('Y-m-d H:i:s')) 
+        strtotime(date('Y-m-d H:i:s'))
         - strtotime($time)
-    ); 
+    );
 
 
-    if($diff >= 2678400) { 
+    if($diff >= 2678400) {
 
-        $time_text = "1달 이상"; 
+        $time_text = "1달 이상";
 
-    } else if($diff >= 86400) { 
+    } else if($diff >= 86400) {
 
-        $time_text = floor($diff/86400)."일 전"; 
+        $time_text = floor($diff/86400)."일 전";
 
-    } else if($diff >= 3600) { 
+    } else if($diff >= 3600) {
 
-        $time_text = floor($diff/3600)."시간 전"; 
+        $time_text = floor($diff/3600)."시간 전";
 
-    } else if($diff >= 60) { 
+    } else if($diff >= 60) {
 
-        $time_text = floor($diff/60)."분 전"; 
+        $time_text = floor($diff/60)."분 전";
 
-    } else { 
+    } else {
 
-        $time_text = "방금"; 
+        $time_text = "방금";
 
-    } 
+    }
 
 
-    // 상품 이미지가 없으면 default.jpg 사용
+    // 상품 이미지가 없으면 기본 이미지 사용
 
-    $product_image = $row["image"] ?: "default.jpg"; 
+    $product_image = $row["image"] ?: "default.jpg";
 
 ?>
 
 
-<!-- =====================================================
-     ★ 상품 카드
-====================================================== -->
+    <!-- =====================================================
+         상품 카드
+    ====================================================== -->
 
-<div class="product-item">
-
-
-    <!-- =================================================
-         상품 이미지
-    ================================================== -->
-
-    <a 
-        href="product.php?product_id=<?php echo $row["product_id"];?>" 
-        class="text-decoration-none"
-    >
-
-        <img 
-            src="product/<?php echo $product_image;?>" 
-            class="card-image" 
-            alt="상품 이미지"
-        >
-
-    </a>
-
-
-    <!-- =================================================
-         카드 내용
-    ================================================== -->
-
-    <div class="product-content">
+    <div class="card">
 
 
         <!-- =================================================
-             카테고리
+             상품 이미지
         ================================================== -->
 
-        <div class="product-category">
-
-            <?php echo $a_category[$row["category"]];?>
-
-        </div>
-
-
-        <!-- =================================================
-             상품명
-        ================================================== -->
-
-        <a 
-            href="product.php?product_id=<?php echo $row["product_id"];?>" 
+        <a
+            href="product.php?product_id=<?php echo $row["product_id"];?>"
             class="text-decoration-none"
         >
 
-            <div class="product-name">
-
-                <?php echo $row["name"];?>
-
-            </div>
+            <img
+                src="product/<?php echo $product_image;?>"
+                class="card-img-top object-fit-contain bg-light"
+                style="height: 200px;"
+                alt="상품 이미지"
+            >
 
         </a>
 
 
         <!-- =================================================
-             가격
+             상품명 / 카테고리
         ================================================== -->
 
-        <div class="product-price">
+        <div class="card-body">
 
-            <?php echo number_format($row["price"]);?>원
+
+            <!-- 상품명 -->
+
+            <h5 class="card-title">
+
+                <a
+                    href="product.php?product_id=<?php echo $row["product_id"];?>"
+                    class="text-decoration-none"
+                >
+
+                    <?php echo $row["name"];?>
+
+                </a>
+
+            </h5>
+
+
+            <!-- 카테고리 -->
+
+            <p class="card-text">
+
+                <?php echo $a_category[$row["category"]];?>
+
+            </p>
+
 
         </div>
 
 
         <!-- =================================================
-             위치 / 시간
+             상품 상세 정보
         ================================================== -->
 
-        <div class="product-info">
+        <ul class="list-group list-group-flush">
 
 
-            <!-- 위치 -->
+            <!-- 주소 -->
 
-            <div>
+            <li class="list-group-item">
 
-                <i class="bi bi-geo-alt"></i>
+                <i class="bi bi-geo-alt me-1"></i>
 
-                <?php 
+                <?php
                 echo $row["juso1"]
                     ." "
                     .$row["juso2"]
@@ -476,68 +482,95 @@ while($row = mysqli_fetch_assoc($result)) {
                     .$row["juso3"];
                 ?>
 
-            </div>
+            </li>
 
 
-            <!-- 시간 -->
+            <!-- 등록 시간 -->
 
-            <div>
+            <li class="list-group-item">
 
-                <i class="bi bi-clock"></i>
+                <i class="bi bi-clock me-1"></i>
 
                 <?php echo $time_text;?>
 
-            </div>
+            </li>
 
 
-        </div>
+            <!-- 가격 -->
+
+            <li class="list-group-item">
+
+                <?php echo number_format($row["price"]);?>원
+
+            </li>
+
+
+        </ul>
 
 
         <!-- =================================================
-             ★ 찜 / 채팅 / 프로필
-             기존 기능 전부 유지
+             하단 버튼 영역
+             ★ 찜하기 / 채팅하기 / 프로필 보기
         ================================================== -->
 
-        <div class="product-links">
+        <div class="card-body">
 
 
-            <!-- 찜하기 -->
-
-            <a 
-                href="good_insert.php?product_id=<?php echo $row["product_id"]; ?>"
+            <div
+                class="d-flex gap-2"
+                style="position: relative; z-index: 2;"
             >
 
-                <i class="bi bi-heart"></i>
 
-                찜하기
+                <!-- =================================================
+                     찜하기
+                ================================================== -->
 
-            </a>
+                <a
+                    href="good_insert.php?product_id=<?php echo $row["product_id"]; ?>"
+                    class="btn btn-outline-danger btn-sm flex-fill d-flex justify-content-center align-items-center gap-1"
+                >
 
+                    <i class="bi bi-heart"></i>
 
-            <!-- 채팅하기 -->
+                    찜하기
 
-            <a 
-                href="chat_room.php?my_id=<?php echo $member_id;?>&target_id=<?php echo $row["member_id"];?>&product_id=<?php echo $row["product_id"];?>"
-            >
-
-                <i class="bi bi-chat-dots"></i>
-
-                채팅하기
-
-            </a>
+                </a>
 
 
-            <!-- 프로필보기 -->
+                <!-- =================================================
+                     채팅하기
+                ================================================== -->
 
-            <a 
-                href="member_profile.php?id=<?php echo $row["member_id"]; ?>"
-            >
+                <a
+                    href="chat_room.php?my_id=<?php echo $member_id;?>&target_id=<?php echo $row["member_id"];?>&product_id=<?php echo $row["product_id"];?>"
+                    class="btn btn-chat btn-sm flex-fill d-flex justify-content-center align-items-center gap-1 text-decoration-none"
+                >
 
-                <i class="bi bi-person"></i>
+                    <i class="bi bi-chat-dots"></i>
 
-                프로필보기
+                    채팅하기
 
-            </a>
+                </a>
+
+
+                <!-- =================================================
+                     프로필 보기
+                ================================================== -->
+
+                <a
+                    href="member_profile.php?id=<?php echo $row["member_id"];?>"
+                    class="btn btn-outline-secondary btn-sm flex-fill d-flex justify-content-center align-items-center gap-1 text-decoration-none"
+                >
+
+                    <i class="bi bi-person"></i>
+
+                    프로필 보기
+
+                </a>
+
+
+            </div>
 
 
         </div>
@@ -546,12 +579,9 @@ while($row = mysqli_fetch_assoc($result)) {
     </div>
 
 
-</div>
+<?php
 
-
-<?php 
-
-} 
+}
 
 ?>
 
@@ -559,14 +589,18 @@ while($row = mysqli_fetch_assoc($result)) {
 </div>
 
 
-<?php 
+<!-- =========================================================
+     페이지네이션
+========================================================= -->
 
-echo $pagebar; 
+<?php
+
+echo $pagebar;
 
 ?>
 
 
-<?php 
+<?php
 
 include "main_bottom.php";
 
