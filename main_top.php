@@ -63,72 +63,76 @@
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <nav class="navbar bg-body-tertiary fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.php">
-        <img src="images/logo.png" alt="리픽" style="height: 40px;" draggable="false">
-      </a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">메뉴</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <?php
-              $cookie_id = $_COOKIE["cookie_id"] ?? "";
-
-              if ($cookie_id) {
-              ?>
-                <a class="nav-link" href="logout.php">
-                  로그아웃
-                </a>
-              <?php
-              } else {
-              ?>
-                <a class="nav-link" href="login.php">
-                  로그인
-                </a>
-              <?php
-              }
-              ?>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="chat_list.php">채팅</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="member_mypage.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                마이페이지
-              </a>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-lights">
-                <li><a class="dropdown-item" href="member_mypage.php">내정보</a></li>
-                <li><a class="dropdown-item" href="good.php">찜한목록</a></li>
-                <li><a class="dropdown-item" href="product_create.php">상품등록</a></li>
-                <li><a class="dropdown-item" href="member_mypage.php?kind=sell">판매관리</a></li>
-                <li><a class="dropdown-item" href="member_mypage.php?kind=buy">구매내역</a></li>
-                <li><a class="dropdown-item" href="reviews.html">내후기보기</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </nav>
   <?php
   $text = $_POST["text"] ?? "";
   $location = $_POST["location"] ?? "";
   ?>
-  <form class="d-flex mt-3" action="search.php" role="search" style="max-width: 500px;" method="post" name="form1">
-    <input class="form-control me-2" type="search" placeholder="물건" aria-label="Search" name="text" value="<?php echo $text; ?>" />
-    <input class="form-control me-2" type="search" placeholder="위치" aria-label="Search" name="location" value="<?php echo $location; ?>" />
-    <a href="javascript:Submit();" class="btn btn-sm btn-dark text-white text-nowrap">검색하기</a>
-  </form>
+  <nav class="navbar bg-white fixed-top border-bottom shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.php">
+        <img src="images/logo.png" alt="리픽" style="height: 40px;" draggable="false">
+      </a>
+
+      <form class="d-flex flex-grow-1 mx-4" action="search.php"
+        role="search" style="max-width: 650px;"
+        method="post" name="form1">
+
+        <input class="form-control me-2" type="search"
+          placeholder="물건"
+          name="text" value="<?php echo $text; ?>">
+
+        <input class="form-control me-2" type="search"
+          placeholder="위치"
+          name="location" value="<?php echo $location; ?>">
+
+        <a href="javascript:Submit();"
+          class="btn text-white"
+          style="background-color: #18766d;">
+          <i class="bi bi-search"></i>
+        </a>
+      </form>
+
+      <div class="d-flex align-items-center gap-3 flex-shrink-0">
+        <a href="product_create.php"
+          class="btn text-white text-nowrap"
+          style="background-color: #18766d;">
+          상품등록
+        </a>
+
+        <a href="chat_list.php"
+          class="text-dark text-decoration-none text-nowrap">
+          채팅
+        </a>
+
+        <a href="member_mypage.php"
+          class="text-dark text-decoration-none text-nowrap">
+          마이페이지
+        </a>
+
+        <?php
+        $cookie_id = $_COOKIE["cookie_id"] ?? "";
+
+        if ($cookie_id) {
+        ?>
+          <a href="logout.php"
+            class="text-dark text-decoration-none text-nowrap">
+            로그아웃
+          </a>
+        <?php
+        } else {
+        ?>
+          <a href="login.php"
+            class="text-dark text-decoration-none text-nowrap">
+            로그인
+          </a>
+        <?php
+        }
+        ?>
+      </div>
+    </div>
+  </nav>
+
+
 
   <div id="carouselExampleIndicators" class="carousel slide mt-3 mb-2">
     <div class="carousel-indicators">
