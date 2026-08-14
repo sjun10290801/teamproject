@@ -20,7 +20,11 @@
 
     $sql = "select * from member where id = '$uid'"; // 중복되는 id가 있는지 확인
     $result = mysqli_query($db, $sql);
-    if(!$result) exit("에러 : $sql");
+    if(!$result) {
+        echo("<script>alert('오류가 발생했습니다');</script>");
+        echo("<script>history.back();</script>");
+        exit();
+    }
 
     if($row = mysqli_fetch_assoc($result)) {
         echo("$uid 는 이미 사용중입니다."."<br>");

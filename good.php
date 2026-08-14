@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
     include "main_top.php";
     include "common.php";
     
@@ -29,7 +27,7 @@ ini_set('display_errors', 1);
 
 <?php
   while($row = mysqli_fetch_assoc($result)) {
-    $image = $row["image"] ?: "default_profile.jpg";
+    $image = $row["image"] ?: "default.jpg";
     
     // 시간 차이 계산
     date_default_timezone_set('Asia/Seoul');
