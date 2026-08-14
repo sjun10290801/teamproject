@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
     include "common.php";
     include "main_top.php";
 
@@ -9,7 +7,7 @@ ini_set('display_errors', 1);
     $cookie_id = $_COOKIE["cookie_id"];
 
     // 회원 정보 불러오기
-    $sql = "select * from member where id = '$cookie_id'";
+    $sql = "select image, member_id, rating, juso1, juso2, juso3 from member where id = '$cookie_id'";
     $result = mysqli_query($db, $sql);
     if(!$result) exit('에러:$sql');
 
