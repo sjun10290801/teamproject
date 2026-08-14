@@ -47,7 +47,7 @@
     mysqli_begin_transaction($db);
 
     if($filename) {
-    $fname = imageUpload("chat", "chat", "chat");
+    $fname = imageUpload("member", "images", "member");
     
     if(!$fname) {
         mysqli_rollback($db);

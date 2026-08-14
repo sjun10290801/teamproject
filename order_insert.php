@@ -5,6 +5,14 @@
 
     $product_id = $_POST["product_id"];
 
+    $method = $_POST["payment_method"];
+    $seller_id = $_POST["seller_id"];
+
+    if($method == 0 && (!$_POST["bank_name"] || !$_POST["bank_num"])) {
+        echo "<script>alert('올바른 결제정보를 입력해주세요'); location.href='member_mypage.php?kind=buy';</script>";
+        exit();
+    }
+
     mysqli_begin_transaction($db);
 
     //중복 결제 방지
@@ -25,9 +33,6 @@
     }
 
     $member_id = getId();
-
-    $method = $_POST["payment_method"];
-    $seller_id = $_POST["seller_id"];
 
     // 주문 테이블에 데이터 저장
     $sql = "insert into orders(product_id, buyer_id, seller_id, method, reg_date) 
