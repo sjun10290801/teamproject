@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 호스트: localhost
--- 생성 시간: 26-08-11 10:29
+-- 생성 시간: 26-08-14 06:16
 -- 서버 버전: 12.3.2-MariaDB
 -- PHP 버전: 8.5.8
 
@@ -71,7 +71,8 @@ INSERT INTO `chat` (`chat_id`, `to_member_id`, `from_member_id`, `text`, `reg_da
 (27, 11, 10, 'qqq', '2026-08-11 15:34:48', 0, 23, 'chat27.png'),
 (28, 11, 10, 'qewqeqw', '2026-08-11 15:37:54', 0, 23, ''),
 (29, 11, 10, '', '2026-08-11 15:37:57', 0, 23, 'chat29.png'),
-(30, 4, 10, '111', '2026-08-11 19:26:29', 0, 24, 'chat30.png');
+(30, 4, 10, '111', '2026-08-11 19:26:29', 0, 24, 'chat30.png'),
+(31, 9, 10, '직거래 하시나요?', '2026-08-14 14:45:32', 0, 21, 'chat31.png');
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,8 @@ CREATE TABLE `good` (
 
 INSERT INTO `good` (`good_id`, `member_id`, `product_id`) VALUES
 (2, 10, 24),
-(4, 10, 23);
+(4, 10, 23),
+(8, 10, 25);
 
 -- --------------------------------------------------------
 
@@ -387,21 +389,22 @@ CREATE TABLE `member` (
   `juso1` varchar(20) DEFAULT NULL,
   `juso2` varchar(20) DEFAULT NULL,
   `juso3` varchar(255) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL
+  `image` varchar(255) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 --
 -- 테이블의 덤프 데이터 `member`
 --
 
-INSERT INTO `member` (`member_id`, `password`, `tel`, `rating`, `bank_name`, `id`, `bank_num`, `name`, `birthday`, `email`, `juso1`, `juso2`, `juso3`, `image`) VALUES
-(4, '123', '01011111231', NULL, '우리', 'aaa', '1231231', 'aaa123', '2026-06-18', 'abc123@naver.com', '인천광역시', '영종구', '12313212', NULL),
-(5, '1234', '01066665678', NULL, '우리', 'qwer', '12331231', '가가', '2026-07-15', '111', '경기도', '고양시 일산동구', 'ㄱㄴ동', NULL),
-(6, '123', '01056782222', 4, '기업', 'qwer1234', '2132131232131', 'aa', '2026-07-09', '111', '서울특별시', '노원구', 'xx동', NULL),
-(7, '1234', '01011112222', NULL, '하나', 'ㅁㅁㅁㅁㅁ', '123123123', 'ㅁㅁㅁ', '2026-07-15', 'sanss11@naver.com', '서울특별시', '중구', 'ㅂㅂㅂ', NULL),
-(9, '1234', '01066661111', 3, '하나', 'aa', '1231231', '가가', '2026-07-02', '111', '서울특별시', '노원구', 'qweqwe', ''),
-(10, '1234', '01011112222', 4, '신한', 'sj', '111123', 'ㅁㅁㅁ', '2026-07-15', 'sj1212@gmail.com', '경기도', '구리시', '1111', 'member10.png'),
-(11, '1234', '01056786666', NULL, '신한', '정공성', '123123123', '정공', '2026-07-07', 'sdsadasd', '서울특별시', '중구', 'aㅁㅁㅁ', 'member11.png');
+INSERT INTO `member` (`member_id`, `password`, `tel`, `rating`, `bank_name`, `id`, `bank_num`, `name`, `birthday`, `email`, `juso1`, `juso2`, `juso3`, `image`, `status`) VALUES
+(4, '123', '01011111231', NULL, '우리', 'aaa', '1231231', 'aaa123', '2026-06-18', 'abc123@naver.com', '인천광역시', '영종구', '12313212', NULL, 0),
+(5, '1234', '01066665678', NULL, '우리', 'qwer', '12331231', '가가', '2026-07-15', '111', '경기도', '고양시 일산동구', 'ㄱㄴ동', NULL, 0),
+(6, '123', '01056782222', 4, '기업', 'qwer1234', '2132131232131', 'aa', '2026-07-09', '111', '서울특별시', '노원구', 'xx동', NULL, 1),
+(7, '1234', '01011112222', NULL, '하나', 'ㅁㅁㅁㅁㅁ', '123123123', 'ㅁㅁㅁ', '2026-07-15', 'sanss11@naver.com', '서울특별시', '중구', 'ㅂㅂㅂ', NULL, 0),
+(9, '1234', '01066661111', 3, '하나', 'aa', '1231231', '가가', '2026-07-02', '111', '서울특별시', '노원구', 'qweqwe', '', 0),
+(10, '1234', '01011112222', 4, '신한', 'sj', '111123', 'ㅁㅁㅁ', '2026-07-15', 'sj1212@gmail.com', '경기도', '구리시', '1111', 'member10.png', 0),
+(11, '1234', '01056786666', NULL, '신한', '정공성', '123123123', '정공', '2026-07-07', 'sdsadasd', '서울특별시', '중구', 'aㅁㅁㅁ', 'member11.png', 0);
 
 -- --------------------------------------------------------
 
@@ -458,13 +461,13 @@ CREATE TABLE `product` (
 INSERT INTO `product` (`product_id`, `member_id`, `image`, `price`, `memo`, `category`, `view`, `reg_date`, `state`, `juso1`, `juso2`, `juso3`, `name`) VALUES
 (16, 6, '', 30000, '12321312', 3, 0, '2026-07-27 15:57:23', 2, '서울특별시', '노원구', 'asdas', 'aa'),
 (18, 6, 'image18.jpg', 50000, 'ㅇㅇㅇㅇㅇ', 5, 0, '2026-07-27 16:46:54', 2, '강원특별자치도', '홍천군', 'ㅁㅁㅁㅁ리', '게임팩'),
-(19, 10, 'image19.png', 500000, '급처합니다', 4, 2, '2026-07-27 20:30:01', 1, '경기도', '구리시', 'XX아파트 앞', '스위치2'),
+(19, 10, 'image19.png', 500000, '급처합니다', 4, 3, '2026-07-27 20:30:01', 1, '경기도', '구리시', 'XX아파트 앞', '스위치2'),
 (20, 10, 'image20.jpg', 600000, '생활 기스 있음', 1, 0, '2026-07-27 20:31:50', 2, '서울특별시', '노원구', '노원역 부근', '아이폰 15 공기계'),
-(21, 9, '', 20000, 'xl', 4, 5, '2026-07-27 20:33:07', 1, '서울특별시', '중구', 'ㅁㅁㄴㅇㅁㄴㅇ', '남성 후드 집업'),
-(22, 11, 'image22.png', 15000, '네고 X', 5, 8, '2026-07-30 17:40:02', 0, '서울특별시', '중구', 'XX동', '사이버펑크 게임팩'),
+(21, 9, '', 20000, 'xl', 4, 11, '2026-07-27 20:33:07', 1, '서울특별시', '중구', 'ㅁㅁㄴㅇㅁㄴㅇ', '남성 후드 집업'),
+(22, 11, 'image22.png', 15000, '네고 X', 5, 18, '2026-07-30 17:40:02', 0, '서울특별시', '중구', 'XX동', '사이버펑크 게임팩'),
 (23, 11, 'image23.png', 500, '샘플이고 한장당 500원이요', 6, 18, '2026-07-30 17:40:31', 2, '서울특별시', '중구', 'ㅂㅂㅂ', '집냥이 사진'),
-(24, 4, 'image24.png', 12000, '책 판매합니다', 6, 6, '2026-07-30 21:06:07', 0, '강원특별자치도', '횡성군', 'ㅂㅂㅂ', '투명한 나선 - 히가시노 게이고'),
-(25, 6, '', 30000, '선반 팝니다. 관심있으면 채팅 주세요.', 2, 1, '2026-07-30 23:40:05', 0, '서울특별시', '도봉구', 'xx동', '선반');
+(24, 4, 'image24.png', 12000, '책 판매합니다', 6, 9, '2026-07-30 21:06:07', 0, '강원특별자치도', '횡성군', 'ㅂㅂㅂ', '투명한 나선 - 히가시노 게이고'),
+(25, 6, '', 30000, '선반 팝니다. 관심있으면 채팅 주세요.', 2, 3, '2026-07-30 23:40:05', 0, '서울특별시', '도봉구', 'xx동', '선반');
 
 -- --------------------------------------------------------
 
@@ -488,8 +491,8 @@ CREATE TABLE `rating` (
 --
 
 INSERT INTO `rating` (`rating_id`, `to_member_id`, `from_member_id`, `score`, `reg_date`, `order_id`, `memo`, `product_id`) VALUES
-(2, 10, 7, 5, '2026-07-27 11:38:53', 7, NULL, NULL),
-(3, 10, 5, 3, '2026-07-27 11:39:38', 8, NULL, NULL),
+(2, 10, 7, 5, '2026-07-27 11:38:53', 7, NULL, 19),
+(3, 10, 5, 3, '2026-07-27 11:39:38', 8, NULL, 20),
 (8, 6, 10, 4, '2026-08-11 15:07:12', 3, '312312312312', 16),
 (9, 9, 10, 3, '2026-08-11 15:09:23', 4, 'ADASDAS', 21);
 
@@ -513,11 +516,29 @@ CREATE TABLE `report` (
 --
 
 INSERT INTO `report` (`report_id`, `to_member_id`, `from_member_id`, `reason`, `text`, `image`) VALUES
-(1, 10, 11, 1, '111', ''),
 (2, 10, 11, 2, 'asddas', ''),
 (3, 10, 11, 2, 'qadsdas', ''),
-(4, 10, 11, 2, 'adsada', 'report4.png'),
-(5, 10, 11, 2, '12312', 'report5.png');
+(6, 10, 9, 2, 'dasdsadaasd', 'report6.png'),
+(7, 6, 10, 1, 'asdasasd', 'report7.png');
+
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `reportedmember`
+--
+
+CREATE TABLE `reportedmember` (
+  `id` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL,
+  `reason` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- 테이블의 덤프 데이터 `reportedmember`
+--
+
+INSERT INTO `reportedmember` (`id`, `member_id`, `reason`) VALUES
+(1, 6, 1);
 
 --
 -- 덤프된 테이블의 인덱스
@@ -572,6 +593,12 @@ ALTER TABLE `report`
   ADD PRIMARY KEY (`report_id`);
 
 --
+-- 테이블의 인덱스 `reportedmember`
+--
+ALTER TABLE `reportedmember`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 덤프된 테이블의 AUTO_INCREMENT
 --
 
@@ -579,13 +606,13 @@ ALTER TABLE `report`
 -- 테이블의 AUTO_INCREMENT `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- 테이블의 AUTO_INCREMENT `good`
 --
 ALTER TABLE `good`
-  MODIFY `good_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `good_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- 테이블의 AUTO_INCREMENT `juso`
@@ -621,7 +648,13 @@ ALTER TABLE `rating`
 -- 테이블의 AUTO_INCREMENT `report`
 --
 ALTER TABLE `report`
-  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- 테이블의 AUTO_INCREMENT `reportedmember`
+--
+ALTER TABLE `reportedmember`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

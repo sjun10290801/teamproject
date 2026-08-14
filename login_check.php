@@ -5,6 +5,12 @@
     $id = $_POST["id"];
     $pwd = $_POST["pwd"];
 
+    if(!$id || !$pwd) {
+        echo("<script>alert('계정정보를 입력해주세요');</script>");
+        echo("<script>history.back();</script>");
+        exit();
+    }
+
     // 입력한 id가 있는지 확인
     $sql = "select member_id, password, status from member where id = '$id'";
     $result = mysqli_query($db, $sql);

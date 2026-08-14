@@ -16,6 +16,12 @@
     $bank_name = $a_bank[$_POST["bank_name"]];
     $bank_num = trim($_POST["bank_num"]);
 
+    if(!$name || !$tel1 || !$tel2 || !$tel3 || !$email || !$birthday || !$juso || !$juso2 || !$bank_name ||!$bank_num) {
+        echo("<script>alert('올바른 정보를 입력해주세요');</script>");
+        echo("<script>history.back();</script>");
+        exit();
+    }
+
 
 
     [$juso1, $juso2] = explode(" ", $juso, 2); // 주소를 시/도,  시/군/구 나누어서 저장

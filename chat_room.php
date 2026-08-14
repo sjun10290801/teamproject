@@ -10,24 +10,23 @@ $member_id = $_GET["my_id"];
 $target_id = $_GET["target_id"];
 $product_id = $_GET["product_id"];
 
+$my_id = getId();
+
+// 타인 접근 방지
+if($my_id != $member_id) {
+    echo ("<script>alert('본인만 접근할 수 있습니다.');</script>");
+    echo ("<script>location.href='index.html'</script>");
+    exit();
+}
+
 // 상대방과 자신의 문자열 아이디 조회
-$sql = "select member_id, id from member where member_id = $member_id or member_id = $target_id";
+$sql = "select member_id, id from member where member_id = $target_id";
 $result = mysqli_query($db, $sql);
 if (!$result) exit("에러 : $sql");
 
-while ($row = mysqli_fetch_assoc($result)) {
-    if ($row["member_id"] == $member_id) $my_id = $row["id"];
-    else $target = $row["id"];
-}
-
-$cookie_id = $_COOKIE["cookie_id"];
-
-
-// 다른 사람의 채팅방 접근 방지
-if ($cookie_id != $my_id) {
-    echo ("<script>alert('본인만 접근할 수 있습니다.');</script>");
-    echo ("<script>location.href='index.html'</script>");
-}
+// 상대방의 문자열 id 조회 -> 채팅방 제목 출력 용
+$row = mysqli_fetch_assoc($result);
+$target = $row["id"];
 
 // 확인한 채팅의 상태는 1(읽음)으로 표시
 $sql = "update chat set state = 1 where (to_member_id = $member_id and from_member_id = $target_id) 

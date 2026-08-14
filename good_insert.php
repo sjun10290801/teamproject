@@ -1,29 +1,26 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
     include "common.php";
 
     loginCheck();
-
-    $cookie_id = $_COOKIE["cookie_id"];
-    // 자신의 멤버id를 조회
-    $sql = "select member_id from member where id = '$cookie_id'";
-    $result = mysqli_query($db, $sql);
-    if(!$result) exit("에러 : $sql");
-
-    $row = mysqli_fetch_assoc($result);
-    
-    $member_id = $row["member_id"];
+    $member_id = getId();
 
     $product_id = $_GET["product_id"];
 
+    mysqli_begin_transaction($db);
+
     // 이미 찜 목록에 저장되어 있는 품목인지 확인
-    $sql = "select good_id from good where member_id = $member_id and product_id = $product_id";
+    $sql = "select good_id from good where member_id = $member_id and product_id = $product_id for update"; // 중복 저장 방지용 행 잠금
     $result = mysqli_query($db, $sql);
-    if(!$result) exit("에러 : $sql");
+    if(!$result) {
+        mysqli_rollback($db);
+        echo("<script>alert('오류가 발생했습니다');</script>");
+        echo("<script>history.back();</script>");
+        exit();
+    }
 
     // 이미 찜 목록에 있다면 종료
     if($row = mysqli_fetch_assoc($result)) {
+        mysqli_rollback($db);
         echo("<script>alert('이미 등록된 상품입니다.');</script>");
         echo("<script>history.back();</script>");
         exit();
@@ -32,7 +29,15 @@ ini_set('display_errors', 1);
     // db에 저장
     $sql = "insert into good(member_id, product_id) values($member_id, $product_id)";
     $result = mysqli_query($db, $sql);
-    if(!$result) exit("에러 : $sql");
+    if(!$result) {
+        mysqli_rollback($db);
+        echo("<script>alert('오류가 발생했습니다');</script>");
+        echo("<script>history.back();</script>");
+        exit();
+    }
+
+    mysqli_commit($db);
+    
 
     echo("<script>alert('찜 목록에 추가되었습니다.');</script>");
     echo("<script>location.href='good.php'</script>");
