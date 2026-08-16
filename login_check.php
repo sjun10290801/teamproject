@@ -43,7 +43,7 @@
             }
 
             setcookie("cookie_id", $id); // 쿠키 생성
-            header("Location:index.html"); // 메인화면으로 되돌아감
+            header("Location:index.php"); // 메인화면으로 되돌아감
             exit();
         } else {
             echo("<script>alert('비밀번호가 일치하지 않습니다.');</script>"); // id가 없으면 종료
