@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
     include "common.php";
 
     $to_member_id = $_POST["to_member_id"];
@@ -28,6 +26,12 @@ ini_set('display_errors', 1);
     // 서버 데이터 검증
     if(!$rating) {
         echo("<script>alert('별점을 입력하세요.');</script>");
+        echo("<script>window.history.back();</script>");
+        exit();
+    }
+
+    if($rating <= 0 || $rating > 5) {
+        echo("<script>alert('올바른 정보를 입력해주세요.');</script>");
         echo("<script>window.history.back();</script>");
         exit();
     }

@@ -3,6 +3,11 @@
     include "common.php";
 
     $id = $_POST["id"];
+    if(!$id) {
+        echo("<script>alert('id를 입력해주세요');</script>");
+        echo("<script>location.href='pwd_search.html'</script>");
+        exit();
+    }
     
     $sql = "select * from member where id = '$id'";
     $result = mysqli_query($db, $sql);
@@ -20,6 +25,12 @@
     $tel3 = $_POST["tel3"];
     $tel = $tel1.$tel2.$tel3;
     $birthday = $_POST["birthday"];
+
+    if(!$name || !$tel1 || !$tel2 || !$tel3 || !$birthday) {
+        echo("<script>alert('올바른 정보를 입력해주세요');</script>");
+        echo("<script>location.href='pwd_search.html'</script>");
+        exit();
+    }
 
     if(!($name == $row["name"] && $tel == $row["tel"] && $birthday == $row["birthday"])) { // id와 회원정보가 일치하지 않으면
         echo("<script>alert('회원정보가 일치하지 않습니다.');</script>");

@@ -9,8 +9,25 @@
     [$juso1, $juso2] = explode(" ", $juso, 2);
     $juso3 = $_POST["juso3"];
     $memo = addslashes($_POST["text"]);
-    $juso3 = $_POST["juso3"];
     $state = $_POST["state"] ?? 2;
+
+    if(!$category || !$name || !$price || !$text || !$juso3 || !$juso) {
+        echo("<script>alert('올바른 정보를 입력해주세요');</script>");
+        echo("<script>location.href='admin_login.html'</script>");
+        exit();
+    }
+
+    if(!is_numberic($price)) {
+        echo("<script>alert('가격은 숫자로 입력해주세요');</script>");
+        echo("<script>location.href='admin_login.html'</script>");
+        exit();
+    }
+
+    if($category > $n_category - 1 || $category < 0) {
+        echo("<script>alert('올바른 카테고리 정보를 입력해주세요');</script>");
+        echo("<script>location.href='admin_login.html'</script>");
+        exit();
+    }
 
     $fname=$_POST["image_name"];
     

@@ -8,6 +8,24 @@
     $juso3 = trim($_POST["juso3"]);
     $juso = trim($_POST["juso"]);
 
+    if(!$category || !$name || !$price || !$text || !$juso3 || !$juso) {
+        echo("<script>alert('올바른 정보를 입력해주세요');</script>");
+        echo("<script>location.href='admin_login.html'</script>");
+        exit();
+    }
+
+    if(!is_numberic($price)) {
+        echo("<script>alert('가격은 숫자로 입력해주세요');</script>");
+        echo("<script>location.href='admin_login.html'</script>");
+        exit();
+    }
+
+    if($category > $n_category - 1 || $category < 0) {
+        echo("<script>alert('올바른 카테고리 정보를 입력해주세요');</script>");
+        echo("<script>location.href='admin_login.html'</script>");
+        exit();
+    }
+
     [$juso1, $juso2] = explode(" ", $juso, 2);
 
     $cookie_id = $_COOKIE["cookie_id"];  //로그인 기능 구현 후 추가
