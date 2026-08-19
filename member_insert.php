@@ -37,6 +37,8 @@
         exit();
     }
 
+    $hash_password = password_hash($pwd, PASSWORD_DEFAULT); // 비밀번호 해시로 저장
+
     [$juso1, $juso2] = explode(" ", $juso, 2); // 주소를 시/도,  시/군/구 나누어서 저장
 
     $tel = sprintf("%-3s%-4s%-4s", $tel1, $tel2, $tel3); // 전화번호 01012345678형식으로 합치기
@@ -61,7 +63,7 @@
     }
 
     $sql = "insert into member(id, password, tel, bank_name, bank_num, name, birthday, email, juso1, juso2, juso3, image)
-    values('$id', '$pwd', '$tel', '$bank_name', '$bank_num', '$name', '$birthday', '$email', '$juso1', '$juso2', '$juso3', '$fname')";
+    values('$id', '$hash_password', '$tel', '$bank_name', '$bank_num', '$name', '$birthday', '$email', '$juso1', '$juso2', '$juso3', '$fname')";
     $result = mysqli_query($db, $sql);
     if(!$result) {
         mysqli_rollback($db);

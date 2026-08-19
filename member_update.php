@@ -91,7 +91,8 @@
         $sql = "update member set name = '$name', tel = '$tel', email = '$email', birthday = '$birthday', juso1 = '$juso1'
                 , juso2 = '$juso2', juso3 = '$juso3', bank_name = '$bank_name', bank_num = '$bank_num', image = '$new_image' where id = '$id'";
     } else {
-        $sql = "update member set password = '$pwd', name = '$name', tel = '$tel', email = '$email', birthday = '$birthday', juso1 = '$juso1'
+        $password = password_hash($pwd, PASSWORD_DEFAULT);
+        $sql = "update member set password = '$password', name = '$name', tel = '$tel', email = '$email', birthday = '$birthday', juso1 = '$juso1'
                 , juso2 = '$juso2', juso3 = '$juso3', bank_name = '$bank_name', bank_num = '$bank_num', image = '$new_image' where id = '$id'";
     }
     $result = mysqli_query($db, $sql);
