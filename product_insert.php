@@ -1,5 +1,6 @@
 <?php
-
+ error_reporting(E_ALL);
+ini_set('display_errors', 1);
     include "common.php";
     $category = trim($_POST["category"]);
     $name = trim($_POST["name"]);
@@ -14,7 +15,7 @@
         exit();
     }
 
-    if(!is_numberic($price)) {
+    if(!is_numeric($price)) {
         echo("<script>alert('가격은 숫자로 입력해주세요');</script>");
         echo("<script>location.href='admin_login.html'</script>");
         exit();
