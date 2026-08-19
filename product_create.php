@@ -16,6 +16,7 @@
     $juso = $juso1." ".$juso2;
 
 ?>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -25,6 +26,46 @@
     <title> 상품 등록 </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
+<style>
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .product-title {
+            color: #18766d;
+            font-weight: 700;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #18766d;
+            box-shadow: 0 0 0 0.2rem rgba(24, 118, 109, 0.15);
+        }
+
+        .address-btn {
+            background-color: #18766d;
+            border-color: #18766d;
+            color: white;
+        }
+
+        .address-btn:hover {
+            background-color: #105f58;
+            border-color: #105f58;
+            color: white;
+        }
+
+        .submit-btn {
+            background-color: #18766d;
+            border-color: #18766d;
+            color: white;
+        }
+        .submit-btn:hover {
+            background-color: #105f58;
+            border-color: #105f58;
+            color: white;
+        }
+</style>
 </head>
 
 <body>
@@ -72,8 +113,8 @@
 	}
 </script>
     <form method="post" name="form2" action="product_insert.php" enctype="multipart/form-data"> <!-- 제출용 폼 태그 추가  -->
-        <div class="container">
-            <h2 class="text-center mb-4">제품 등록</h2>
+        <div class="container py-5">
+            <h2 class="text-center mb-4 product-title">제품 등록</h2>
 
             <div class="row">
                 <div class="mb-3 col-md-6">
@@ -108,7 +149,7 @@
 
             <div class="d-flex gap-2 mb-2">
 				<input type="text" name="juso" id="zip11" class="form-control custom-dark-input" style="max-width: 140px;" readonly value="<?php echo $juso;?>">
-				<a href="javascript:FindZip(0);" class="btn btn-premium-inline text-nowrap">
+				<a href="javascript:FindZip(0);" class="btn address-btn text-nowrap">
 					<i class="bi bi-geo-alt me-1"></i> 주소찾기
 			    </a>
 		    </div>
@@ -125,7 +166,7 @@
                 <input class="form-control" type="file" id="formFileMultiple" multiple name="image">
             </div>
             <div class="text-center">
-                <a href="javascript:Submit();" class="btn btn-sm btn-dark text-white myfont">등록</a><!-- 제출 버튼 추가  -->
+                <a href="javascript:Submit();" class="btn btn-sm submit-btn">등록</a><!-- 제출 버튼 추가  -->
             </div>
         </div>
     </form>
