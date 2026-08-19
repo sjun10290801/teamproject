@@ -1,7 +1,7 @@
 <div class="container">
 
   <footer class="py-5 border-top"
-          style="border-color: #18766d !important;">
+    style="border-color: #18766d !important;">
 
     <div class="row">
 
@@ -56,6 +56,11 @@
             <span class="text-body-secondary">
               위치 : 서울특별시 노원구
             </span>
+            <dd>
+              <a href="admin/admin_login.php" class="text-secondary text-decoration-none">
+                관리자
+              </a>
+            </dd>
           </li>
 
         </ul>
@@ -74,4 +79,5 @@
 </div>
 
 </body>
+
 </html>
