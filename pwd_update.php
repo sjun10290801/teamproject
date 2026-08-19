@@ -1,4 +1,6 @@
 <?php
+ error_reporting(E_ALL);
+ini_set('display_errors', 1);
     include "common.php";
 
     $id = $_POST["id"];
@@ -37,7 +39,7 @@
     } else {
         $password = password_hash($pwd, PASSWORD_DEFAULT);
 
-        $stmt = $db->init();
+        $stmt = $db->stmt_init();
         $sql = "update member set password = '$password' where id = ?";
         $stmt->prepare($sql);
         $stmt->bind_param("s", $id);
@@ -51,7 +53,7 @@
         $stmt->close();
 
         echo("<script>alert('변경이 완료되었습니다.');</script>");
-        echo("<script>location.href='login.html'</script>");
+        echo("<script>location.href='login.php'</script>");
         exit();
     }
 ?>
