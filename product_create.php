@@ -97,11 +97,6 @@
             form2.text.focus();
             return;
         }
-        if(!form2.text.value) {
-            alert("제품 설명을 입력해주세요.");
-            form2.text.focus();
-            return;
-        }
 
         form2.submit();
 
