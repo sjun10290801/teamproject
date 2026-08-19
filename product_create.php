@@ -114,7 +114,7 @@
 </script>
     <form method="post" name="form2" action="product_insert.php" enctype="multipart/form-data"> <!-- 제출용 폼 태그 추가  -->
         <div class="container py-5">
-            <h2 class="text-center mb-4 product-title">제품 등록</h2>
+            <h2 class="text-center mb-4 product-title">상품 등록</h2>
 
             <div class="row">
                 <div class="mb-3 col-md-6">
