@@ -11,19 +11,19 @@ ini_set('display_errors', 1);
 
     if(!$category || !$name || !$price || !$text || !$juso3 || !$juso) {
         echo("<script>alert('올바른 정보를 입력해주세요');</script>");
-        echo("<script>location.href='admin_login.html'</script>");
+        echo("<script>window.history.back()</script>");
         exit();
     }
 
     if(!is_numeric($price)) {
         echo("<script>alert('가격은 숫자로 입력해주세요');</script>");
-        echo("<script>location.href='admin_login.html'</script>");
+        echo("<script>window.history.back()</script>");
         exit();
     }
 
     if($category > $n_category - 1 || $category < 0) {
         echo("<script>alert('올바른 카테고리 정보를 입력해주세요');</script>");
-        echo("<script>location.href='admin_login.html'</script>");
+        echo("<script>window.history.back()</script>");
         exit();
     }
 
