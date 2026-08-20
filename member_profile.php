@@ -43,11 +43,11 @@ $count = $row1["rating_count"];
 
                 <!-- 회원 정보 -->
                 <div class="col text-center text-md-start">
-                    <h4 class="fw-bold mb-2"><?php echo $row["id"];?></h4>
+                    <h4 class="fw-bold mb-2"><?php echo $row["id"]; ?></h4>
 
                     <div class="d-inline-flex align-items-center gap-1 bg-light rounded-pill px-3 py-2 mb-3" aria-label="평점">
                         <i class="bi bi-star-fill text-warning"></i>
-                        <strong id="rating_score" class="ms-1"><?php echo $rating;?></strong>
+                        <strong id="rating_score" class="ms-1"><?php echo $rating; ?></strong>
                         <span class="text-secondary">(평가 <?php echo $count; ?>개)</span>
                     </div>
 
@@ -60,17 +60,10 @@ $count = $row1["rating_count"];
             </div>
         </div>
     </section>
-    <div class="mt-5 mx-auto" style="max-width: 650px;">
-        <h4 class="mb-3">판매 상품</h4>
-
-        <!-- 다른 회원의 프로필이라 구매내역은 지우고 판매내역만 남겨둠 -->
-        <div class="d-flex gap-2 mb-3">
+    <div class="mt-5 mx-auto" style="max-width: 700px;">
+        <h4 class="fw-bold mb-3">판매 완료 상품</h4>
 
 
-            <a class="btn btn-outline-dark flex-fill">
-                판매 내역
-            </a>
-        </div>
         <?php
         $sql = "select * from product where member_id = $member_id and state = 2";
         $result = mysqli_query($db, $sql);
@@ -80,12 +73,17 @@ $count = $row1["rating_count"];
         ?>
 
             <!-- 판매 내역 -->
-            <div class="border rounded p-3">
-                <p class="mb-1">상품명: <?php echo $row["name"]; ?></p>
-                <p class="mb-1">가격: <?php echo number_format($row["price"]); ?>원</p>
-                <p class="mb-1">등록 날짜: <?php echo $row["reg_date"]; ?></p>
+            <div class="card border-0 shadow-sm rounded-3 p-4 mb-3">
+                <h5 class="fw-bold mb-2"><?php echo $row["name"]; ?></h5>
+                <p class="fw-bold mb-2" style="color: #18766d;"><?php echo number_format($row["price"]); ?>원</p>
+                <p class="small text-secondary mb-3">
+                    <i class="bi bi-calendar3 me-1"></i>
+                    등록 날짜: <?php echo $row["reg_date"]; ?>
+                </p>
 
-                <span class="badge text-bg-success">
+                <span
+                    class="badge rounded-pill align-self-start px-3 py-2 fw-normal"
+                    style="color: #6c757d; background-color: #f8f9fa; border: 1px solid #dee2e6;">
                     판매 완료
                 </span>
             </div>
@@ -93,8 +91,8 @@ $count = $row1["rating_count"];
     </div>
 
     <!-- 판매중인 상품 -->
-    <section class="mt-5 mx-auto" style="max-width: 650px;">
-        <h4 class="mb-3">판매 중인 상품</h4>
+    <section class="mt-5 mx-auto" style="max-width: 700px;">
+        <h4 class="fw-bold mb-3">판매 중인 상품</h4>
         <?php
         $sql = "select * from product where member_id = $member_id and state != 2";
         $result = mysqli_query($db, $sql);
@@ -107,12 +105,23 @@ $count = $row1["rating_count"];
         ?>
 
             <!-- 판매 내역 -->
-            <div class="border rounded p-3">
-                <p class="mb-1">상품명: <?php echo $row["name"]; ?></p>
-                <p class="mb-1">가격: <?php echo number_format($row["price"]); ?>원</p>
-                <p class="mb-1">등록 날짜: <?php echo $row["reg_date"]; ?></p>
+            <div class="card border-0 shadow-sm rounded-3 position-relative p-4 mb-3" style="cursor: pointer;">
+                <h5 class="fw-bold mb-2">
+                    <a href="product.php?product_id=<?php echo $row["product_id"]; ?>"
+                        class="text-dark text-decoration-none stretched-link">
+                        <?php echo $row["name"]; ?>
+                    </a>
+                </h5>
+                <p class="fw-bold mb-2" style="color: #18766d;">
+                    <?php echo number_format($row["price"]); ?>원
+                </p>
+                <p class="small text-secondary mb-3">
+                    <i class="bi bi-calendar3 me-1"></i>
+                    등록 날짜: <?php echo $row["reg_date"]; ?>
+                </p>
 
-                <span class="badge text-bg-success">
+                <span class="badge rounded-pill align-self-start px-3 py-2 fw-normal"
+                    style="color: #18766d; background-color: #eef8f6; border: 1px solid #b7ddd8;">
                     <?php echo $tmp; ?>
                 </span>
             </div>
