@@ -74,12 +74,12 @@ ini_set('display_errors', 1);
         ?>
             <tr>
                 <th scope="row"><?php echo $row["member_id"];?></th>
-                <td><?php echo $row["id"];?></td>
-                <td><?php echo $row["name"];?></td>
+                <td><?php echo htmlspecialchars($row["id"]);?></td>
+                <td><?php echo htmlspecialchars($row["name"]);?></td>
                 <td><?php echo $tel;?></td>
-                <td><?php echo $row["email"];?></td>
+                <td><?php echo htmlspecialchars($row["email"]);?></td>
                 <td><?php echo $row["birthday"];?></td>
-                <td><?php echo $row["juso1"]." ".$row["juso2"]." ".$row["juso3"];?></td>
+                <td><?php echo $row["juso1"]." ".$row["juso2"]." ".htmlspecialchars($row["juso3"]);?></td>
                 <td><?php echo $row["bank_name"]."은행";?></td>
                 <td>
                     <div class="btn-group" role="group">

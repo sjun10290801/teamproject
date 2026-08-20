@@ -200,7 +200,7 @@ $count = mysqli_num_rows($result);
                             <div class="flex-grow-1" style="min-width: 0;">
                                 <!-- 상대방 이름, 메시지 수 -->
                                 <div class="d-flex w-100 justify-content-between align-items-center ">
-                                    <h5 class="chat-name"><?php echo $row["id"]; ?></h5>
+                                    <h5 class="chat-name"><?php echo htmlspecialchars($row["id"]); ?></h5>
                                     <?php
                                     if ($row["chat_state"] != 0) {
                                     ?>
@@ -215,13 +215,13 @@ $count = mysqli_num_rows($result);
                                 <!-- 상품명 -->
                                 <p class="chat-product">
                                     <i class="bi bi-box-seam me-1"></i>
-                                    <?php echo $row["name"]; ?>
+                                    <?php echo htmlspecialchars($row["name"]); ?>
                                 </p>
 
                                 <!-- 마지막 메시지, 마지막 시간 -->
                                 <div class="d-flex w-100 justify-content-between align-items-center">
                                     <p class="chat-message text-truncate me-3">
-                                        <?php echo $last; ?>
+                                        <?php echo htmlspecialchars($last); ?>
                                     </p>
 
                                     <small class="chat-time">

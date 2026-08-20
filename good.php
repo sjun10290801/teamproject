@@ -52,11 +52,11 @@
     <div class="card-body">
     <h5 class="card-title">
       <a href="product.php?product_id=<?php echo $row["product_id"];?>" class="text-dark text-decoration-none stretched-link">
-        <?php echo $row["name"];?>
+        <?php echo htmlspecialchars($row["name"]);?>
       </a>
     </h5>
     <p class="card-text"><?php echo $a_category[$row["category"]];?></p>
-    <p class="card-text text-muted"><?php echo $row["juso1"]." ".$row["juso2"]." ".$row["juso3"];?> · <?php echo $time_text;?></p>
+    <p class="card-text text-muted"><?php echo $row["juso1"]." ".$row["juso2"]." ".htmlspecialchars($row["juso3"]);?> · <?php echo $time_text;?></p>
     <h5 class="card-text fw-bold mt-2"><?php echo number_format($row["price"]);?>원</h5>
   </div>
   <a href="good_delete.php?member_id=<?php echo $member_id;?>&product_id=<?php echo $row["product_id"];?>" class="btn btn-sm btn-dark text-white myfont position-relative z-3">삭제</a>
