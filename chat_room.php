@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 include "main_top.php";
 include_once "common.php";
 
@@ -42,7 +40,7 @@ if (!$result) exit("에러 : $sql");
 $row = mysqli_fetch_assoc($result);
 
 $product_name = $row["name"];
-$product_image = $row["image"];
+$product_image = $row["image"] ?: "default.jpg";
 $product_price = $row["price"];
 
 // 채팅 내용을 가져옴

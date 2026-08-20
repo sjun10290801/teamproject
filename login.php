@@ -3,23 +3,28 @@ include "main_top.php";
 ?>
 <script>
     function Submit() {
-        if (!form.id.value) {
+        if (!login_form.id.value) {
             alert("아이디를 입력해주세요.");
             form.id.focus();
             return;
         }
 
-        if (!form.pwd.value) {
+        if (!login_form.pwd.value) {
             alert("비밀번호를 입력해주세요");
             form.pwd.focus();
             return;
         }
 
-        form.submit();
+        login_form.submit();
+    }
+
+    window.onload = function() { // 창 싨행시 바로 실행되는 함수
+        login_form.id.focus();
+        window.scrollTo(0, 400);
     }
 </script>
 <main class="container py-5" style="max-width: 450px;">
-    <form name="form" method="post" action="login_check.php">
+    <form name="login_form" method="post" action="login_check.php">
         <fieldset class="border-0 rounded-3 bg-white shadow-sm p-4">
             <legend class="float-none w-100 text-center fs-3 fw-bold mb-4">
                 로그인

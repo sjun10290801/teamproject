@@ -34,6 +34,25 @@ include_once "common.php";
 }
 </style>
 
+<script>
+  function order_change() {
+    index_form.submit();
+  }
+
+  function order_scroll() {
+    setTimeout(function() {
+        window.scrollTo(0, 550);
+    }, 50);
+  }
+  
+
+</script>
+<?php
+  if(isset($_POST["scroll"])) {
+    echo("<script>order_scroll();</script>");
+  }
+?>
+
 <ul class="nav justify-content-center align-items-center gap-2 py-3 border-bottom bg-white">
   <li class="nav-item">
     <span class="nav-link fw-bold text-dark ps-0">카테고리</span>
@@ -82,7 +101,7 @@ include_once "common.php";
   ?>
 
 <form name="index_form" method="post" action="index.php">
-<select class="form-select w-auto" aria-label="Default select example" name="orderby" onchange="index_form.submit();"> <!-- onchange 속성을 사용해 값 변경 시 폼을 제출하도록 함.-->
+<select class="form-select w-auto" aria-label="Default select example" name="orderby" onchange="order_change();"> <!-- onchange 속성을 사용해 값 변경 시 폼을 제출하도록 함.-->
 <?php
   for($i = 1; $i < $n_order; $i++) {
     if($orderby == $i) {
@@ -94,6 +113,7 @@ include_once "common.php";
     <option value="<?php echo $i;?>" <?php echo $is_selected;?>><?php echo $a_order[$i];?></option>
 <?php } ?>
   </select>
+  <input type="hidden" name="scroll" value="1">
 </form>
 </div>
 
