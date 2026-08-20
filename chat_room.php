@@ -71,24 +71,26 @@ if (!$result) exit("에러 : $sql");
     <div class="row justify-content-center">
         <div class="col-12 col-lg-8">
 
-            <h2 class="text-center mb-4">
+            <h2 class="text-center fw-bold mb-5">
                 채팅
             </h2>
-            <div class="card shadow-sm">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                <div style="height: 6px; background-color: #18766d;"></div>
 
                 <!-- 채팅방 상단 -->
-                <div class="card-header bg-white py-3">
+                <div class="card-header bg-white border-0 px-4 py-3">
                     <div class="d-flex justify-content-between align-items-center">
-                        <a href="chat_list.php" class="btn btn-sm btn-outline-secondary">
+                        <a href="chat_list.php" class="btn btn-sm rounded-pill px-3" style="color: #18766d; background-color: #eef8f6; border: 1px solid #b7ddd8;">
+                            <i class="bi bi-chevron-left me-1"></i>
                             목록
                         </a>
 
-                        <strong><?php echo $target; ?></strong>
+                        <strong class="fs-5"><?php echo $target; ?></strong>
 
                         <span style="width: 49px;"></span>
                     </div>
                 </div>
-                <div class="border-bottom bg-white p-3">
+                <div class="border-top border-bottom bg-white px-4 py-3">
                     <div class="d-flex align-items-center">
                         <img src="product/<?php echo $product_image ?>" alt="상품 이미지" class="rounded object-fit-cover me-3"
                             style="width: 70px; height: 70px;">
@@ -100,7 +102,7 @@ if (!$result) exit("에러 : $sql");
                     </div>
                 </div>
                 <!-- 메시지가 보이는 부분 -->
-                <div class="card-body bg-light overflow-auto" style="height: 450px;">
+                <div class="card-body overflow-auto p-4" style="height: 450px; background-color: #f3f9f8;">
                     <?php
                     while ($row = mysqli_fetch_assoc($result)) {
                         $ampm = date("A", strtotime($row["reg_date"])) == "AM" ? "오전" : "오후";
@@ -115,7 +117,7 @@ if (!$result) exit("에러 : $sql");
 
                                     <?php if ($row["image"]) { // 이미지 있으면 이미지 전송 
                                     ?>
-                                        <div class="border rounded-3 bg-white p-2">
+                                        <div class="border-0 rounded-3 bg-white shadow-sm p-2">
                                             <img src="chat/<?php echo $row["image"] ?>" alt="채팅 이미지" class="rounded object-fit-cover"
                                                 style="width: 180px; height: 240px;">
                                         </div>
@@ -123,7 +125,7 @@ if (!$result) exit("에러 : $sql");
 
                                     <?php if ($row["text"]) { // 문자 내용이 없으면 출력X 
                                     ?>
-                                        <div class="border rounded-3 bg-white p-2" style="max-width: 420px; word-break: break-word;">
+                                        <div class="border-0 rounded-3 bg-white shadow-sm px-3 py-2" style="max-width: 420px; word-break: break-word;">
                                             <?php echo $row["text"]; ?>
                                         </div>
                                     <?php } ?>
@@ -145,7 +147,7 @@ if (!$result) exit("에러 : $sql");
 
                                     <?php if ($row["image"]) { // 이미지 있으면 이미지 전송 
                                     ?>
-                                        <div class="border rounded-3 bg-white p-2">
+                                        <div class="border-0 rounded-3 bg-white shadow-sm p-2">
                                             <img src="chat/<?php echo $row["image"] ?>" alt="채팅 이미지" class="rounded object-fit-cover "
                                                 style="width: 180px; height: 240px;">
                                         </div>
@@ -163,7 +165,7 @@ if (!$result) exit("에러 : $sql");
 
                                         <?php if ($row["text"]) { // 문자 내용이 없으면 출력X 
                                         ?>
-                                            <div class="border rounded-3 p-2 text-white" style="max-width: 420px; word-break: break-word; background-color: #18766d;">
+                                            <div class="border-0 rounded-3 shadow-sm px-3 py-2 text-white" style="max-width: 420px; word-break: break-word; background-color: #18766d;">
                                                 <?php echo $row["text"]; ?>
                                             </div>
                                         <?php } ?>
