@@ -1,6 +1,6 @@
 <?php
 include "main_top.php";
-include "common.php";
+include_once "common.php";
 
 $member_id = $_GET["id"];
 

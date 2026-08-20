@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 include "main_top.php";
-include "common.php";
+include_once "common.php";
 
 $category = $_GET["menu"] ?? "";
 $cookie_id = $_COOKIE["cookie_id"] ?? "";

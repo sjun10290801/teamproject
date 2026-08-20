@@ -1,7 +1,10 @@
 <?php
 
+ error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 include "main_top.php";
-include "common.php";
+include_once "common.php";
 
 ?>
 <style>
@@ -54,34 +57,70 @@ include "common.php";
 <div class="d-flex justify-content-between align-items-center px-4 mt-4 mb-3">
   <h4 class="mb-0 fw-bold section-title">최근 등록된 상품</h4>
 
-<select class="form-select w-auto" aria-label="Default select example">
-    <option value="" selected disabled>정렬방법</option>
-    <option value="reporter">최신순</option>
-    <option value="reported">낮은가격순</option>
-    <option value="reporter">높은순</option>
-    <option value="reporter">낮은순</option>
+  <?php
+    $a_order = ["정렬방식", "최신순", "낮은가격순", "높은가격순", "조회수순"];
+    $n_order = count($a_order);
+
+    // 상품 정렬 방식 설정
+    $orderby = $_POST["orderby"] ?? 1; // 값이 있다면 받아오고, 없다면 디폴트가 1(최신순)
+
+    switch($orderby) {
+      case 2:
+        $order_sql = "order by price asc, product_id desc"; // 낮은 가격 순 정렬
+        break;
+      case 3:
+        $order_sql = "order by price desc, product_id desc"; // 높은 가격 순 정렬
+        break;
+      case 4:
+        $order_sql = "order by view desc, product_id desc"; // 조회수순 정렬
+        break;
+      default:
+        $order_sql = "order by product_id desc"; // 최신순 정렬
+        
+        break;
+    }
+  ?>
+
+<form name="index_form" method="post" action="index.php">
+<select class="form-select w-auto" aria-label="Default select example" name="orderby" onchange="index_form.submit();"> <!-- onchange 속성을 사용해 값 변경 시 폼을 제출하도록 함.-->
+<?php
+  for($i = 1; $i < $n_order; $i++) {
+    if($orderby == $i) {
+      $is_selected = "selected";
+    } else {
+      $is_selected = "";
+    }
+?>
+    <option value="<?php echo $i;?>" <?php echo $is_selected;?>><?php echo $a_order[$i];?></option>
+<?php } ?>
   </select>
+</form>
 </div>
 
 <div class="card-list">
   <?php
   $cookie_id = $_COOKIE["cookie_id"] ?? "";
   if ($cookie_id) { // 로그인한 상태라면 sql문으로 자신의 id를 조회하여 해당 상품이 안뜨도록 함.
-    $sql = "select member_id from member where id = '$cookie_id'";
+    $sql = "select member_id, juso1, juso2 from member where id = '$cookie_id'";
     $result = mysqli_query($db, $sql);
     if (!$result) exit("에러 : $sql");
 
     $row = mysqli_fetch_assoc($result);
     $member_id = $row["member_id"];
     $tmp = "and member_id != $member_id";
+
+    // 자신의 주소 출력을 위해 가져오기
+    $search_juso = $row["juso2"];
+    
   } else {
     $member_id = "";
     $tmp = "";
+    $search_juso = "";
   }
 
 
-  $sql = "select product_id, member_id, image, price, category, reg_date, state, juso1, juso2, juso3, name 
-                    from product where state != 2 $tmp order by product_id desc limit 12"; // limit 12로 12개만 보이도록 함.(너무 길어지는 것 방지)
+  $sql = "select product_id, member_id, image, price, category, reg_date, state, juso1, juso2, juso3, name, view 
+                    from product where state != 2 $tmp $order_sql limit 12"; // limit 12로 12개만 보이도록 함.(너무 길어지는 것 방지)
   $result = mysqli_query($db, $sql);
   if (!$result) exit("에러 : $sql");
 
@@ -132,7 +171,7 @@ include "common.php";
 </div>
 
 <div class="d-grid gap-2">
-  <button class="btn main-btn py-2" type="button">더보기</button>
+  <button class="btn main-btn py-2" type="button" onclick="location.href='search.php?location=<?php echo $search_juso?>'">더보기</button>
 </div>
 
 </main>

@@ -1,7 +1,7 @@
 <?php
 
 include "main_top.php";
-include "common.php";
+include_once "common.php";
 
 $cookie_id = $_COOKIE["cookie_id"] ?? "";
 if ($cookie_id) { // 로그인한 상태라면 채팅, 찜 링크 전달용 본인 id 가져오기

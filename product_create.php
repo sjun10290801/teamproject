@@ -1,6 +1,6 @@
 <?php
 
-    include "common.php";
+    include_once "common.php";
     loginCheck();
 
     $cookie_id = $_COOKIE["cookie_id"];

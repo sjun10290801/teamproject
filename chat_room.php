@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include "main_top.php";
-include "common.php";
+include_once "common.php";
 
 loginCheck();
 
