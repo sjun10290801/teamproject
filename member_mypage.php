@@ -75,6 +75,13 @@ $count = $row1["rating_count"];
             </div>
         </div>
     </section>
+    <?php
+        // 현재 판매중인 상품을 불러오기 위한 sql
+        $member_id = getId();
+        $sql = "select product_id, name, price, image from product where member_id = $member_id";
+        $result = mysqli_query($db, $sql);
+        if (!$result) exit('에러:$sql');
+    ?>
     <!-- 판매 중인 상품 -->
     <section class="mt-5 mx-auto" style="max-width: 650px;">
         <div class="d-flex justify-content-between align-items-center mb-3">
