@@ -35,14 +35,27 @@ $count = mysqli_num_rows($result);
 
 
 ?>
+<style>
+    .chat-list-item {
+        transition: 0.2s;
+    }
+
+    .chat-list-item:hover {
+        background-color: #f3f9f8 !important;
+    }
+</style>
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-8">
-            <section class="card shadow-sm rounded-3 overflow-hidden">
-                <div class="card-header bg-white p-4">
+            <section class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                <div style="height: 6px; background-color: #18766d;"></div>
+
+                <div class="card-header bg-white border-0 p-4">
                     <div class="d-flex justify-content-between align-items-center">
                         <strong class="fs-4">채팅방 목록</strong>
-                        <span class="small text-secondary"><?php echo $count; ?>개의 채팅방</span>
+                        <span class="small rounded-pill px-3 py-2" style="color: #18766d; background-color: #eef8f6;">
+                            <?php echo $count; ?>개의 채팅방
+                        </span>
                     </div>
                 </div>
 
@@ -72,54 +85,55 @@ $count = mysqli_num_rows($result);
                         $last = $row["last_text"] ?: "사진을 보냈습니다.";
                     ?>
                         <a href="chat_room.php?my_id=<?php echo $member_id; ?>&target_id=<?php echo $row['target_id']; ?>&product_id=<?php echo $row['product_id']; ?>"
-                            class="list-group-item list-group-item-action px-4 py-3">
+                            class="list-group-item list-group-item-action chat-list-item px-4 py-3">
                             <div class="d-flex align-items-center gap-3">
-                            <!-- 프로필 사진 -->
-                            <img src="images/<?php echo $image; ?>" alt="프로필 사진"
-                                class="rounded-circle object-fit-cover border flex-shrink-0" style="width: 64px; height: 64px;">
+                                <!-- 프로필 사진 -->
+                                <img src="images/<?php echo $image; ?>" alt="프로필 사진"
+                                    class="rounded-circle object-fit-cover border border-2 flex-shrink-0"
+                                    style="width: 64px; height: 64px; border-color: #b7ddd8 !important;">
 
-                            <div class="flex-grow-1" style="min-width: 0;">
-                                <!-- 상대방 이름, 메시지 수 -->
-                                <div class="d-flex w-100 justify-content-between align-items-center ">
-                                    <h5 class="mb-1 fw-bold"><?php echo $row["id"]; ?></h5>
-                                    <?php
-                                    if ($row["chat_state"] != 0) {
-                                    ?>
-                                        <span class="badge rounded-pill" style="background-color: #18766d;">
-                                            <?php echo $row["chat_state"]; ?>
-                                        </span>
-                                    <?php
-                                    }
-                                    ?>
-                                </div>
+                                <div class="flex-grow-1" style="min-width: 0;">
+                                    <!-- 상대방 이름, 메시지 수 -->
+                                    <div class="d-flex w-100 justify-content-between align-items-center ">
+                                        <h5 class="mb-1 fw-bold"><?php echo $row["id"]; ?></h5>
+                                        <?php
+                                        if ($row["chat_state"] != 0) {
+                                        ?>
+                                            <span class="badge rounded-pill" style="background-color: #18766d;">
+                                                <?php echo $row["chat_state"]; ?>
+                                            </span>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
 
-                                <!-- 상품명 -->
-                                <p class="small fw-semibold text-secondary mb-1">
-                                    <i class="bi bi-box-seam me-1"></i>
-                                    <?php echo $row["name"]; ?>
-                                </p>
-
-                                <!-- 마지막 메시지, 마지막 시간 -->
-                                <div class="d-flex w-100 justify-content-between align-items-center">
-                                    <p class="mb-0 text-secondary text-truncate me-3">
-                                        <?php echo $last; ?>
+                                    <!-- 상품명 -->
+                                    <p class="small fw-semibold text-secondary mb-1">
+                                        <i class="bi bi-box-seam me-1"></i>
+                                        <?php echo $row["name"]; ?>
                                     </p>
 
-                                    <small class="text-secondary text-nowrap">
-                                        <?php echo $time_text; ?>
-                                    </small>
-                                </div>
+                                    <!-- 마지막 메시지, 마지막 시간 -->
+                                    <div class="d-flex w-100 justify-content-between align-items-center">
+                                        <p class="mb-0 text-secondary text-truncate me-3">
+                                            <?php echo $last; ?>
+                                        </p>
 
+                                        <small class="text-secondary text-nowrap">
+                                            <?php echo $time_text; ?>
+                                        </small>
+                                    </div>
+
+                                </div>
                             </div>
-                </div>
-                </a>
-            <?php
+                        </a>
+                    <?php
                     }
-            ?>
+                    ?>
+                </div>
+            </section>
         </div>
-        </section>
     </div>
-</div>
 </div>
 <?php
 include "main_bottom.php"
