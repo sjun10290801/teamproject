@@ -110,14 +110,14 @@ $juso = $row["juso1"] . " " . $row["juso2"] . " " . $row["juso3"];
     <div class="mb-3">
       <div class="col-md-6 mx-auto">
         <label for="formGroupExampleInput" class="form-label">아이디</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="아이디" value="<?php echo $row["id"]; ?>" name="id" readonly>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="아이디" value="<?php echo htmlspecialchars($row["id"]); ?>" name="id" readonly>
       </div>
     </div>
 
     <div class="mb-3">
       <div class="col-md-6 mx-auto">
         <label for="formGroupExampleInput" class="form-label">이름</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="이름" value="<?php echo $row["name"]; ?>" name="name">
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="이름" value="<?php echo htmlspecialchars($row["name"]); ?>" name="name">
       </div>
     </div>
 
@@ -137,7 +137,7 @@ $juso = $row["juso1"] . " " . $row["juso2"] . " " . $row["juso3"];
     <div class="mb-3">
       <div class="col-md-6 mx-auto">
         <label for="formGroupExampleInput" class="form-label">이메일</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="이메일" value="<?php echo $row["email"]; ?>" name="email">
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="이메일" value="<?php echo htmlspecialchars($row["email"]); ?>" name="email">
       </div>
     </div>
 
@@ -161,7 +161,7 @@ $juso = $row["juso1"] . " " . $row["juso2"] . " " . $row["juso3"];
           </button>
         </div>
 
-        <input type="text" name="juso3" value="<?php echo $row["juso3"]; ?>"
+        <input type="text" name="juso3" value="<?php echo htmlspecialchars($row["juso3"]); ?>"
           class="form-control mt-2" placeholder="상세 주소를 입력해주세요.">
       </div>
     </div>

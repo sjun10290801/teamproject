@@ -83,7 +83,7 @@ if (!$result) exit("에러 : $sql");
                             목록
                         </a>
 
-                        <strong class="fs-5"><?php echo $target; ?></strong>
+                        <strong class="fs-5"><?php echo htmlspecialchars($target); ?></strong>
 
                         <span style="width: 49px;"></span>
                     </div>
@@ -94,8 +94,8 @@ if (!$result) exit("에러 : $sql");
                             style="width: 70px; height: 70px;">
 
                         <div>
-                            <p class="mb-1 fw-bold"><?php echo $product_name ?></p>
-                            <p class="mb-0 fw-semibold" style="color: #18766d;"><?php echo number_format($product_price) ?>원</p>
+                            <p class="mb-1 fw-bold"><?php echo htmlspecialchars($product_name); ?></p>
+                            <p class="mb-0 fw-semibold" style="color: #18766d;"><?php echo number_format($product_price); ?>원</p>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@ if (!$result) exit("에러 : $sql");
                                     <?php if ($row["text"]) { // 문자 내용이 없으면 출력X 
                                     ?>
                                         <div class="border-0 rounded-3 bg-white shadow-sm px-3 py-2" style="max-width: 420px; word-break: break-word;">
-                                            <?php echo $row["text"]; ?>
+                                            <?php echo htmlspecialchars($row["text"]); ?>
                                         </div>
                                     <?php } ?>
 
@@ -164,7 +164,7 @@ if (!$result) exit("에러 : $sql");
                                         <?php if ($row["text"]) { // 문자 내용이 없으면 출력X 
                                         ?>
                                             <div class="border-0 rounded-3 shadow-sm px-3 py-2 text-white" style="max-width: 420px; word-break: break-word; background-color: #18766d;">
-                                                <?php echo $row["text"]; ?>
+                                                <?php echo htmlspecialchars($row["text"]); ?>
                                             </div>
                                         <?php } ?>
                                     </div>

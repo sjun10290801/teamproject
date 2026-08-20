@@ -76,8 +76,8 @@
         ?>
             <tr>
                 <th scope="row"><?php echo $row["report_id"];?></th>
-                <td><?php echo $row["id"];?></td>
-                <td><?php echo $row["target"];?></td>
+                <td><?php echo htmlspecialchars($row["id"]);?></td>
+                <td><?php echo htmlspecialchars($row["target"]);?></td>
                 <td><?php echo $a_report[$row["reason"]];?></td>
                 <td>
                 <img src="report/<?php echo $image;?>" alt="사진" class="img-thumbnail object-fit-cover" style="width: 50px; height: 50px;" data-bs-toggle="modal" data-bs-target="#imageModal">
