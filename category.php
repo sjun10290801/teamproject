@@ -206,27 +206,29 @@ if (!$result) {
 }
 
 .product-btn-wish {
+    color: #dc3545;
+    background: #fff5f5;
+    border: 1px solid #f1b8be;
+}
+
+
+.product-btn-wish:hover {
+    color: #ffffff;
+    background: #dc3545;
+    border-color: #dc3545;
+}
+
+.product-btn-chat {
     color: #18766d;
     background: #f1f8f7;
     border: 1px solid #bcdad6;
 }
 
 
-.product-btn-wish:hover {
-    background: #e2f2ef;
-    border-color: #18766d;
-}
-
-.product-btn-chat {
+.product-btn-chat:hover {
     color: #ffffff;
     background: #18766d;
-    border: 1px solid #18766d;
-}
-
-
-.product-btn-chat:hover {
-    background: #12645c;
-    border-color: #12645c;
+    border-color: #18766d;
 }
 
 .product-btn-profile {
@@ -324,6 +326,10 @@ while ($row = mysqli_fetch_assoc($result)) {
                         ?>
                     </span>
                 </div>
+            <div class="product-info-item">
+                <i class="bi bi-eye"></i>
+                <span>125</span>
+            </div>
             </div>
 
             <div class="product-price">
@@ -358,6 +364,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <i class="bi bi-person"></i>
                 <span>프로필</span>
             </a>
+            
         </div>
     </div>
 
