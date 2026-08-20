@@ -1,7 +1,7 @@
 <?php
     
 
-    include "common.php";
+    include_once "common.php";
     loginCheck();
 
     $product_id = $_GET["id"];

@@ -1,5 +1,5 @@
 <?php
-    include "common.php";
+    include_once "common.php";
 
     // post 방식으로 데이터 불러오기
     $to_member_id = $_POST["to_member_id"];

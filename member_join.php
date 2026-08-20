@@ -1,5 +1,5 @@
 <?php
-    include "common.php";
+    include_once "common.php";
     include "main_top.php";
 ?>
     <script>

@@ -52,20 +52,28 @@
 </head>
 
 <body>
-  <script>
-    function Submit() {
-      if (form1.text.value == 0) {
-        alert("검색어를 입력 해주세요");
-        form1.text.focus();
-        return;
-      }
-      form1.submit();
-    }
-  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <?php
-  $text = $_POST["text"] ?? "";
-  $location = $_POST["location"] ?? "";
+  include_once "common.php";
+  // 로그인 한 경우 주소 가져오기
+  if(isset($_COOKIE["cookie_id"])) {
+    $member_id = getId();
+    $sql = "select juso2 from member where member_id = $member_id";
+    $result = mysqli_query($db, $sql);
+    if(!$result) {
+        echo "<script>alert('오류가 발생했습니다.'); history.back();</script>";
+        exit();
+    }
+
+    $row = mysqli_fetch_assoc($result);
+    $location = $row["juso2"];
+
+  } else {
+    $location = "";
+  }
+
+  $text = $_GET["text"] ?? "";
+  $location = $_GET["location"] ?? $location;
   ?>
   <nav class="navbar bg-white fixed-top border-bottom shadow-sm">
     <div class="container">
@@ -75,7 +83,7 @@
 
       <form class="d-flex flex-grow-1 mx-4" action="search.php"
         role="search" style="max-width: 650px;"
-        method="post" name="form1">
+        method="get" name="form1">
 
         <input class="form-control me-2" type="search"
           placeholder="물건"
@@ -85,7 +93,7 @@
           placeholder="위치"
           name="location" value="<?php echo $location; ?>">
 
-        <a href="javascript:Submit();"
+        <a href="javascript:form1.submit();"
           class="btn text-white"
           style="background-color: #18766d;">
           <i class="bi bi-search"></i>

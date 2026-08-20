@@ -1,6 +1,6 @@
 <?php
     include "main_top.php";
-    include "common.php";
+    include_once "common.php";
     
     $page_line = 12;
 

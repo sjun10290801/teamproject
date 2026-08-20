@@ -1,5 +1,5 @@
 <?php
-    include "common.php";
+    include_once "common.php";
     loginCheck();
 
     $member_id = getId();
