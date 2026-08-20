@@ -35,14 +35,133 @@ $count = mysqli_num_rows($result);
 
 
 ?>
-<div class="container py-5">
+
+<style>
+
+
+.chat-page {
+    background: #f0f6f5;
+}
+
+
+.chat-card {
+    background: #ffffff;
+    border: 1px solid #e3eeee;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(24, 118, 109, 0.08);
+}
+
+
+.chat-header {
+    padding: 24px;
+    background: #ffffff;
+    border-bottom: 1px solid #edf2f2;
+}
+
+.chat-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #222222;
+}
+
+
+.chat-count {
+    color: #18766d;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.chat-item {
+    display: block;
+    padding: 18px 24px;
+    background: #ffffff;
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid #edf2f2;
+    transition: background-color 0.2s ease;
+}
+
+
+.chat-item:last-child {
+    border-bottom: none;
+}
+
+
+.chat-item:hover {
+    background: #f5fafa;
+}
+
+
+.chat-profile {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid #e3eeee;
+}
+
+.chat-name {
+    margin: 0;
+    color: #222222;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.chat-item:hover .chat-name {
+    color: #18766d;
+}
+
+.chat-badge {
+    min-width: 22px;
+    height: 22px;
+    padding: 0 7px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    background: #18766d;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+.chat-product {
+    margin: 3px 0 4px;
+    color: #18766d;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.chat-message {
+    margin: 0;
+    color: #777777;
+    font-size: 13px;
+}
+
+
+.chat-time {
+    color: #999999;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+</style>
+
+
+<div class="chat-page">
+    <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-8">
-            <section class="card shadow-sm rounded-3 overflow-hidden">
-                <div class="card-header bg-white p-4">
+            <section class="chat-card">
+                <div class="chat-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <strong class="fs-4">채팅방 목록</strong>
-                        <span class="small text-secondary"><?php echo $count; ?>개의 채팅방</span>
+                        <strong class="chat-title">채팅방 목록</strong>
+                        <span class="chat-count"><?php echo $count; ?>개의 채팅방</span>
                     </div>
                 </div>
 
@@ -72,20 +191,20 @@ $count = mysqli_num_rows($result);
                         $last = $row["last_text"] ?: "사진을 보냈습니다.";
                     ?>
                         <a href="chat_room.php?my_id=<?php echo $member_id; ?>&target_id=<?php echo $row['target_id']; ?>&product_id=<?php echo $row['product_id']; ?>"
-                            class="list-group-item list-group-item-action px-4 py-3">
+                            class="chat-item">
                             <div class="d-flex align-items-center gap-3">
                             <!-- 프로필 사진 -->
                             <img src="images/<?php echo $image; ?>" alt="프로필 사진"
-                                class="rounded-circle object-fit-cover border flex-shrink-0" style="width: 64px; height: 64px;">
+                                class="chat-profile rounded-circle">
 
                             <div class="flex-grow-1" style="min-width: 0;">
                                 <!-- 상대방 이름, 메시지 수 -->
                                 <div class="d-flex w-100 justify-content-between align-items-center ">
-                                    <h5 class="mb-1 fw-bold"><?php echo $row["id"]; ?></h5>
+                                    <h5 class="chat-name"><?php echo $row["id"]; ?></h5>
                                     <?php
                                     if ($row["chat_state"] != 0) {
                                     ?>
-                                        <span class="badge rounded-pill" style="background-color: #18766d;">
+                                        <span class="chat-badge">
                                             <?php echo $row["chat_state"]; ?>
                                         </span>
                                     <?php
@@ -94,18 +213,18 @@ $count = mysqli_num_rows($result);
                                 </div>
 
                                 <!-- 상품명 -->
-                                <p class="small fw-semibold text-secondary mb-1">
+                                <p class="chat-product">
                                     <i class="bi bi-box-seam me-1"></i>
                                     <?php echo $row["name"]; ?>
                                 </p>
 
                                 <!-- 마지막 메시지, 마지막 시간 -->
                                 <div class="d-flex w-100 justify-content-between align-items-center">
-                                    <p class="mb-0 text-secondary text-truncate me-3">
+                                    <p class="chat-message text-truncate me-3">
                                         <?php echo $last; ?>
                                     </p>
 
-                                    <small class="text-secondary text-nowrap">
+                                    <small class="chat-time">
                                         <?php echo $time_text; ?>
                                     </small>
                                 </div>
@@ -119,6 +238,7 @@ $count = mysqli_num_rows($result);
         </div>
         </section>
     </div>
+</div>
 </div>
 </div>
 <?php
