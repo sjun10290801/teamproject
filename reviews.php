@@ -29,7 +29,7 @@
     <div class="card mb-3">
         <div class="card-body">
             <div class="d-flex justify-content-between mb-2">
-                <h5 class="card-title"><?php echo $row["id"];?></h5>
+                <h5 class="card-title"><?php echo htmlspecialchars($row["id"]);?></h5>
                 <div class="text-warning">
                 <?php for($i = 0; $i < $row["score"]; $i++) { ?>
                     <i class="bi bi-star-fill"></i>
@@ -37,8 +37,8 @@
                 </div>
             </div>
 
-            <h6 class="card-subtitle mb-2 text-muted">거래한 상품명: <?php echo $row["name"];?></h6>
-            <p class="card-text"><?php echo stripeslashes($row["memo"]);?></p>
+            <h6 class="card-subtitle mb-2 text-muted">거래한 상품명: <?php echo htmlspecialchars($row["name"]);?></h6>
+            <p class="card-text"><?php echo htmlspecialchars(stripeslashes($row["memo"]));?></p>
         </div>
     </div>
 <?php } ?>

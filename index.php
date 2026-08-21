@@ -167,12 +167,12 @@ include_once "common.php";
       <img src="product/<?php echo $product_image; ?>" class="card-img-top object-fit-contain bg-light" style="height: 200px;" alt="...">
       <div class="card-body">
         <h5 class="card-title">
-          <a href="product.php?product_id=<?php echo $row["product_id"]; ?>" class="text-decoration-none text-dark stretched-link"><?php echo $row["name"]; ?></a>
+          <a href="product.php?product_id=<?php echo $row["product_id"]; ?>" class="text-decoration-none text-dark stretched-link"><?php echo htmlspecialchars($row["name"]); ?></a>
         </h5>
         <p class="card-text"><?php echo $a_category[$row["category"]]; ?></p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><?php echo $row["juso1"] . " " . $row["juso2"] . " " . $row["juso3"]; ?></li>
+        <li class="list-group-item"><?php echo $row["juso1"] . " " . $row["juso2"] . " " .htmlspecialchars($row["juso3"]); ?></li>
         <li class="list-group-item"><?php echo $time_text; ?></li>
         <li class="list-group-item"><?php echo number_format($row["price"]); ?>원</li>
       </ul>

@@ -72,15 +72,15 @@
 
                                 <div>
                                     <h5 class="mb-2">
-                                        <?php echo $row["name"];?>
+                                        <?php echo htmlspecialchars($row["name"]);?>
                                     </h5>
 
                                     <p class="mb-1">
-                                        <?php echo number_format($row["price"]);?>
+                                        <?php echo number_format($row["price"]);?>원
                                     </p>
 
                                     <p class="text-secondary mb-0">
-                                        판매자: <?php echo $row["id"];?>
+                                        판매자: <?php echo htmlspecialchars($row["id"]);?>
                                     </p>
                                 </div>
 

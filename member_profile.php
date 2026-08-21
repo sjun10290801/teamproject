@@ -25,7 +25,7 @@ $count = $row1["rating_count"];
 ?>
 <main class="container py-5">
     <h2 class="text-center fw-bold mb-5">
-        <?php echo $row["id"]; ?>님의 프로필
+        <?php echo htmlspecialchars($row["id"]); ?>님의 프로필
     </h2>
     <section class="card mx-auto border-0 shadow-sm rounded-4 overflow-hidden" style="max-width: 700px;">
         <div style="height: 6px; background-color: #18766d;"></div>
@@ -43,7 +43,7 @@ $count = $row1["rating_count"];
 
                 <!-- 회원 정보 -->
                 <div class="col text-center text-md-start">
-                    <h4 class="fw-bold mb-2"><?php echo $row["id"]; ?></h4>
+                    <h4 class="fw-bold mb-2"><?php echo htmlspecialchars($row["id"]); ?></h4>
 
                     <div class="d-inline-flex align-items-center gap-1 bg-light rounded-pill px-3 py-2 mb-3" aria-label="평점">
                         <i class="bi bi-star-fill text-warning"></i>
@@ -74,7 +74,7 @@ $count = $row1["rating_count"];
 
             <!-- 판매 내역 -->
             <div class="card border-0 shadow-sm rounded-3 p-4 mb-3">
-                <h5 class="fw-bold mb-2"><?php echo $row["name"]; ?></h5>
+                <h5 class="fw-bold mb-2"><?php echo htmlspecialchars($row["name"]); ?></h5>
                 <p class="fw-bold mb-2" style="color: #18766d;"><?php echo number_format($row["price"]); ?>원</p>
                 <p class="small text-secondary mb-3">
                     <i class="bi bi-calendar3 me-1"></i>
@@ -109,7 +109,7 @@ $count = $row1["rating_count"];
                 <h5 class="fw-bold mb-2">
                     <a href="product.php?product_id=<?php echo $row["product_id"]; ?>"
                         class="text-dark text-decoration-none stretched-link">
-                        <?php echo $row["name"]; ?>
+                        <?php echo htmlspecialchars($row["name"]); ?>
                     </a>
                 </h5>
                 <p class="fw-bold mb-2" style="color: #18766d;">

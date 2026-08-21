@@ -108,7 +108,7 @@
             <div class="row">
                 <div class="mb-3 col-md-6">
                     <label for="product_name" class="form-label">제품명</label>
-                    <input type="text" name="name" class="form-control" id="product_name" placeholder="제품명을 입력해주세요." value = "<?php echo $row["name"];?>">
+                    <input type="text" name="name" class="form-control" id="product_name" placeholder="제품명을 입력해주세요." value = "<?php echo htmlspecialchars($row["name"]);?>">
                 </div>
             </div>
 
@@ -125,12 +125,12 @@
 					<i class="bi bi-geo-alt me-1"></i> 주소찾기
 			    </a>
 		    </div>
-				<input type="text" name="juso3" id="juso11" class="form-control custom-dark-input" placeholder="상세 주소를 입력하세요" value = "<?php echo $row["juso3"];?>">
+				<input type="text" name="juso3" id="juso11" class="form-control custom-dark-input" placeholder="상세 주소를 입력하세요" value = "<?php echo htmlspecialchars($row["juso3"]);?>">
             <div class="row">
                 <div class="mb-3 col-12">
                     <label for="product_description" class="form-label">제품 설명</label>
                     <textarea class="form-control" name="text" id="product_description" placeholder="제품에 대한 설명을 입력해주세요."
-                        rows="3"><?php echo stripslashes($row["memo"]);?></textarea>
+                        rows="3"><?php echo htmlspecialchars(stripslashes($row["memo"]));?></textarea>
                 </div>
             </div>
             <div class="mb-3">
