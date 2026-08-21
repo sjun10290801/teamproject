@@ -29,7 +29,7 @@ ini_set('display_errors', 1);
 
     [$juso1, $juso2] = explode(" ", $juso, 2);
 
-    $cookie_id = $_COOKIE["cookie_id"];  //로그인 기능 구현 후 추가
+    $session_id = $_SESSION["session_id"];
 
     // 이미지 확장자 검사
     $filename = $_FILES["image"]["name"]; // 이미지 이름
@@ -67,7 +67,7 @@ ini_set('display_errors', 1);
     }
 
 
-    $sql = "select * from member where id = '$cookie_id'"; // id에 해당하는 회원번호 찾기
+    $sql = "select * from member where id = '$session_id'"; // id에 해당하는 회원번호 찾기
      $result = mysqli_query($db, $sql);
     if(!$result) exit("에러 : $sql");
 

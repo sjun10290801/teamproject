@@ -4,10 +4,9 @@
     include_once "common.php";
 
     loginCheck();
-    
-    $cookie_id = $_COOKIE["cookie_id"];
+    $member_id = getId();
 
-    $sql = "select * from member where id = '$cookie_id'"; // 쿠키 id에 맞는 회원정보 레코드 불러오기
+    $sql = "select * from member where member_id = $member_id"; // 쿠키 id에 맞는 회원정보 레코드 불러오기
     $result = mysqli_query($db, $sql);
     if(!$result) exit('에러:$sql');
 
@@ -132,7 +131,7 @@
                         <label for="user_id" class="form-label">아이디</label>
                         <input type="hidden" name="member_id" id="user_id" value="<?php echo $row['member_id'];?>" class="form-control">
                         <div class="input-group">
-                            <input type="text" name="id" id="user_id" value="<?php echo htmlspecialchars($cookie_id);?>" class="form-control"
+                            <input type="text" name="id" id="user_id" value="<?php echo htmlspecialchars($row["id"]);?>" class="form-control"
                                 placeholder="아이디는 변경할 수 없습니다." readonly>
 
 

@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
-  <style>
+  <style>z
     body {
       font-family: "NanumSquareRound", sans-serif;
       padding-top: 50px;
@@ -65,7 +65,7 @@
   <?php
   include_once "common.php";
   // 로그인 한 경우 주소 가져오기
-  if (isset($_COOKIE["cookie_id"])) {
+  if (isset($_SESSION["id"])) {
     $member_id = getId();
     $sql = "select juso2 from member where member_id = $member_id";
     $top_result = mysqli_query($db, $sql);
@@ -131,9 +131,9 @@
         </div>
 
         <?php
-        $cookie_id = $_COOKIE["cookie_id"] ?? "";
+        $session_id = $_SESSION["id"] ?? "";
 
-        if ($cookie_id) {
+        if ($session_id) {
         ?>
           <a href="logout.php"
             class="text-dark text-decoration-none text-nowrap">

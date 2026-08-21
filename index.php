@@ -119,9 +119,9 @@ include_once "common.php";
 
 <div class="card-list">
   <?php
-  $cookie_id = $_COOKIE["cookie_id"] ?? "";
-  if ($cookie_id) { // 로그인한 상태라면 sql문으로 자신의 id를 조회하여 해당 상품이 안뜨도록 함.
-    $sql = "select member_id, juso1, juso2 from member where id = '$cookie_id'";
+  $session_id = $_SESSION["id"] ?? "";
+  if ($session_id) { // 로그인한 상태라면 sql문으로 자신의 id를 조회하여 해당 상품이 안뜨도록 함.
+    $sql = "select member_id, juso1, juso2 from member where id = '$session_id'";
     $result = mysqli_query($db, $sql);
     if (!$result) exit("에러 : $sql");
 

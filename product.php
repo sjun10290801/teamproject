@@ -3,9 +3,9 @@
 include "main_top.php";
 include_once "common.php";
 
-$cookie_id = $_COOKIE["cookie_id"] ?? "";
-if ($cookie_id) { // 로그인한 상태라면 채팅, 찜 링크 전달용 본인 id 가져오기
-  $sql = "select member_id from member where id = '$cookie_id'";
+$session_id = $_SESSION["session_id"] ?? "";
+if ($session_id) { // 로그인한 상태라면 채팅, 찜 링크 전달용 본인 id 가져오기
+  $sql = "select member_id from member where id = '$session_id'";
   $result = mysqli_query($db, $sql);
   if (!$result) exit("에러 : $sql");
 

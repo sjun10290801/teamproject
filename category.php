@@ -6,10 +6,10 @@ include "main_top.php";
 include_once "common.php";
 
 $category = $_GET["menu"] ?? "";
-$cookie_id = $_COOKIE["cookie_id"] ?? "";
+$session_id = $_SESSION["id"] ?? "";
 
-if ($cookie_id) {
-    $sql = "select member_id from member where id = '$cookie_id'";
+if ($session_id) {
+    $sql = "select member_id from member where id = '$session_id'";
     $result = mysqli_query($db, $sql);
     if (!$result) {
         exit("에러 : $sql");
