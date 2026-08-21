@@ -57,6 +57,7 @@
                 <th scope="col">신고자 아이디</th>
                 <th scope="col">피신고자 아이디</th>
                 <th scope="col">신고사유</th>
+                <th scope="col">상세사유</th>
                 <th scope="col">관련사진</th>
                 <th scope="col">관리</th>
             </tr>
@@ -79,6 +80,13 @@
                 <td><?php echo htmlspecialchars($row["id"]);?></td>
                 <td><?php echo htmlspecialchars($row["target"]);?></td>
                 <td><?php echo $a_report[$row["reason"]];?></td>
+            
+            <td>
+                <a href="report_reason.html" class="link-underline-primary">
+                    자세히보기
+                </a>
+            </td>
+
                 <td>
                 <img src="report/<?php echo $image;?>" alt="사진" class="img-thumbnail object-fit-cover" style="width: 50px; height: 50px;" data-bs-toggle="modal" data-bs-target="#imageModal">
                 </td>

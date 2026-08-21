@@ -38,7 +38,7 @@
             </div>
 
             <h6 class="card-subtitle mb-2 text-muted">거래한 상품명: <?php echo $row["name"];?></h6>
-            <p class="card-text"><?php echo stripeslashes($row["memo"]);?></p>
+            <p class="card-text"><?php echo stripslashes($row["memo"]);?></p>
         </div>
     </div>
 <?php } ?>

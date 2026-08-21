@@ -242,5 +242,5 @@ $count = mysqli_num_rows($result);
 </div>
 </div>
 <?php
-include "main_bottom.php"
+include "main_bottom.php";
 ?>
