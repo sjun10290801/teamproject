@@ -2,10 +2,10 @@
 
     include_once "common.php";
     loginCheck();
+    $member_id = getId();
+    
 
-    $cookie_id = $_COOKIE["cookie_id"];
-
-    $sql = "select * from member where id = '$cookie_id'";
+    $sql = "select * from member where member_id = $member_id";
     $result = mysqli_query($db, $sql);
     if(!$result) exit("에러 : $sql");
 

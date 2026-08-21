@@ -1,4 +1,7 @@
 <?php
+//세션 시작
+session_start();
+
     $db = mysqli_connect("localhost", "market", "1234", "market");  // localhost db와 연결
     if(!$db) exit("DB연결에러"); // 연결 실패 시 종료
 
@@ -16,7 +19,7 @@
 
 	// 로그인 했는지 확인
 	function loginCheck() {
-		if(!isset($_COOKIE["cookie_id"])) {
+		if(!isset($_SESSION["id"])) {
             echo("<script>alert('로그인이 필요한 서비스입니다.');</script>");
             echo("<script>location.href='login.php'</script>"); // 로그인 화면으로 돌아감.
             exit();
@@ -26,8 +29,8 @@
 	// 쿠키 기반으로 id가져오기
 	function getId() {
 		global $db;
-		$cookie_id = $_COOKIE["cookie_id"];
-    	$sql = "select * from member where id = '$cookie_id'";
+		$session_id = $_SESSION["id"];
+    	$sql = "select * from member where id = '$session_id'";
     	$result = mysqli_query($db, $sql);
     	if(!$result) exit("에러 : $sql");
 

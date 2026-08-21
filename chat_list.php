@@ -7,8 +7,8 @@ include "main_top.php";
 
 
 // 본인의 회원 id를 가져오기
-$cookie_id = $_COOKIE["cookie_id"];
-$sql = "select * from member where id = '$cookie_id'";
+$session_id = $_SESSION["id"];
+$sql = "select * from member where id = '$session_id'";
 $result = mysqli_query($db, $sql);
 if (!$result) exit("에러 : $sql");
 

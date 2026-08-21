@@ -3,7 +3,7 @@
     include "common.php";
 
     // 이전 파일에서 보낸 정보 받기
-    $id = $_COOKIE["cookie_id"];
+    $id = $_SESSION["id"];
     $member_id = $_POST["member_id"];
     $pwd = $_POST["pwd"];
     $name = trim($_POST["name"]);

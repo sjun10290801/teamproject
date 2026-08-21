@@ -5,7 +5,7 @@
     loginCheck();
 
     $product_id = $_GET["id"];
-    $cookie_id = $_COOKIE["cookie_id"];
+    $session_id = $_SESSION["session_id"];
 
     $sql = "select p.category, p.name, p.price, p.juso1, p.juso2, p.juso3, p.memo, p.image, m.id as member_id, p.state
             from product p inner join member m on p.member_id = m.member_id where p.product_id = '$product_id'";    
@@ -15,7 +15,7 @@
 
     $row = mysqli_fetch_assoc($result);
 
-    if($cookie_id != $row["member_id"]) {
+    if($session_id != $row["member_id"]) {
         echo("<script>alert('자신의 상품만 수정할 수 있습니다.');</script>");
         echo("<script>location.href='index.html'</script>");
     }

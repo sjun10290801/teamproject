@@ -49,7 +49,14 @@
                 exit();
             }
 
-            setcookie("cookie_id", $id); // 쿠키 생성
+            setcookie("cookie_id", $id); // 쿠키 생성, 이후 세션으로 변경 완료 시 삭제 예정
+            
+            // 세션추가
+            if(!session_id()) {
+                session_start();
+            }
+            $_SESSION["id"] = $id;
+
             header("Location:index.php"); // 메인화면으로 되돌아감
             exit();
         } else {
