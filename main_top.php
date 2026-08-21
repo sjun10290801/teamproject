@@ -68,14 +68,14 @@
   if (isset($_COOKIE["cookie_id"])) {
     $member_id = getId();
     $sql = "select juso2 from member where member_id = $member_id";
-    $result = mysqli_query($db, $sql);
-    if (!$result) {
+    $top_result = mysqli_query($db, $sql);
+    if (!$top_result) {
       echo "<script>alert('오류가 발생했습니다.'); history.back();</script>";
       exit();
     }
 
-    $row = mysqli_fetch_assoc($result);
-    $location = $row["juso2"];
+    $top_row = mysqli_fetch_assoc($top_result);
+    $location = $top_row["juso2"];
   } else {
     $location = "";
   }
@@ -95,12 +95,12 @@
 
         <input class="form-control border-0 rounded-3 px-3" type="search"
           placeholder="어떤 상품을 찾으세요?"
-          name="text" value="<?php echo $text; ?>"
+          name="text" value="<?php echo htmlspecialchars($text); ?>"
           style="flex: 2; background-color: #f3f7f7;">
 
         <input class="form-control border-0 rounded-3 px-3" type="search"
           placeholder="지역"
-          name="location" value="<?php echo $location; ?>"
+          name="location" value="<?php echo htmlspecialchars($location); ?>"
           style="flex: 1; background-color: #f3f7f7;">
 
         <button type="submit" class="btn text-white rounded-3 px-3"
