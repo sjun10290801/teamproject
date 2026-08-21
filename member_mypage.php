@@ -68,7 +68,7 @@ $count = $row1["rating_count"];
 
                     <p class="small text-secondary mb-0">
                         <i class="bi bi-geo-alt-fill me-1" style="color: #18766d;"></i>
-                        <?php echo $row["juso1"] . " " . $row["juso2"] . " " .htmlspecialchars($row["juso3"]); ?>
+                        <?php echo $row["juso1"] . " " . $row["juso2"] . " " . htmlspecialchars($row["juso3"]); ?>
                     </p>
                 </div>
 
@@ -76,11 +76,11 @@ $count = $row1["rating_count"];
         </div>
     </section>
     <?php
-        // 현재 판매중인 상품을 불러오기 위한 sql
-        $member_id = getId();
-        $sql = "select product_id, name, price, image from product where member_id = $member_id";
-        $result = mysqli_query($db, $sql);
-        if (!$result) exit('에러:$sql');
+    // 현재 판매중인 상품을 불러오기 위한 sql
+    $member_id = getId();
+    $sql = "select product_id, name, price, image from product where member_id = $member_id";
+    $result = mysqli_query($db, $sql);
+    if (!$result) exit('에러:$sql');
     ?>
     <!-- 판매 중인 상품 -->
     <section class="mt-5 mx-auto" style="max-width: 650px;">
@@ -89,14 +89,60 @@ $count = $row1["rating_count"];
                 판매 중인 상품
             </h4>
 
-            <a href="#" class="small text-secondary text-decoration-none">
+            <a href="member_products.php" class="small text-secondary text-decoration-none">
                 전체보기
             </a>
         </div>
 
         <div class="row g-3">
 
-            <!-- 판매 상품 카드는 여기에 추가 -->
+            <!-- 판매 상품 임시 카드 -->
+            <div class="col-12 col-sm-6">
+                <a href="#" class="text-dark text-decoration-none">
+                    <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                        <img src="product/default.jpg" class="card-img-top object-fit-cover"
+                            style="height: 160px;" alt="상품 이미지">
+
+                        <div class="card-body">
+                            <span class="badge mb-2" style="background-color: #18766d;">
+                                판매 중
+                            </span>
+
+                            <h5 class="card-title fw-semibold">
+                                테스트 상품
+                            </h5>
+
+                            <p class="card-text fw-bold mb-0" style="color: #18766d;">
+                                30,000원
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 판매 상품 임시 카드 -->
+            <div class="col-12 col-sm-6">
+                <a href="#" class="text-dark text-decoration-none">
+                    <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                        <img src="product/default.jpg" class="card-img-top object-fit-cover"
+                            style="height: 160px;" alt="상품 이미지">
+
+                        <div class="card-body">
+                            <span class="badge mb-2" style="background-color: #18766d;">
+                                판매 중
+                            </span>
+
+                            <h5 class="card-title fw-semibold">
+                                테스트 상품 2
+                            </h5>
+
+                            <p class="card-text fw-bold mb-0" style="color: #18766d;">
+                                50,000원
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
 
         </div>
     </section>
@@ -169,7 +215,7 @@ $count = $row1["rating_count"];
                                 평점 완료 </span>
                         <?php
                         } else {
-                        ?> 
+                        ?>
                             <a href="rating.php?id=<?php echo $row['order_id']; ?>"
                                 class="btn btn-sm rounded-pill px-3 myfont"
                                 style="color: #18766d; border-color: #18766d;">
