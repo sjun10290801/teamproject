@@ -6,9 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>메인화면</title>
 
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+
+  <style>
+    body {
+      font-family: "NanumSquareRound", sans-serif;
+      padding-top: 50px;
+    }
+  </style>
   <style>
     body {
       padding-top: 50px;
@@ -56,18 +65,17 @@
   <?php
   include_once "common.php";
   // 로그인 한 경우 주소 가져오기
-  if(isset($_COOKIE["cookie_id"])) {
+  if (isset($_COOKIE["cookie_id"])) {
     $member_id = getId();
     $sql = "select juso2 from member where member_id = $member_id";
-    $result = mysqli_query($db, $sql);
-    if(!$result) {
-        echo "<script>alert('오류가 발생했습니다.'); history.back();</script>";
-        exit();
+    $top_result = mysqli_query($db, $sql);
+    if (!$top_result) {
+      echo "<script>alert('오류가 발생했습니다.'); history.back();</script>";
+      exit();
     }
 
-    $row = mysqli_fetch_assoc($result);
-    $location = $row["juso2"];
-
+    $top_row = mysqli_fetch_assoc($top_result);
+    $location = $top_row["juso2"];
   } else {
     $location = "";
   }
@@ -81,23 +89,24 @@
         <img src="images/logo.png" alt="리픽" style="height: 40px;" draggable="false">
       </a>
 
-      <form class="d-flex flex-grow-1 mx-4" action="search.php"
+      <form class="d-flex flex-grow-1 mx-4 gap-2" action="search.php"
         role="search" style="max-width: 650px;"
         method="get" name="form1">
 
-        <input class="form-control me-2" type="search"
-          placeholder="물건"
-          name="text" value="<?php echo $text; ?>">
+        <input class="form-control border-0 rounded-3 px-3" type="search"
+          placeholder="어떤 상품을 찾으세요?"
+          name="text" value="<?php echo htmlspecialchars($text); ?>"
+          style="flex: 2; background-color: #f3f7f7;">
 
-        <input class="form-control me-2" type="search"
-          placeholder="위치"
-          name="location" value="<?php echo $location; ?>">
+        <input class="form-control border-0 rounded-3 px-3" type="search"
+          placeholder="지역"
+          name="location" value="<?php echo htmlspecialchars($location); ?>"
+          style="flex: 1; background-color: #f3f7f7;">
 
-        <a href="javascript:form1.submit();"
-          class="btn text-white"
+        <button type="submit" class="btn text-white rounded-3 px-3"
           style="background-color: #18766d;">
           <i class="bi bi-search"></i>
-        </a>
+        </button>
       </form>
 
       <div class="d-flex align-items-center gap-3 flex-shrink-0">
@@ -107,20 +116,19 @@
           상품등록
         </a>
 
-        <a href="chat_list.php"
-          class="text-dark text-decoration-none text-nowrap">
-          채팅
-        </a>
+        <div class="dropdown">
+          <a href="#" class="text-dark text-decoration-none text-nowrap dropdown-toggle"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            마이페이지
+          </a>
 
-        <a href="member_mypage.php"
-          class="text-dark text-decoration-none text-nowrap">
-          마이페이지
-        </a>
-
-        <a href="reviews.php"
-          class="text-dark text-decoration-none text-nowrap">
-          내 후기
-        </a>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-3">
+            <li><a class="dropdown-item" href="member_mypage.php"><i class="bi bi-person me-2"></i>마이페이지 홈</a></li>
+            <li><a class="dropdown-item" href="reviews.php"><i class="bi bi-star me-2"></i>내 후기</a></li>
+            <li><a class="dropdown-item" href="good.php"><i class="bi bi-heart me-2"></i>찜 목록</a></li>
+            <li><a class="dropdown-item" href="chat_list.php"><i class="bi bi-chat-dots me-2"></i>채팅</a></li>
+          </ul>
+        </div>
 
         <?php
         $cookie_id = $_COOKIE["cookie_id"] ?? "";

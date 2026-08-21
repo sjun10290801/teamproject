@@ -1,4 +1,6 @@
 <?php
+ error_reporting(E_ALL);
+ini_set('display_errors', 1);
     include_once "common.php";
     loginCheck();
 
@@ -20,7 +22,7 @@
     }
 
     // 주문번호를 기준으로 상대방의 아이디 및 상품 이름 조회
-    $sql = "select m.id, od.seller_id, p.name, p.product_id from orders od inner join member m on m.member_id = od.seller_id inner join product p on 
+    $sql = "select m.id as id, od.seller_id, p.name, p.product_id from orders od inner join member m on m.member_id = od.seller_id inner join product p on 
             p.product_id = od.product_id where order_id = $order_id";
     $result = mysqli_query($db, $sql);
     if(!$result) exit("에러 : $sql");
@@ -28,6 +30,7 @@
     $row = mysqli_fetch_assoc($result);
 
     include "main_top.php";
+    
 ?>
 
 <div class="container py-5">

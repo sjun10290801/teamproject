@@ -29,7 +29,7 @@
     <div class="card mb-3">
         <div class="card-body">
             <div class="d-flex justify-content-between mb-2">
-                <h5 class="card-title"><?php echo $row["id"];?></h5>
+                <h5 class="card-title"><?php echo htmlspecialchars($row["id"]);?></h5>
                 <div class="text-warning">
                 <?php for($i = 0; $i < $row["score"]; $i++) { ?>
                     <i class="bi bi-star-fill"></i>

@@ -45,28 +45,28 @@ $rating = $row["rating"] ?: 0;
         <div class="card-body text-center border-bottom ">
 
           <div class="col-12 col-md-auto text-center mx-auto mb-3">
-            <a href="member_profile.php?id=<?php echo $row["member_id"]; ?>">
+            <a href="member_profile.php?id=<?php echo htmlspecialchars($row["member_id"]); ?>">
               <img src="images/<?php echo $member_image; ?>" alt="프로필 사진" class="rounded-circle object-fit-cover border" style="width: 70px; height: 70px;">
             </a>
           </div>
 
-          <h5 class="card-title"><?php echo $row["id"]; ?></h5>
+          <h5 class="card-title"><?php echo htmlspecialchars($row["id"]); ?></h5>
           <div class="mb-2">
             <i class="bi bi-star-fill text-warning"></i>
             <span><?php echo $rating; ?></span>
           </div>
           <p class="card-text text-secondary">
             <i class="bi bi-geo-alt-fill"></i>
-            <?php echo $row["juso1"] . " " . $row["juso2"] . " " . $row["juso3"]; ?>
+            <?php echo $row["juso1"] . " " . $row["juso2"] . " " .htmlspecialchars($row["juso3"]); ?>
           </p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item fw-bold fs-5"><?php echo $row["name"]; ?></li>
+          <li class="list-group-item fw-bold fs-5"><?php echo htmlspecialchars($row["name"]); ?></li>
           <li class="list-group-item fw-bold fs-4" style="color: #18766d;"><?php echo number_format($row["price"]); ?>원</li>
           <li class="list-group-item">등록일 : <?php echo $row["reg_date"]; ?></li>
           <li class="list-group-item">
             <p class="small fw-bold text-secondary mb-2">상품 설명</p>
-            <p class="mb-0"><?php echo stripslashes($row["memo"]); ?></p>
+            <p class="mb-0"><?php echo htmlspecialchars(stripslashes($row["memo"])); ?></p>
           </li>
         </ul>
       </div>

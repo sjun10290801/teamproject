@@ -148,7 +148,7 @@
 					<i class="bi bi-geo-alt me-1"></i> 주소찾기
 			    </a>
 		    </div>
-				<input type="text" name="juso3" id="juso11" class="form-control custom-dark-input" placeholder="상세 주소를 입력하세요" value="<?php echo $juso3;?>">
+				<input type="text" name="juso3" id="juso11" class="form-control custom-dark-input" placeholder="상세 주소를 입력하세요" value="<?php echo htmlspecialchars($juso3);?>">
             <div class="row">
                 <div class="mb-3 col-12">
                     <label for="product_description" class="form-label">제품 설명</label>

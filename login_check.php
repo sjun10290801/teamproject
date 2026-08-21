@@ -14,7 +14,7 @@
     $stmt = $db->stmt_init(); // prepared statement. stmt 세팅(statement 객체 준비)
     // 입력한 id가 있는지 확인
     $sql = "select member_id, password, status from member where id = ?"; // 사용자의 입력 값을 ? 로 작성
-    $stmt->prepare($sql); // sql 구조 확인
+    $stmt->prepare($sql); // sql문 준비
     $stmt->bind_param("s", $id); // ?에 실제값을 연결 (s는 자료형을 의미)
     $stmt->execute(); // db에 해당 sql문 실행
     $result = $stmt->get_result();

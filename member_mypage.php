@@ -58,7 +58,7 @@ $count = $row1["rating_count"];
 
                 <!-- 회원 정보 -->
                 <div class="col text-center text-md-start">
-                    <h4 class="fw-bold mb-2"><?php echo $cookie_id; ?></h4>
+                    <h4 class="fw-bold mb-2"><?php echo htmlspecialchars($cookie_id); ?></h4>
 
                     <div class="d-inline-flex align-items-center gap-1 bg-light rounded-pill px-3 py-2 mb-3" aria-label="평점">
                         <i class="bi bi-star-fill text-warning"></i>
@@ -68,7 +68,7 @@ $count = $row1["rating_count"];
 
                     <p class="small text-secondary mb-0">
                         <i class="bi bi-geo-alt-fill me-1" style="color: #18766d;"></i>
-                        <?php echo $row["juso1"] . " " . $row["juso2"] . " " . $row["juso3"]; ?>
+                        <?php echo $row["juso1"] . " " . $row["juso2"] . " " .htmlspecialchars($row["juso3"]); ?>
                     </p>
                 </div>
 
@@ -138,11 +138,11 @@ $count = $row1["rating_count"];
         ?>
             <!-- 거래 내역 -->
             <div class="card border-0 shadow-sm rounded-3 p-4 mb-3">
-                <h5 class="fw-bold mb-2"><?php echo $row["name"]; ?></h5>
+                <h5 class="fw-bold mb-2"><?php echo htmlspecialchars($row["name"]); ?></h5>
                 <p class="fw-bold mb-2" style="color: #18766d;"><?php echo number_format($row["price"]); ?>원</p>
                 <p class="small text-secondary mb-1">
                     <i class="bi bi-person me-1"></i>
-                    거래 상대방: <?php echo $row["id"]; ?>
+                    거래 상대방: <?php echo htmlspecialchars($row["id"]); ?>
                 </p>
                 <p class="small text-secondary mb-3">
                     <i class="bi bi-calendar3 me-1"></i>

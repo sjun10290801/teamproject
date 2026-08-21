@@ -132,7 +132,7 @@
                         <label for="user_id" class="form-label">아이디</label>
                         <input type="hidden" name="member_id" id="user_id" value="<?php echo $row['member_id'];?>" class="form-control">
                         <div class="input-group">
-                            <input type="text" name="id" id="user_id" value="<?php echo($cookie_id);?>" class="form-control"
+                            <input type="text" name="id" id="user_id" value="<?php echo htmlspecialchars($cookie_id);?>" class="form-control"
                                 placeholder="아이디는 변경할 수 없습니다." readonly>
 
 
@@ -157,7 +157,7 @@
                     <div class="row mb-3">
                         <div class="col">
                             <label for="user_name" class="form-label">이름 변경</label>
-                            <input type="text" name="name" id="user_name" value="<?php echo $row['name'];?>" class="form-control"
+                            <input type="text" name="name" id="user_name" value="<?php echo htmlspecialchars($row['name']);?>" class="form-control"
                                 placeholder="이름을 입력해주세요.">
                         </div>
                     </div>
@@ -186,7 +186,7 @@
                     <div class="mb-3">
                         <label for="user_email" class="form-label">이메일 변경</label>
 
-                        <input type="email" name="email" id="user_email" value="<?php echo $row['email'];?>" class="form-control"
+                        <input type="email" name="email" id="user_email" value="<?php echo htmlspecialchars($row['email']);?>" class="form-control"
                             placeholder="이메일을 입력해주세요.">
                     </div>
 
@@ -214,7 +214,7 @@
                             </button>
                         </div>
 
-                        <input type="text" name="juso3" value="<?php echo $row['juso3'];?>" class="form-control mt-2"
+                        <input type="text" name="juso3" value="<?php echo htmlspecialchars($row['juso3']);?>" class="form-control mt-2"
                             placeholder="상세 주소를 입력해주세요.">
                     </div>
 
@@ -234,7 +234,7 @@
                         <label for="user_bank_num" class="form-label">계좌번호(-제외)</label>
 
                         <input type="text" name="bank_num" id="user_bank_num" class="form-control"
-                            placeholder="계좌번호를 입력해주세요.(- 제외하고 입력)" value="<?php echo $row['bank_num'];?>">
+                            placeholder="계좌번호를 입력해주세요.(- 제외하고 입력)" value="<?php echo htmlspecialchars($row['bank_num']);?>">
                     </div>
                     <div>
                         <label for="formFileMultiple" class="form-label" >프로필 사진 변경 (이미지 삭제 시 체크) </label>
