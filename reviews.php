@@ -135,7 +135,7 @@
     </div>
 
     <div class="review-content">
-        <?php echo stripslashes($row["memo"]); ?>
+        <?php echo htmlspecialchars(stripslashes($row["memo"] ?? "")); ?>
     </div>
         
 </div>
