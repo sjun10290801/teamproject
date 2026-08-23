@@ -221,7 +221,7 @@ $count = mysqli_num_rows($result);
                                 <!-- 마지막 메시지, 마지막 시간 -->
                                 <div class="d-flex w-100 justify-content-between align-items-center">
                                     <p class="chat-message text-truncate me-3">
-                                        <?php echo $last; ?>
+                                        <?php echo htmlspecialchars($last); ?>
                                     </p>
 
                                     <small class="chat-time">

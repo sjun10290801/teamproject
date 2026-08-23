@@ -25,7 +25,7 @@
         echo("<script>location.href='admin_login.php'</script>");
         exit();
     } else {
-        setcookie("admin_id", "admin"); // 쿠키 생성
+        // setcookie("admin_id", "admin"); // 쿠키 생성
 
         if(!session_id()) { // 세션 생성
                 session_start();

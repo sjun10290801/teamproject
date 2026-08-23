@@ -11,7 +11,7 @@
     $memo = addslashes($_POST["text"]);
     $state = $_POST["state"] ?? 2;
 
-    if(!$category || !$name || !$price || !$text || !$juso3 || !$juso) {
+    if(!$category || !$name || !$price || !$memo || !$juso3 || !$juso) {
         echo("<script>alert('올바른 정보를 입력해주세요');</script>");
         echo("<script>location.href='admin_login.html'</script>");
         exit();

@@ -13,6 +13,7 @@
     $target = $_POST["target"];
     $reason = $_POST["reason"];
     $detail = $_POST["detail"] ?? "";
+    $detail = addslashes($detail);
 
     
     $fname = imageUpload("report", "admin/report", "report");

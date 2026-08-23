@@ -148,7 +148,7 @@ ini_set('display_errors', 1);
                 </h5>
 
                 <div class="detail-box">
-                    <?php echo htmlspecialchars($report_row["text"]);?>
+                    <?php echo htmlspecialchars(stripslashes($report_row["text"]));?>
                 </div>
             </div>
 

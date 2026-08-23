@@ -5,7 +5,7 @@
     loginCheck();
 
     $product_id = $_GET["id"];
-    $session_id = $_SESSION["session_id"];
+    $session_id = $_SESSION["id"];
 
     $sql = "select p.category, p.name, p.price, p.juso1, p.juso2, p.juso3, p.memo, p.image, m.id as member_id, p.state
             from product p inner join member m on p.member_id = m.member_id where p.product_id = '$product_id'";    

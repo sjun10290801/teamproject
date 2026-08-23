@@ -4,7 +4,7 @@
     
     $page_line = 12; // 한 페이지에 검색 결과 12개만 보이도록 함.
 
-    $session_id = $_SESSION["session_id"] ?? "";
+    $session_id = $_SESSION["id"] ?? "";
             if($session_id) { // 로그인한 상태라면 sql문으로 자신의 id를 조회하여 해당 상품이 안뜨도록 함.
                 $sql = "select member_id from member where id = '$session_id'";
                 $result = mysqli_query($db, $sql);
