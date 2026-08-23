@@ -308,13 +308,13 @@
 
     <div class="product-actions">
 
-<a
-    href="good_delete.php?member_id=<?php echo $member_id; ?>&product_id=<?php echo $row["product_id"]; ?>"
-    class="product-btn product-btn-wish"
->
-    <i class="bi bi-heart"></i>
-    <span>삭제</span>
-</a>
+        <a
+            href="good_delete.php?member_id=<?php echo $member_id; ?>&product_id=<?php echo $row["product_id"]; ?>"
+            class="product-btn product-btn-wish"
+        >
+            <i class="bi bi-x-lg"></i>
+            <span>삭제</span>
+        </a>
 
         <a
             href="chat_room.php?my_id=<?php echo $member_id; ?>&target_id=<?php echo $row["member_id"]; ?>&product_id=<?php echo $row["product_id"]; ?>"
