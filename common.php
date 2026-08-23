@@ -1,6 +1,8 @@
 <?php
 //세션 시작
-session_start();
+if(!session_id()) {
+	session_start();
+}
 
     $db = mysqli_connect("localhost", "market", "1234", "market");  // localhost db와 연결
     if(!$db) exit("DB연결에러"); // 연결 실패 시 종료
