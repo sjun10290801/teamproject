@@ -43,13 +43,13 @@
                 $report_row = mysqli_fetch_assoc($report_result);
 
                 $reason = $report_row["reason"];   
-                
+
                 echo("<script>alert('정지된 계정입니다. 제재사유 : \"$a_report[$reason]\", 자세한 사항은 문의 바랍니다.');</script>");
                 echo("<script>location.href='login.php'</script>");
                 exit();
             }
 
-            setcookie("cookie_id", $id); // 쿠키 생성, 이후 세션으로 변경 완료 시 삭제 예정
+            //setcookie("cookie_id", $id); // 쿠키 생성, 이후 세션으로 변경 완료 시 삭제 예정
             
             // 세션추가
             if(!session_id()) {

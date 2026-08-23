@@ -4,10 +4,10 @@ include "main_top.php";
 
 loginCheck();
 
-$cookie_id = $_COOKIE["cookie_id"];
+$session_id = $_SESSION["id"];
 
 // 회원 정보 불러오기
-$sql = "select image, member_id, rating, juso1, juso2, juso3 from member where id = '$cookie_id'";
+$sql = "select image, member_id, rating, juso1, juso2, juso3 from member where id = '$session_id'";
 $result = mysqli_query($db, $sql);
 if (!$result) exit('에러:$sql');
 
@@ -58,7 +58,7 @@ $count = $row1["rating_count"];
 
                 <!-- 회원 정보 -->
                 <div class="col text-center text-md-start">
-                    <h4 class="fw-bold mb-2"><?php echo htmlspecialchars($cookie_id); ?></h4>
+                    <h4 class="fw-bold mb-2"><?php echo htmlspecialchars($session_id); ?></h4>
 
                     <div class="d-inline-flex align-items-center gap-1 bg-light rounded-pill px-3 py-2 mb-3" aria-label="평점">
                         <i class="bi bi-star-fill text-warning"></i>
