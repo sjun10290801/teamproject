@@ -455,8 +455,12 @@ include_once "common.php";
 
 </div>
 
-<div class="d-grid gap-2">
-  <button class="btn main-btn py-2" type="button" onclick="location.href='search.php?location=<?php echo $search_juso?>'">더보기</button>
+<div class="text-center mt-5">
+  <a href="search.php?location=<?php echo $search_juso; ?>"
+    class="btn main-btn rounded-pill px-5 py-2 fw-semibold">
+    상품 더보기
+    <i class="bi bi-chevron-right ms-1"></i>
+  </a>
 </div>
 
 </main>

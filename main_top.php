@@ -103,17 +103,19 @@
           name="location" value="<?php echo htmlspecialchars($location); ?>"
           style="flex: 1; background-color: #f3f7f7;">
 
-        <button type="submit" class="btn text-white rounded-3 px-3"
-          style="background-color: #18766d;">
-          <i class="bi bi-search"></i>
+        <button type="submit"
+          class="btn text-white rounded-circle d-flex align-items-center justify-content-center shadow-sm"
+          style="width: 42px; height: 42px; background-color: #18766d;"
+          aria-label="검색">
+          <i class="bi bi-search fs-5"></i>
         </button>
       </form>
 
       <div class="d-flex align-items-center gap-3 flex-shrink-0">
         <a href="product_create.php"
-          class="btn text-white text-nowrap"
+          class="btn text-white text-nowrap rounded-pill px-4 py-2 fw-semibold shadow-sm"
           style="background-color: #18766d;">
-          상품등록
+          <i class="bi bi-plus-lg me-1"></i>상품 등록
         </a>
 
         <div class="dropdown">
