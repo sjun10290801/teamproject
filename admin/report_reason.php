@@ -63,7 +63,33 @@
 <body>
 
 <div class="container report-container">
+<?php
+ error_reporting(E_ALL);
+ini_set('display_errors', 1);
+    include "../common.php";
 
+    adminCheck();
+
+    $report_id = $_GET["id"];
+    $text = $_GET["text"];
+    $sel = $_GET["sel"];
+
+    $stmt = $db->stmt_init();
+    $sql = "select m1.id as target, m2.id as id, r.reason, r.text, r.to_member_id from report r inner join member m1 on m1.member_id = r.to_member_id 
+            inner join member m2 on r.from_member_id = m2.member_id where r.report_id = ?";
+    $stmt->prepare($sql);
+    $stmt->bind_param("d", $report_id);
+    $stmt->execute();
+    $report_result = $stmt->get_result();
+    if(!$report_result) {
+        exit();
+    }
+
+    $report_row = mysqli_fetch_assoc($report_result);
+
+    $to_member_id = $report_row["to_member_id"];
+    $reason = $report_row["reason"]
+?>
     <div class="report-card">
         <div class="report-header">
             <h3>
@@ -80,7 +106,7 @@
                         신고번호
                     </div>
                     <div class="col-md-9">
-                        123
+                        <?php echo htmlspecialchars($report_id);?>
                     </div>
                 </div>
 
@@ -89,7 +115,7 @@
                         신고자 아이디
                     </div>
                     <div class="col-md-9">
-                        user01
+                        <?php echo htmlspecialchars($report_row["id"]);?>
                     </div>
                 </div>
 
@@ -98,7 +124,7 @@
                         피신고자 아이디
                     </div>
                     <div class="col-md-9">
-                        user02
+                        <?php echo htmlspecialchars($report_row["target"]);?>
                     </div>
                 </div>
 
@@ -107,7 +133,7 @@
                         신고사유
                     </div>
                     <div class="col-md-9">
-                            욕설 및 비방
+                            <?php echo $a_report[$report_row["reason"]];?>
                         </span>
                     </div>
                 </div>
@@ -122,20 +148,19 @@
                 </h5>
 
                 <div class="detail-box">
-                    거래 과정에서 부적절한 언어를 사용하여
-                    신고합니다.
+                    <?php echo htmlspecialchars($report_row["text"]);?>
                 </div>
             </div>
 
             <div class="d-flex justify-content-end gap-2 mt-4 pt-4 border-top">
 
                 <button type="button"
-                        class="btn btn-dark">
+                        class="btn btn-dark" onclick="location.href='report_delete.php?id=<?php echo $report_id;?>'">
                     반려
                 </button>
 
                 <button type="button"
-                        class="btn btn-danger">
+                        class="btn btn-danger" onclick="location.href='report_insert.php?id=<?php echo $to_member_id;?>&text=<?php echo $text;?>&sel=<?php echo $sel;?>&reason=<?php echo $reason;?>'">
                     제재
                 </button>
 
