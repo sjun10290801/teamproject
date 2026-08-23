@@ -246,6 +246,23 @@ if (!$result) {
 
 </style>
 
+<ul class="nav justify-content-center align-items-center gap-2 py-3 border-bottom bg-white">
+  <li class="nav-item">
+    <span class="nav-link fw-bold text-dark ps-0">카테고리</span>
+  </li>
+
+  <?php
+  for ($i = 1; $i < $n_category; $i++) {
+  ?>
+    <li class="nav-item">
+      <a class="nav-link text-secondary rounded-pill px-3 category-link"
+        href="category.php?menu=<?php echo $i; ?>">
+        <?php echo $a_category[$i]; ?>
+      </a>
+    </li>
+  <?php } ?>
+</ul>
+
 <div class="card-list">
 
 <?php
