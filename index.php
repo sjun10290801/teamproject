@@ -271,7 +271,7 @@ include_once "common.php";
 
 
 <div class="d-flex justify-content-between align-items-center px-4 mt-4 mb-3">
-  <h4 class="mb-0 fw-bold section-title">최근 등록된 상품</h4>
+  <h4 class="mb-0 fw-bold section-title">등록된 상품</h4>
 
   <?php
     $a_order = ["정렬방식", "최신순", "낮은가격순", "높은가격순", "조회수순"];
