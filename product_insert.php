@@ -29,7 +29,7 @@ ini_set('display_errors', 1);
 
     [$juso1, $juso2] = explode(" ", $juso, 2);
 
-    $session_id = $_SESSION["session_id"];
+    $session_id = $_SESSION["id"];
 
     // 이미지 확장자 검사
     $filename = $_FILES["image"]["name"]; // 이미지 이름

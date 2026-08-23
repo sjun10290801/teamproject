@@ -41,7 +41,7 @@ session_start();
 	}
 
 	function adminCheck() {
-		if(!isset($_COOKIE["admin_id"])) {
+		if(!isset($_SESSION["admin_id"])) {
             echo("<script>alert('권한이 없습니다.');</script>");
             echo("<script>location.href='admin_login.php'</script>"); // 로그인 화면으로 돌아감.
             exit();

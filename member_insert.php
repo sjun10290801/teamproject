@@ -62,8 +62,8 @@
         $fname = "";
     }
 
-    $sql = "insert into member(id, password, tel, bank_name, bank_num, name, birthday, email, juso1, juso2, juso3, image)
-    values('$id', '$hash_password', '$tel', '$bank_name', '$bank_num', '$name', '$birthday', '$email', '$juso1', '$juso2', '$juso3', '$fname')";
+    $sql = "insert into member(id, password, tel, bank_name, bank_num, name, birthday, email, juso1, juso2, juso3, image, status)
+    values('$id', '$hash_password', '$tel', '$bank_name', '$bank_num', '$name', '$birthday', '$email', '$juso1', '$juso2', '$juso3', '$fname', 0)";
     $result = mysqli_query($db, $sql);
     if(!$result) {
         mysqli_rollback($db);

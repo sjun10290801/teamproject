@@ -7,9 +7,9 @@
     $sel = $_POST["sel"] ?? 1;
 
     if($sel == 1) {
-        $tmp = "where from_member_id like '%$text%'";
+        $tmp = "where m2.id like '%$text%'";
     } else {
-        $tmp = "where to_member_id like '%$text%'";;
+        $tmp = "where m1.id like '%$text%'";;
     }
 ?>
 
@@ -82,7 +82,7 @@
                 <td><?php echo $a_report[$row["reason"]];?></td>
             
             <td>
-                <a href="report_reason.html" class="link-underline-primary">
+                <a href="report_reason.php?id=<?php echo $row['report_id'];?>&<?php echo $args;?>" class="link-underline-primary">
                     자세히보기
                 </a>
             </td>
