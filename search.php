@@ -55,7 +55,7 @@
 .product-item {
     position: relative;
     background: #ffffff;
-    border: 1px solid #e3eeee;
+    border: 1px solid #e3eeee;  
     border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(24, 118, 109, 0.08);
