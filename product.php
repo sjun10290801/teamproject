@@ -35,56 +35,170 @@ $member_image = $row["member_image"] ?: "default_profile.jpg";
 $rating = $row["rating"] ?: 0;
 ?>
 
+<style>
+  .product-detail-card {
+    max-width: 1000px;
+    border: 1px solid #dceae8 !important;
+  }
+
+  .detail-accent {
+    height: 6px;
+    background-color: #18766d;
+  }
+
+  .detail-image-area {
+    min-height: 470px;
+    background-color: #f3f8f7;
+  }
+
+  .detail-product-image {
+    width: 100%;
+    height: 420px;
+    object-fit: contain;
+  }
+
+  .detail-label {
+    color: #18766d;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .seller-box {
+    display: block;
+    padding: 16px;
+    color: #333333;
+    background-color: #f3f8f7;
+    border: 1px solid #dceae8;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .seller-box:hover {
+    color: #18766d;
+    background-color: #eef8f6;
+    border-color: #b7ddd8;
+  }
+
+  .detail-action-btn {
+    flex: 1 1 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 12px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .detail-btn-wish {
+    color: #dc3545;
+    background-color: #fff5f5;
+    border: 1px solid #f1b8be;
+  }
+
+  .detail-btn-wish:hover,
+  .detail-btn-report:hover {
+    color: #ffffff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+
+  .detail-btn-chat {
+    color: #18766d;
+    background-color: #f1f8f7;
+    border: 1px solid #bcdad6;
+  }
+
+  .detail-btn-chat:hover {
+    color: #ffffff;
+    background-color: #18766d;
+    border-color: #18766d;
+  }
+
+  .detail-btn-profile {
+    color: #555555;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+  }
+
+  .detail-btn-profile:hover {
+    color: #18766d;
+    background-color: #f5fafa;
+    border-color: #a8ccc8;
+  }
+
+  .detail-btn-report {
+    color: #dc3545;
+    background-color: #ffffff;
+    border: 1px solid #f1b8be;
+  }
+</style>
+
 <main class="container py-5">
-  <div class="card mx-auto border-0 shadow-sm rounded-4 overflow-hidden" style="max-width: 900px;">
+  <div class="card product-detail-card mx-auto shadow-sm rounded-4 overflow-hidden">
+    <div class="detail-accent"></div>
+
     <div class="row g-0">
-      <div class="col-12 col-md-6 border-end">
-        <img src="product/<?php echo $product_image; ?>" class="w-100 object-fit-contain bg-light p-3" style="height: 400px;" alt="상품 이미지">
+      <div class="col-12 col-lg-6 detail-image-area d-flex align-items-center p-4">
+        <img src="product/<?php echo $product_image; ?>" class="detail-product-image" alt="상품 이미지">
       </div>
-      <div class="col-12 col-md-6">
-        <div class="card-body text-center border-bottom ">
 
-          <div class="col-12 col-md-auto text-center mx-auto mb-3">
-            <a href="member_profile.php?id=<?php echo htmlspecialchars($row["member_id"]); ?>">
-              <img src="images/<?php echo $member_image; ?>" alt="프로필 사진" class="rounded-circle object-fit-cover border" style="width: 70px; height: 70px;">
-            </a>
-          </div>
+      <div class="col-12 col-lg-6 p-4 p-lg-5">
+        <p class="detail-label mb-2">상품 정보</p>
+        <h2 class="fw-bold mb-3"><?php echo htmlspecialchars($row["name"]); ?></h2>
+        <p class="fs-3 fw-bold mb-4" style="color: #18766d;">
+          <?php echo number_format($row["price"]); ?>원
+        </p>
 
-          <h5 class="card-title"><?php echo htmlspecialchars($row["id"]); ?></h5>
-          <div class="mb-2">
-            <i class="bi bi-star-fill text-warning"></i>
-            <span><?php echo $rating; ?></span>
-          </div>
-          <p class="card-text text-secondary">
-            <i class="bi bi-geo-alt-fill"></i>
-            <?php echo $row["juso1"] . " " . $row["juso2"] . " " .htmlspecialchars($row["juso3"]); ?>
-          </p>
+        <hr class="my-4" style="border-color: #dceae8; opacity: 1;">
+
+        <div class="mb-4">
+          <p class="fw-semibold mb-2">상품 설명</p>
+          <p class="text-secondary mb-0" style="min-height: 72px; white-space: pre-line;"><?php echo htmlspecialchars(stripslashes($row["memo"])); ?></p>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item fw-bold fs-5"><?php echo htmlspecialchars($row["name"]); ?></li>
-          <li class="list-group-item fw-bold fs-4" style="color: #18766d;"><?php echo number_format($row["price"]); ?>원</li>
-          <li class="list-group-item">등록일 : <?php echo $row["reg_date"]; ?></li>
-          <li class="list-group-item">
-            <p class="small fw-bold text-secondary mb-2">상품 설명</p>
-            <p class="mb-0"><?php echo htmlspecialchars(stripslashes($row["memo"])); ?></p>
-          </li>
-        </ul>
+
+        <p class="small text-secondary mb-4">
+          <i class="bi bi-clock me-1"></i>등록일 <?php echo $row["reg_date"]; ?>
+        </p>
+
+        <a href="member_profile.php?id=<?php echo htmlspecialchars($row["member_id"]); ?>" class="seller-box">
+          <div class="d-flex align-items-center">
+            <img src="images/<?php echo $member_image; ?>" alt="프로필 사진"
+              class="rounded-circle object-fit-cover border me-3" style="width: 55px; height: 55px;">
+
+            <div class="flex-grow-1" style="min-width: 0;">
+              <p class="fw-bold mb-1"><?php echo htmlspecialchars($row["id"]); ?></p>
+              <p class="small text-secondary text-truncate mb-0">
+                <i class="bi bi-geo-alt-fill me-1"></i>
+                <?php echo $row["juso1"] . " " . $row["juso2"] . " " . htmlspecialchars($row["juso3"]); ?>
+              </p>
+            </div>
+
+            <div class="ms-3 text-nowrap">
+              <i class="bi bi-star-fill text-warning"></i>
+              <span class="fw-semibold"><?php echo $rating; ?></span>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
+
     <div class="card-body border-top bg-white p-4">
-      <div class="position-relative d-flex flex-wrap justify-content-center gap-2 mb-3" style="z-index: 2;">
-        <a href="good_insert.php?product_id=<?php echo $product_id; ?>" class="btn btn-sm btn-outline-secondary rounded-pill px-3"><i class="bi bi-heart me-1"></i> 찜하기</a>
+      <div class="position-relative d-flex flex-wrap justify-content-center gap-2 mb-3 mx-auto" style="z-index: 2; max-width: 700px;">
+        <a href="good_insert.php?product_id=<?php echo $product_id; ?>" class="detail-action-btn detail-btn-wish"><i class="bi bi-heart"></i>찜하기</a>
         <a href="chat_room.php?my_id=<?php echo $member_id; ?>&target_id=<?php echo $row["member_id"]; ?>&product_id=<?php echo $product_id; ?>"
-          class="btn btn-sm btn-outline-dark rounded-pill px-3"><i class="bi bi-chat-dots me-1"></i> 채팅하기</a>
-        <a href="member_profile.php?id=<?php echo $row["member_id"]; ?>" class="btn btn-sm btn-outline-secondary rounded-pill px-3"><i class="bi bi-person me-1"></i> 프로필보기</a>
-        <a href="report.php?member_id=<?php echo $row["member_id"]; ?>" class="btn btn-sm btn-outline-danger rounded-pill px-3"><i class="bi bi-exclamation-triangle me-1"></i> 신고하기</a>
+          class="detail-action-btn detail-btn-chat"><i class="bi bi-chat-dots"></i>채팅하기</a>
+        <a href="member_profile.php?id=<?php echo $row["member_id"]; ?>" class="detail-action-btn detail-btn-profile"><i class="bi bi-person"></i>프로필보기</a>
+        <a href="report.php?member_id=<?php echo $row["member_id"]; ?>" class="detail-action-btn detail-btn-report"><i class="bi bi-exclamation-triangle"></i>신고하기</a>
       </div>
-
-
       <div class="d-grid col-12 col-md-6 mx-auto">
-        <a class="btn w-100 fw-bold text-white rounded-pill" href="order_pay.php?product_id=<?php echo $product_id; ?>" style="background-color: #18766d;"><i class="bi bi-bag-check me-1"></i> 구매하기</a>
+        <a class="btn w-100 fw-bold text-white rounded-3 py-2" href="order_pay.php?product_id=<?php echo $product_id; ?>" style="background-color: #18766d;"><i class="bi bi-bag-check me-1"></i> 구매하기</a>
       </div>
-
     </div>
   </div>
 </main>
