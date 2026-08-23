@@ -9,7 +9,7 @@
     $member_id = getId();
 
     $args="";
-    $sql = "select g.product_id, p.name, p.category, p.juso1, p.juso2, p.juso3, p.reg_date, p.price, p.image from good g inner join product p on p.product_id = g.product_id 
+    $sql = "select g.product_id, p.name, p.member_id, p.category, p.juso1, p.juso2, p.juso3, p.reg_date, p.price, p.image from good g inner join product p on p.product_id = g.product_id 
             where g.member_id = $member_id";
     $result = mypagination($sql, $args, $count, $pagebar);
     if(!$result) exit("에러 : $sql");
