@@ -228,6 +228,49 @@ include_once "common.php";
     background: #f5fafa;
     border-color: #a8ccc8;
 }
+.category-menu {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 15px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5eeee;
+}
+
+.category-item {
+  min-width: 105px;
+  padding: 11px 16px;
+  color: #4d5857;
+  background: #ffffff;
+  border: 1px solid #dce9e7;
+  border-radius: 14px;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.category-item i {
+  margin-right: 6px;
+  color: #18766d;
+}
+
+.category-item:hover {
+  color: #18766d;
+  background: #eef7f5;
+  border-color: #9ccbc6;
+  transform: translateY(-2px);
+}
+
+.category-item.active {
+  color: #ffffff;
+  background: #18766d;
+  border-color: #18766d;
+  box-shadow: 0 4px 10px rgba(24, 118, 109, 0.2);
+}
+
+.category-item.active i {
+  color: #ffffff;
+}
 </style>
 
 <script>
@@ -249,22 +292,23 @@ include_once "common.php";
   }
 ?>
 
-<ul class="nav justify-content-center align-items-center gap-2 py-3 border-bottom bg-white">
-  <li class="nav-item">
-    <span class="nav-link fw-bold text-dark ps-0">카테고리</span>
-  </li>
+<?php
+$category_icon = ["", "bi-phone", "bi-lamp", "bi-plug", "bi-bag", "bi-controller", "bi-three-dots"];
+?>
 
-  <?php
-  for ($i = 1; $i < $n_category; $i++) {
-  ?>
-    <li class="nav-item">
-      <a class="nav-link text-secondary rounded-pill px-3 category-link"
-        href="category.php?menu=<?php echo $i; ?>">
-        <?php echo $a_category[$i]; ?>
-      </a>
-    </li>
+<div class="category-menu">
+  <a href="index.php" class="category-item active">
+    <i class="bi bi-grid-fill"></i>
+    <span>전체</span>
+  </a>
+
+  <?php for ($i = 1; $i < $n_category; $i++) { ?>
+    <a href="<?php echo ($i == $n_category - 1) ? 'category_all.php' : 'category.php?menu=' . $i; ?>" class="category-item">
+      <i class="bi <?php echo $category_icon[$i]; ?>"></i>
+      <span><?php echo $a_category[$i]; ?></span>
+    </a>
   <?php } ?>
-</ul>
+</div>
 
 <main class="py-4">
 
