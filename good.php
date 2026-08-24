@@ -9,8 +9,8 @@
     $member_id = getId();
 
     $args="";
-    $sql = "select g.product_id, p.name, p.member_id, p.category, p.juso1, p.juso2, p.juso3, p.reg_date, p.price, p.image from good g inner join product p on p.product_id = g.product_id 
-            where g.member_id = $member_id";
+    $sql = "select g.product_id, p.name, p.member_id, p.category, p.juso1, p.juso2, p.juso3, p.reg_date, p.price, p.image, p.view from good g inner join product p on p.product_id = g.product_id 
+            inner join member m on p.member_id = m.member_id where g.member_id = $member_id and p.state != 2 and m.status = 0";
     $result = mypagination($sql, $args, $count, $pagebar);
     if(!$result) exit("에러 : $sql");
 
@@ -295,7 +295,7 @@
 
             <div class="product-info-item">
                 <i class="bi bi-eye"></i>
-                <span>125</span>
+                <span><?php echo $row["view"]; ?></span>
             </div>
 
         </div>

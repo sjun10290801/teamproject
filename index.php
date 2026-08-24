@@ -230,7 +230,6 @@ include_once "common.php";
     background: #f5fafa;
     border-color: #a8ccc8;
   }
-
   .category-menu {
     display: flex;
     justify-content: center;
@@ -274,6 +273,18 @@ include_once "common.php";
   .category-item.active i {
     color: #ffffff;
   }
+
+  .form-select {
+    width: 130px;
+    border-color: #bcdad6;
+    color: #18766d;
+    font-weight: 600;
+}
+
+.form-select:focus {
+    border-color: #18766d;
+    box-shadow: 0 0 0 0.2rem rgba(24, 118, 109, 0.15);
+}
 </style>
 
 <script>
