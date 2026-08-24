@@ -463,7 +463,7 @@ $category_icon = ["", "bi-phone", "bi-lamp", "bi-plug", "bi-bag", "bi-controller
 
             <div class="product-info-item">
               <i class="bi bi-eye"></i>
-              <span>125</span>
+              <span><?php echo $row["view"]; ?></span>
             </div>
 
           </div>
