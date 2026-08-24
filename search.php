@@ -337,6 +337,19 @@ if(!$result) exit("에러 : $sql");
     border-color: #a8ccc8;
 }
 
+
+.form-select {
+    width: 130px;
+    border-color: #bcdad6;
+    color: #18766d;
+    font-weight: 600;
+}
+
+.form-select:focus {
+    border-color: #18766d;
+    box-shadow: 0 0 0 0.2rem rgba(24, 118, 109, 0.15);
+}
+
 </style>
 
 
