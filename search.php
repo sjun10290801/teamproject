@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
     include "main_top.php";
     include_once "common.php";
     
@@ -12,7 +15,7 @@
 
                 $row = mysqli_fetch_assoc($result);
                 $member_id = $row["member_id"];
-                $tmp = "and member_id != $member_id";
+                $tmp = "and product.member_id != $member_id";
             } else { 
                 $member_id = "";
                 $tmp = "";
@@ -28,9 +31,9 @@
 
             // 상세주소, 시/도, 시/군/구 중 하나라도 검색어가 포함되면 검색 되도록 함.
             $args = "text=$text&location=$location";
-            $sql = "select product_id, member_id, image, price, category, reg_date, state, juso1, juso2, juso3, name 
-                    from product where state != 2 $tmp and name like '%$text%' 
-                    $l_tmp";
+            $sql = "select product_id, product.member_id, product.image, price, category, reg_date, state, product.juso1, product.juso2, product.juso3, product.name , view
+                    from product inner join member on member.member_id = product.member_id where state != 2 $tmp and product.name like '%$text%' 
+                    $l_tmp and status = 0";
             $result = mypagination($sql, $args, $count, $pagebar);
             if(!$result) exit("에러 : $sql");
 ?>
