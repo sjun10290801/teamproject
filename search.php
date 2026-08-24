@@ -25,7 +25,7 @@ ini_set('display_errors', 1);
                 $l_tmp = "";
                 $l_text = "모든 지역";
             } else {
-                $l_tmp = "and (juso1 like '%$location%' or juso2 like '%$location%' or juso3 like '%$location%')";
+                $l_tmp = "and (product.juso1 like '%$location%' or product.juso2 like '%$location%' or product.juso3 like '%$location%')";
                 $l_text = $location;
             }
 
