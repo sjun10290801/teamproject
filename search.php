@@ -312,7 +312,7 @@ ini_set('display_errors', 1);
 
             <div class="product-info-item">
                 <i class="bi bi-eye"></i>
-                <span>125</span>
+                <span><?php echo $row["view"]; ?></span>
             </div>
 
         </div>
