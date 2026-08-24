@@ -17,31 +17,15 @@ if ($session_id) {
 
     $row = mysqli_fetch_assoc($result);
     $member_id = $row["member_id"];
-    $tmp = "and member_id != $member_id";
+    $tmp = "and p.member_id != $member_id";
 } else {
     $member_id = "";
     $tmp = "";
 }
 
 $page_line = 12;
-$sql = "
-    select
-        product_id,
-        member_id,
-        image,
-        price,
-        category,
-        reg_date,
-        state,
-        juso1,
-        juso2,
-        juso3,
-        name
-    from product
-    where state != 2
-    $tmp
-    and category = '$category'
-";
+$sql = "select p.product_id, p.member_id, p.image, p.price, p.category, p.reg_date, p.state, p.juso1, p.juso2, p.juso3, p.name, p.view
+        from product p inner join member m on p.member_id = m.member_id where p.state != 2 $tmp and p.category = '$category' and m.status = 0";
 
 $args = "menu=$category";
 
