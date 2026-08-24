@@ -1,5 +1,4 @@
 <?php
-
  error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -324,7 +323,7 @@ include_once "common.php";
 
     $row = mysqli_fetch_assoc($result);
     $member_id = $row["member_id"];
-    $tmp = "and member_id != $member_id";
+    $tmp = "and p.member_id != $member_id";
 
     // 자신의 주소 출력을 위해 가져오기
     $search_juso = $row["juso2"];
@@ -336,8 +335,9 @@ include_once "common.php";
   }
 
 
-  $sql = "select product_id, member_id, image, price, category, reg_date, state, juso1, juso2, juso3, name, view 
-                    from product where state != 2 $tmp $order_sql limit 12"; // limit 12로 12개만 보이도록 함.(너무 길어지는 것 방지)
+  $sql = "select p.product_id, p.member_id, p.image, p.price, p.category, p.reg_date, p.state, p.juso1, p.juso2, p.juso3, p.name, p.view, m.status
+                    from product p inner join member m on p.member_id = m.member_id
+                    where p.state != 2 $tmp and m.status = 0 $order_sql limit 12"; // limit 12로 12개만 보이도록 함.(너무 길어지는 것 방지)
   $result = mysqli_query($db, $sql);
   if (!$result) exit("에러 : $sql");
 
