@@ -78,9 +78,9 @@ $count = $row1["rating_count"];
     <?php
     // 현재 판매중인 상품을 불러오기 위한 sql
     $member_id = getId();
-    $sql = "select product_id, name, price, image from product where member_id = $member_id";
-    $result = mysqli_query($db, $sql);
-    if (!$result) exit('에러:$sql');
+    $mypage_sql = "select product_id, name, price, image, state from product where member_id = $member_id and state != 2 limit 2";
+    $mypage_result = mysqli_query($db, $mypage_sql);
+    if (!$mypage_result) exit('에러:$sql');
     ?>
     <!-- 판매 중인 상품 -->
     <section class="mt-5 mx-auto" style="max-width: 650px;">
@@ -89,31 +89,43 @@ $count = $row1["rating_count"];
                 판매 중인 상품
             </h4>
 
-            <a href="member_products.php" class="small text-secondary text-decoration-none">
+            <a href="member_products.php?member_id=<?php echo $member_id;?>" class="small text-secondary text-decoration-none">
                 전체보기
             </a>
         </div>
 
         <div class="row g-3">
+    <?php
+        while($mypage_row = mysqli_fetch_assoc($mypage_result)) {
+            $image = $mypage_row["image"] ?: "default.jpg";
 
+    ?>
             <!-- 판매 상품 임시 카드 -->
             <div class="col-12 col-sm-6">
                 <div class="text-dark">
                     <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
-                        <img src="product/default.jpg" class="card-img-top object-fit-cover"
+                        <img src="product/<?php echo $image;?>" class="card-img-top object-fit-cover"
                             style="height: 160px;" alt="상품 이미지">
 
                         <div class="card-body">
-                            <span class="badge rounded-pill mb-2" style="background-color: #18766d;">판매 중</span>
+                            <span class="badge rounded-pill mb-2" style="background-color: #18766d;">
+                                <?php
+                                    if($mypage_row["state"] == 0) {
+                                        echo "판매 중";
+                                    } else {
+                                        echo "예약됨";
+                                    }
+                                ?>
+                            </span>
 
                             <h5 class="card-title fw-semibold">
-                                테스트 상품
+                                <?php echo htmlspecialchars($mypage_row["name"]);?>
                             </h5>
 
                             <div class="d-flex justify-content-between align-items-center">
-                                <p class="card-text fw-bold mb-0" style="color: #18766d;">30,000원</p>
+                                <p class="card-text fw-bold mb-0" style="color: #18766d;"><?php echo number_format($mypage_row["price"])?>원</p>
                                
-                                <a href="#" class="btn btn-sm rounded-pill px-3"
+                                <a href="product_edit.php?id=<?php echo $mypage_row['product_id'];?>" class="btn btn-sm rounded-pill px-3"
                                     style="color: #18766d; background-color: #eef8f6; border: 1px solid #b7ddd8;">상품 수정</a>
                             </div>
 
@@ -121,32 +133,7 @@ $count = $row1["rating_count"];
                     </div>
                 </div>
             </div>
-
-            <!-- 판매 상품 임시 카드 -->
-            <div class="col-12 col-sm-6">
-                <div class="text-dark">
-                    <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
-                        <img src="product/default.jpg" class="card-img-top object-fit-cover"
-                            style="height: 160px;" alt="상품 이미지">
-
-                        <div class="card-body">
-                            <span class="badge rounded-pill mb-2" style="background-color: #18766d;">판매 중</span>
-
-                            <h5 class="card-title fw-semibold">
-                                테스트 상품 2
-                            </h5>
-
-                            <div class="d-flex justify-content-between align-items-center">
-                                <p class="card-text fw-bold mb-0" style="color: #18766d;">50,000원</p>
-                               
-                                <a href="#" class="btn btn-sm rounded-pill px-3"
-                                    style="color: #18766d; background-color: #eef8f6; border: 1px solid #b7ddd8;">상품 수정</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <?php } ?>
 
         </div>
     </section>
