@@ -17,7 +17,7 @@
         exit();
     }
 
-    if(!is_numberic($price)) {
+    if(!is_numeric($price)) {
         echo("<script>alert('가격은 숫자로 입력해주세요');</script>");
         echo("<script>location.href='admin_login.html'</script>");
         exit();
