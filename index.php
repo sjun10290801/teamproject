@@ -230,7 +230,6 @@ include_once "common.php";
     background: #f5fafa;
     border-color: #a8ccc8;
   }
-
   .category-menu {
     display: flex;
     justify-content: center;
