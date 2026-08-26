@@ -228,6 +228,18 @@ if (!$result) {
     border-color: #a8ccc8;
 }
 
+.form-select {
+    width: 130px;
+    border-color: #bcdad6;
+    color: #18766d;
+    font-weight: 600;
+}
+
+.form-select:focus {
+    border-color: #18766d;
+    box-shadow: 0 0 0 0.2rem rgba(24, 118, 109, 0.15);
+}
+
 </style>
 
 <ul class="nav justify-content-center align-items-center gap-2 py-3 border-bottom bg-white">
@@ -246,6 +258,25 @@ if (!$result) {
     </li>
   <?php } ?>
 </ul>
+
+<div class="d-flex justify-content-between align-items-center px-4 mt-4 mb-3">
+
+    <h4 class="mb-0 fw-bold section-title">
+        등록된 상품
+    </h4>
+
+    <select
+        class="form-select w-auto"
+        aria-label="상품 정렬"
+    >
+        <option>정렬방식</option>
+        <option>최신순</option>
+        <option>낮은가격순</option>
+        <option>높은가격순</option>
+        <option>조회수순</option>
+    </select>
+
+</div>
 
 <div class="card-list">
 
