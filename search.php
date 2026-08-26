@@ -362,18 +362,6 @@ if(!$result) exit("에러 : $sql");
     box-shadow: 0 0 0 0.2rem rgba(24, 118, 109, 0.15);
 }
 
-.main-btn {
-    background-color: #18766d;
-    border-color: #18766d;
-    color: white;
-}
-
-.main-btn:hover {
-    background-color: #105f58;
-    border-color: #105f58;
-    color: white;
-}
-
 </style>
 
 
@@ -578,15 +566,6 @@ if(!$result) exit("에러 : $sql");
 
     ?>
 
-</div>
-
-
-<div class="text-center mt-5">
-    <a href="category.php?menu=<?php echo $category; ?>"
-       class="btn main-btn rounded-pill px-5 py-2 fw-semibold">
-        상품 더보기
-        <i class="bi bi-chevron-right ms-1"></i>
-    </a>
 </div>
 
 </main>
