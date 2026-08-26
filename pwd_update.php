@@ -8,13 +8,13 @@
 
     if(!$id || !$pwd) {
         echo("<script>alert('비밀번호를 입력해주세요');</script>");
-        echo("<script>location.href='pwd_search.html'</script>");
+        echo("<script>location.href='pwd_search.php'</script>");
         exit();
     }
 
     if($pwd != $pwd1) {
         echo("<script>alert('비밀번호가 일치하지 않습니다');</script>");
-        echo("<script>location.href='pwd_search.html'</script>");
+        echo("<script>location.href='pwd_search.php'</script>");
         exit();
     }
 
@@ -32,7 +32,7 @@
 
     if(password_verify($pwd, $row["password"])) {
         echo("<script>alert('동일한 비밀번호로는 변경할 수 없습니다.');</script>");
-        echo("<script>location.href='pwd_search.html'</script>");
+        echo("<script>location.href='pwd_search.php'</script>");
         exit();
     } else {
         $password = password_hash($pwd, PASSWORD_DEFAULT);
@@ -44,7 +44,7 @@
         $stmt->execute();
         if(!$stmt->execute()) {
             echo("<script>alert('오류가 발생했습니다.');</script>");
-            echo("<script>location.href='pwd_search.html'</script>");
+            echo("<script>location.href='pwd_search.php'</script>");
             exit();
         }
 
