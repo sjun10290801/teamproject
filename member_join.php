@@ -101,10 +101,28 @@
             form2.submit();
         }
     </script>
+    <style>
+        .member-page { background-color: #f6f9f8; }
+        .member-card { max-width: 680px; border-radius: 20px; }
+        .member-accent { width: 42px; height: 4px; background-color: #147d73; }
+        .member-card .form-label { font-weight: 600; }
+        .member-card .form-control, .member-card .form-select { min-height: 46px; border-radius: 10px; }
+        .member-card .input-group .form-control { border-radius: 10px 0 0 10px; }
+        .member-card .input-group .btn { border-radius: 0 10px 10px 0; }
+        .btn-theme { background-color: #147d73; border-color: #147d73; color: white; }
+        .btn-theme:hover { background-color: #10685f; border-color: #10685f; color: white; }
+    </style>
+    <div class="member-page">
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-6">
-                <h2 class="text-center mb-4">회원가입</h2>
+            <div class="col-12">
+                <div class="card member-card border-0 shadow-sm mx-auto">
+                <div class="card-body p-4 p-md-5">
+                <div class="text-center mb-4">
+                    <span class="member-accent d-inline-block rounded-pill mb-3"></span>
+                    <h2 class="fw-bold mb-2">회원가입</h2>
+                    <p class="text-secondary mb-0">리픽에서 중고거래를 시작해보세요.</p>
+                </div>
 
                 <form name="form2" method="post" action="member_insert.php" enctype="multipart/form-data">
                     <div class="mb-3">
@@ -113,7 +131,7 @@
                         <div class="input-group">
                             <input type="text" name="id" id="user_id" class="form-control" placeholder="아이디를 입력해주세요.">
 
-                            <a href="javascript:IdCheck();" class="btn btn-sm btn-dark text-white myfont">중복 확인</a>
+                            <a href="javascript:IdCheck();" class="btn btn-theme px-3">중복 확인</a>
                             <input type="hidden" name="check" value="0"> <!--id 체크시 1로 바뀜-->
                         </div>
                     </div>
@@ -218,13 +236,15 @@
                         <input class="form-control" type="file" id="formFileMultiple" multiple name="image">
                     </div>
 
-                    <div class="text-center">
-                        <a href="javascript:Submit();" class="btn btn-sm btn-dark text-white myfont">회원가입</a>
+                    <div class="text-center mt-4">
+                        <a href="javascript:Submit();" class="btn btn-theme rounded-pill px-5 py-2">회원가입</a>
                     </div>
                 </form>
-
+                </div>
+                </div>
             </div>
         </div>
+    </div>
     </div>
 <?php
     include "main_bottom.php";

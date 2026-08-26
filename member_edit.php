@@ -43,6 +43,17 @@
     <title>회원 정보 수정</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f6f9f8; }
+        .member-card { max-width: 680px; border-radius: 20px; }
+        .member-accent { width: 42px; height: 4px; background-color: #147d73; }
+        .member-card .form-label { font-weight: 600; }
+        .member-card .form-control, .member-card .form-select { min-height: 46px; border-radius: 10px; }
+        .member-card .input-group .form-control { border-radius: 10px 0 0 10px; }
+        .member-card .input-group .btn { border-radius: 0 10px 10px 0; }
+        .btn-theme { background-color: #147d73; border-color: #147d73; color: white; }
+        .btn-theme:hover { background-color: #10685f; border-color: #10685f; color: white; }
+    </style>
     <script>
         function FindZip() {
             window.open(
@@ -123,8 +134,14 @@
 <body>
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-6">
-                <h2 class="text-center mb-4">회원 정보 수정</h2>
+            <div class="col-12">
+                <div class="card member-card border-0 shadow-sm mx-auto">
+                <div class="card-body p-4 p-md-5">
+                <div class="text-center mb-4">
+                    <span class="member-accent d-inline-block rounded-pill mb-3"></span>
+                    <h2 class="fw-bold mb-2">회원 정보 수정</h2>
+                    <p class="text-secondary mb-0">변경할 회원정보를 확인해주세요.</p>
+                </div>
 
                 <form name="form2" method="post" action="member_update.php" enctype="multipart/form-data">
                     <div class="mb-3">
@@ -243,9 +260,9 @@
                         <input type="hidden" name="image_name" value="<?php echo $row["image"];?>">
                         <input class="form-control" type="file" id="formFileMultiple" multiple name="image">
                     </div><br>
-                    <div class="text-center">
-                         <a href="javascript:Submit();" class="btn btn-sm btn-dark text-white myfont">수정</a>
-                         <a href="javascript:history.back();"  class="btn btn-sm btn-dark text-white myfont">돌아가기</a>
+                    <div class="d-flex justify-content-center gap-2 mt-4">
+                         <a href="javascript:history.back();" class="btn btn-outline-secondary rounded-pill px-4 py-2">돌아가기</a>
+                         <a href="javascript:Submit();" class="btn btn-theme rounded-pill px-4 py-2">수정 완료</a>
                     </div>
 
                      <div class="mb-3">
@@ -253,7 +270,8 @@
             </div>
 
                 </form>
-
+                </div>
+                </div>
             </div>
         </div>
     </div>
