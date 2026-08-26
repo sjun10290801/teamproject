@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 호스트: localhost
--- 생성 시간: 26-08-19 06:18
+-- 생성 시간: 26-08-26 06:06
 -- 서버 버전: 12.3.2-MariaDB
 -- PHP 버전: 8.5.8
 
@@ -95,7 +95,7 @@ CREATE TABLE `good` (
 INSERT INTO `good` (`good_id`, `member_id`, `product_id`) VALUES
 (2, 10, 24),
 (4, 10, 23),
-(8, 10, 25);
+(10, 10, 22);
 
 -- --------------------------------------------------------
 
@@ -404,13 +404,16 @@ INSERT INTO `member` (`member_id`, `password`, `tel`, `rating`, `bank_name`, `id
 (5, '$2y$12$ux5hw2AvwgydRiwJf53EBOX8DdwX0em.4f8FF8wV21hYa4YmmfmfS', '01066665678', NULL, '우리', 'qwer', '12331231', '가가', '2026-07-15', '111', '경기도', '고양시 일산동구', 'ㄱㄴ동', NULL, 0),
 (6, '$2y$12$i6byuPiAAAf3vByeWR2sCe5WaAIontEHwUZRtBsOXfMiZ8B4BSD0y', '01056782222', 4, '기업', 'qwer1234', '2132131232131', 'aa', '2026-07-09', '111', '서울특별시', '노원구', 'xx동', NULL, 1),
 (7, '$2y$12$50E22ENZ/CUPfh8yg5VdkOpdMYiSyMXKIl9Xaes3DUzIKymDapOtC', '01011112222', NULL, '하나', 'ㅁㅁㅁㅁㅁ', '123123123', 'ㅁㅁㅁ', '2026-07-15', 'sanss11@naver.com', '서울특별시', '중구', 'ㅂㅂㅂ', NULL, 0),
-(9, '$2y$12$JiXl0e4z4iCoz8DEu679qOZQg.jZVSvE8Dav6bzuOYjrQaJWmuhka', '01066661111', 3, '하나', 'aa', '1231231', '가가', '2026-07-02', '111', '서울특별시', '노원구', 'qweqwe', '', 0),
+(9, '$2y$12$JiXl0e4z4iCoz8DEu679qOZQg.jZVSvE8Dav6bzuOYjrQaJWmuhka', '01066661111', 3, '하나', 'aa', '1231231', '가가', '2026-07-02', '111', '서울특별시', '노원구', 'qweqwe', '', 1),
 (10, '$2y$12$1S9IC0faDRXImCKtelnrtOtRQoeEvaTg/B2AGEf5N63R3auDPmZwq', '01011112222', 4, '신한', 'sj', '111123', 'ㅁㅁㅁ', '2026-07-15', 'sj1212@gmail.com', '경기도', '구리시', '1111', 'member10.png', 0),
 (11, '$2y$12$GL92SxcpyRh8I3K8q4EJTut8ylmqMxG.giv27wJyciT5iZdpSpIxi', '01056786666', NULL, '신한', '정공성', '123123123', '정공', '2026-07-07', 'sdsadasd', '서울특별시', '중구', 'aㅁㅁㅁ', 'member11.png', 0),
-(13, '$2y$12$NpZiwb/Pgz.ZzDTyTpXybuewSWukFh94Bc/8LNn2VR2DBbpko6YKO', '026666666', NULL, '국민', '123123', '12312312', 'qweqwe', '2026-08-04', 'qweqwe@gmail.com', '서울특별시', '노원구', '12321312', '', NULL),
-(14, '$2y$12$N4dsD2JlcEVLEsC3mDpN1OPMTvLZu9ar.VADckLTrskBkZIlM.DyG', '02 77771111', NULL, '기업', '11111', '123123123', '123', '2026-07-26', '11111@gmail.com', '경기도', '수원시 장안구', '12312312', 'chat33.png', NULL),
-(15, '$2y$12$fdEs2Y9rndmm9OHnBI37aeE1f0yIhKBZzwPjdfxc8S8Isx5tZhSae', '021231123', 5, '기업', '123', '123123', '가가', '2026-08-05', '111', '충청남도', '천안시 동남구', '131231', 'member15.png', NULL),
-(17, '$2y$12$JSlBkNPKARDDVb8JFW2Wie12CLRYwOiTQPccZ0w5HrVAYo8G1nGRK', '01011222222', NULL, '기업', '1234', '1231231', '1234', '2026-08-05', '132313123', '경상북도', '포항시 남구', '123132', '', NULL);
+(13, '$2y$12$NpZiwb/Pgz.ZzDTyTpXybuewSWukFh94Bc/8LNn2VR2DBbpko6YKO', '026666666', NULL, '국민', '123123', '12312312', 'qweqwe', '2026-08-04', 'qweqwe@gmail.com', '서울특별시', '노원구', '12321312', '', 0),
+(14, '$2y$12$N4dsD2JlcEVLEsC3mDpN1OPMTvLZu9ar.VADckLTrskBkZIlM.DyG', '02 77771111', NULL, '기업', '11111', '123123123', '123', '2026-07-26', '11111@gmail.com', '경기도', '수원시 장안구', '12312312', 'chat33.png', 0),
+(15, '$2y$12$fdEs2Y9rndmm9OHnBI37aeE1f0yIhKBZzwPjdfxc8S8Isx5tZhSae', '021231123', 5, '기업', '123', '123123', '가가', '2026-08-05', '111', '충청남도', '천안시 동남구', '131231', 'member15.png', 0),
+(17, '$2y$12$JSlBkNPKARDDVb8JFW2Wie12CLRYwOiTQPccZ0w5HrVAYo8G1nGRK', '01011222222', NULL, '기업', '1234', '1231231', '1234', '2026-08-05', '132313123', '경상북도', '포항시 남구', '123132', '', 0),
+(18, '$2y$12$fFfEdA9pSmpihVIZWhH/a.IvyXzNpl2/siplL5VsFhejHFepATlbS', '01011111111', NULL, '국민', '11', '11', '11', '2026-08-19', '11', '서울특별시', '노원구', '11', '', 0),
+(19, '$2y$12$aX0OUgEbn/qqM1Y6L7WV4Oaa.tQ1jeaPGfl973a8bs1GK8g7Ce/kO', '010123 123 ', NULL, '국민', '111', '123', '123', '2026-08-27', '123', '서울특별시', '중구', '123', '', 0),
+(20, '$2y$12$Hv5gFTnHVvQPwIv/H4sV1ua0Ba2erHJslB8h5fMkIcQKKPAJ4nFZO', '01011111111', NULL, '신한', '1212', '123123', '1234', '2026-08-04', '1231231231231', '서울특별시', '노원구', '12321', '', 1);
 
 -- --------------------------------------------------------
 
@@ -471,13 +474,16 @@ INSERT INTO `product` (`product_id`, `member_id`, `image`, `price`, `memo`, `cat
 (18, 6, 'image18.jpg', 50000, 'ㅇㅇㅇㅇㅇ', 5, 0, '2026-07-27 16:46:54', 2, '강원특별자치도', '홍천군', 'ㅁㅁㅁㅁ리', '게임팩'),
 (19, 10, 'image19.png', 500000, '급처합니다', 4, 4, '2026-07-27 20:30:01', 2, '경기도', '구리시', 'XX아파트 앞', '스위치2'),
 (20, 10, 'image20.jpg', 600000, '생활 기스 있음', 1, 0, '2026-07-27 20:31:50', 2, '서울특별시', '노원구', '노원역 부근', '아이폰 15 공기계'),
-(21, 9, '', 20000, 'xl', 4, 20, '2026-07-27 20:33:07', 1, '서울특별시', '중구', 'ㅁㅁㄴㅇㅁㄴㅇ', '남성 후드 집업'),
-(22, 11, 'image22.png', 15000, '네고 X', 5, 22, '2026-07-30 17:40:02', 0, '서울특별시', '중구', 'XX동', '사이버펑크 게임팩'),
-(23, 11, 'image23.png', 500, '샘플이고 한장당 500원이요', 6, 18, '2026-07-30 17:40:31', 2, '서울특별시', '중구', 'ㅂㅂㅂ', '집냥이 사진'),
-(24, 4, 'image24.png', 12000, '책 판매합니다', 6, 15, '2026-07-30 21:06:07', 0, '강원특별자치도', '횡성군', 'ㅂㅂㅂ', '투명한 나선 - 히가시노 게이고'),
-(25, 6, '', 30000, '선반 팝니다. 관심있으면 채팅 주세요.', 2, 8, '2026-07-30 23:40:05', 0, '서울특별시', '도봉구', 'xx동', '선반'),
-(26, 15, 'image26.png', 300000, '40인치 tv 급처합니다.', 1, 10, '2026-08-14 15:59:15', 0, '충청남도', '천안시 동남구', '131231', 'TV'),
-(27, 15, 'image27.png', 100000, '13312132', 1, 1, '2026-08-14 16:00:19', 2, '충청남도', '천안시 동남구', '131231', 'aa');
+(21, 9, '', 20000, 'xl', 4, 32, '2026-07-27 20:33:07', 1, '서울특별시', '중구', 'ㅁㅁㄴㅇㅁㄴㅇ', '남성 후드 집업'),
+(22, 11, 'image22.png', 15000, '네고 X', 5, 27, '2026-07-30 17:40:02', 0, '서울특별시', '중구', 'XX동', '사이버펑크 게임팩'),
+(23, 11, 'image23.png', 500, '샘플이고 한장당 500원이요', 6, 19, '2026-07-30 17:40:31', 2, '서울특별시', '중구', 'ㅂㅂㅂ', '집냥이 사진'),
+(24, 4, 'image24.png', 12000, '책 판매합니다', 6, 19, '2026-07-30 21:06:07', 0, '강원특별자치도', '횡성군', 'ㅂㅂㅂ', '투명한 나선 - 히가시노 게이고'),
+(25, 6, '', 30000, '선반 팝니다. 관심있으면 채팅 주세요.', 2, 13, '2026-07-30 23:40:05', 0, '서울특별시', '도봉구', 'xx동', '선반'),
+(26, 15, 'image26.png', 300000, '40인치 tv 급처합니다.', 1, 22, '2026-08-14 15:59:15', 0, '충청남도', '천안시 동남구', '131231', 'TV'),
+(27, 15, 'image27.png', 100000, '13312132', 1, 1, '2026-08-14 16:00:19', 2, '충청남도', '천안시 동남구', '131231', 'aa'),
+(28, 10, 'image28.png', 100000, 'ㅁㄴㅇㅁㄴㅇㅁㄴㅇㄴㅁㅇㅁㄴㅇ', 1, 0, '2026-08-19 16:07:44', 1, '서울특별시', '노원구', '1212', 'ㅁㅁㅁ'),
+(29, 10, 'image29.png', 30000, '13123123123', 2, 0, '2026-08-19 16:07:55', 0, '경기도', '구리시', '1111', '111'),
+(30, 20, '', 30000, '123132132132', 4, 2, '2026-08-23 15:46:21', 0, '서울특별시', '노원구', '12321', '312123132312');
 
 -- --------------------------------------------------------
 
@@ -531,7 +537,9 @@ INSERT INTO `report` (`report_id`, `to_member_id`, `from_member_id`, `reason`, `
 (3, 10, 11, 2, 'qadsdas', ''),
 (6, 10, 9, 2, 'dasdsadaasd', 'report6.png'),
 (7, 6, 10, 1, 'asdasasd', 'report7.png'),
-(8, 6, 10, 2, 'qwewqeqw', '');
+(8, 6, 10, 2, 'qwewqeqw', ''),
+(13, 20, 10, 4, 'qeewqqweqwe', ''),
+(14, 20, 10, 3, '132132132', 'report14.jpg');
 
 -- --------------------------------------------------------
 
@@ -550,7 +558,9 @@ CREATE TABLE `reportedmember` (
 --
 
 INSERT INTO `reportedmember` (`id`, `member_id`, `reason`) VALUES
-(1, 6, 1);
+(1, 6, 1),
+(3, 20, 4),
+(11, 9, 4);
 
 --
 -- 덤프된 테이블의 인덱스
@@ -624,7 +634,7 @@ ALTER TABLE `chat`
 -- 테이블의 AUTO_INCREMENT `good`
 --
 ALTER TABLE `good`
-  MODIFY `good_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `good_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- 테이블의 AUTO_INCREMENT `juso`
@@ -636,7 +646,7 @@ ALTER TABLE `juso`
 -- 테이블의 AUTO_INCREMENT `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- 테이블의 AUTO_INCREMENT `orders`
@@ -648,7 +658,7 @@ ALTER TABLE `orders`
 -- 테이블의 AUTO_INCREMENT `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- 테이블의 AUTO_INCREMENT `rating`
@@ -660,13 +670,13 @@ ALTER TABLE `rating`
 -- 테이블의 AUTO_INCREMENT `report`
 --
 ALTER TABLE `report`
-  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- 테이블의 AUTO_INCREMENT `reportedmember`
 --
 ALTER TABLE `reportedmember`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
