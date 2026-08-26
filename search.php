@@ -483,7 +483,9 @@ if(!$result) exit("에러 : $sql");
 
                         <i class="bi bi-eye"></i>
 
-                        <span>125</span>
+                        <span>
+                            <?php echo $row["view"]; ?>
+                        </span>
 
                     </div>
 
@@ -501,10 +503,6 @@ if(!$result) exit("에러 : $sql");
 
 
             </div>
-
-            <div class="product-info-item">
-                <i class="bi bi-eye"></i>
-                <span><?php echo $row["view"]; ?></span>
 
             <div class="product-actions">
 
