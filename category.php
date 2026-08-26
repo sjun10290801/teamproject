@@ -240,6 +240,11 @@ if (!$result) {
     box-shadow: 0 0 0 0.2rem rgba(24, 118, 109, 0.15);
 }
 
+  .section-title {
+    border-left: 5px solid #18766d;
+    padding-left: 12px;
+  }
+
 </style>
 
 <ul class="nav justify-content-center align-items-center gap-2 py-3 border-bottom bg-white">
@@ -259,24 +264,49 @@ if (!$result) {
   <?php } ?>
 </ul>
 
-<div class="d-flex justify-content-between align-items-center px-4 mt-4 mb-3">
+  <div class="d-flex justify-content-between align-items-center px-4 mt-4 mb-3">
+    <h4 class="mb-0 fw-bold section-title">등록된 상품</h4>
 
-    <h4 class="mb-0 fw-bold section-title">
-        등록된 상품
-    </h4>
+    <?php
+    $a_order = ["정렬방식", "최신순", "낮은가격순", "높은가격순", "조회수순"];
+    $n_order = count($a_order);
 
-    <select
-        class="form-select w-auto"
-        aria-label="상품 정렬"
-    >
-        <option>정렬방식</option>
-        <option>최신순</option>
-        <option>낮은가격순</option>
-        <option>높은가격순</option>
-        <option>조회수순</option>
-    </select>
+    // 상품 정렬 방식 설정
+    $orderby = $_POST["orderby"] ?? 1; // 값이 있다면 받아오고, 없다면 디폴트가 1(최신순)
 
-</div>
+    switch ($orderby) {
+      case 2:
+        $order_sql = "order by price asc, product_id desc"; // 낮은 가격 순 정렬
+        break;
+      case 3:
+        $order_sql = "order by price desc, product_id desc"; // 높은 가격 순 정렬
+        break;
+      case 4:
+        $order_sql = "order by view desc, product_id desc"; // 조회수순 정렬
+        break;
+      default:
+        $order_sql = "order by product_id desc"; // 최신순 정렬
+
+        break;
+    }
+    ?>
+
+    <form name="index_form" method="post" action="index.php">
+      <select class="form-select w-auto" aria-label="Default select example" name="orderby" onchange="order_change();"> <!-- onchange 속성을 사용해 값 변경 시 폼을 제출하도록 함.-->
+        <?php
+        for ($i = 1; $i < $n_order; $i++) {
+          if ($orderby == $i) {
+            $is_selected = "selected";
+          } else {
+            $is_selected = "";
+          }
+        ?>
+          <option value="<?php echo $i; ?>" <?php echo $is_selected; ?>><?php echo $a_order[$i]; ?></option>
+        <?php } ?>
+      </select>
+      <input type="hidden" name="scroll" value="1">
+    </form>
+  </div>
 
 <div class="card-list">
 
