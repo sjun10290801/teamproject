@@ -346,6 +346,5 @@
 
 
 <?php
-  echo $pagebar;
   include "main_bottom.php";
 ?>

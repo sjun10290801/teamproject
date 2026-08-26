@@ -293,18 +293,6 @@ if (!$result) {
     .category-item.active i {
         color: #ffffff;
     }
-
-    .main-btn {
-    background-color: #18766d;
-    border-color: #18766d;
-    color: white;
-}
-
-.main-btn:hover {
-    background-color: #105f58;
-    border-color: #105f58;
-    color: white;
-}
 </style>
 
 <?php
@@ -503,14 +491,6 @@ $category_icon = [
     ?>
 
 </div>
-
-  <div class="text-center mt-5">
-    <a href="search.php?location=<?php echo $search_juso; ?>"
-      class="btn main-btn rounded-pill px-5 py-2 fw-semibold">
-      상품 더보기
-      <i class="bi bi-chevron-right ms-1"></i>
-    </a>
-  </div>
 
 </main>
 
