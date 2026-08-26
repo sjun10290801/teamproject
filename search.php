@@ -564,6 +564,7 @@ if(!$result) exit("에러 : $sql");
 
     }
 
+    echo $pagebar;
     ?>
 
 </div>

@@ -488,6 +488,7 @@ $category_icon = [
 
     <?php
     }
+    echo $pagebar;
     ?>
 
 </div>
