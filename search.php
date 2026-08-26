@@ -83,6 +83,16 @@ $result = mypagination($sql, $args, $count, $pagebar);
 if(!$result) exit("에러 : $sql");
 
 ?>
+<script>
+    function order_scroll() {
+    setTimeout(function() {
+      window.scrollTo(0, 450);
+    }, 50);
+  }
+</script>
+<?php
+  echo ("<script>order_scroll();</script>");
+?>
 
 
 <div class="my-4 px-2">
