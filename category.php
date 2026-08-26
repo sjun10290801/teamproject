@@ -293,6 +293,18 @@ if (!$result) {
     .category-item.active i {
         color: #ffffff;
     }
+
+    .main-btn {
+    background-color: #18766d;
+    border-color: #18766d;
+    color: white;
+}
+
+.main-btn:hover {
+    background-color: #105f58;
+    border-color: #105f58;
+    color: white;
+}
 </style>
 
 <?php
@@ -322,6 +334,8 @@ $category_icon = [
         </a>
     <?php } ?>
 </div>
+
+<main class="py-4">
 
 <div class="d-flex justify-content-between align-items-center px-4 mt-4 mb-3">
     <h4 class="mb-0 fw-bold section-title">등록된 상품</h4>
@@ -490,9 +504,15 @@ $category_icon = [
 
 </div>
 
-<?php
-echo $pagebar;
-?>
+  <div class="text-center mt-5">
+    <a href="search.php?location=<?php echo $search_juso; ?>"
+      class="btn main-btn rounded-pill px-5 py-2 fw-semibold">
+      상품 더보기
+      <i class="bi bi-chevron-right ms-1"></i>
+    </a>
+  </div>
+
+</main>
 
 
 <?php
