@@ -315,7 +315,7 @@ $category_icon = ["", "bi-phone", "bi-lamp", "bi-plug", "bi-bag", "bi-controller
   </a>
 
   <?php for ($i = 1; $i < $n_category; $i++) { ?>
-    <a href="<?php echo ($i == $n_category - 1) ? 'category_all.php' : 'category.php?menu=' . $i; ?>" class="category-item">
+    <a href="category.php?menu=<?php echo $i; ?>" class="category-item">
       <i class="bi <?php echo $category_icon[$i]; ?>"></i>
       <span><?php echo $a_category[$i]; ?></span>
     </a>
