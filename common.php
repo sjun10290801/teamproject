@@ -16,6 +16,9 @@ if(!session_id()) {
 	$a_report = ["사기", "욕설·위협", "거래 약속 불이행", "반복적인 광고·도배", "타인 사칭", "개인정보 침해", "부적절한 프로필·게시물", "기타"];
 	$n_report = count($a_report);
 
+	$a_order = ["정렬방식", "최신순", "낮은가격순", "높은가격순", "조회수순"];
+    $n_order = count($a_order);
+
 	$page_line=5;
 	$page_block=5;
 

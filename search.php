@@ -51,37 +51,33 @@ if(!$location) {
 
 }
 
+    // 상품 정렬 방식 설정
+    $orderby = $_GET["orderby"] ?? 1; // 값이 있다면 받아오고, 없다면 디폴트가 1(최신순)
+
+    switch ($orderby) {
+      case 2:
+        $order_sql = "order by price asc, product_id desc"; // 낮은 가격 순 정렬
+        break;
+      case 3:
+        $order_sql = "order by price desc, product_id desc"; // 높은 가격 순 정렬
+        break;
+      case 4:
+        $order_sql = "order by view desc, product_id desc"; // 조회수순 정렬
+        break;
+      default:
+        $order_sql = "order by product_id desc"; // 최신순 정렬
+
+        break;
+    }
+
 
 // 상세주소, 시/도, 시/군/구 중 하나라도 검색어가 포함되면 검색 되도록 함.
 $args = "text=$text&location=$location";
 
 
-$sql = "select 
-            product_id, 
-            product.member_id, 
-            product.image, 
-            price, 
-            category, 
-            reg_date, 
-            state, 
-            product.juso1, 
-            product.juso2, 
-            product.juso3, 
-            product.name, 
-            view
-
-        from product 
-
-        inner join member 
-            on member.member_id = product.member_id 
-
-        where state != 2 
-            $tmp 
-            and product.name like '%$text%' 
-            $l_tmp 
-            and status = 0";
-
-
+$sql = "select product_id, product.member_id, product.image, price, category, reg_date, state, product.juso1, product.juso2, 
+        product.juso3, product.name, view from product inner join member on member.member_id = product.member_id 
+        where state != 2 $tmp and product.name like '%$text%' $l_tmp and status = 0 $order_sql";
 $result = mypagination($sql, $args, $count, $pagebar);
 
 if(!$result) exit("에러 : $sql");
@@ -112,19 +108,24 @@ if(!$result) exit("에러 : $sql");
 
         </div>
 
-
+        <form method="get" name="sel_form" action="search.php">
         <!-- ★ index.php에서 가져온 정렬창 디자인 -->
-        <select
-            class="form-select w-auto"
-            aria-label="Default select example"
-        >
-            <option>정렬방식</option>
-            <option>최신순</option>
-            <option>낮은가격순</option>
-            <option>높은가격순</option>
-            <option>조회수순</option>
+        <select class="form-select w-auto" aria-label="Default select example" onchange="sel_form.submit();" name="orderby">
+            <?php
+                for ($i = 1; $i < $n_order; $i++) {
+                if ($orderby == $i) {
+                    $is_selected = "selected";
+                } else {
+                    $is_selected = "";
+                }
+            ?>
+            <option value="<?php echo $i; ?>" <?php echo $is_selected; ?>><?php echo $a_order[$i]; ?></option>
+            <?php } ?>
         </select>
-
+        <input type="hidden" name="scroll" value="1">
+        <input type="hidden" name="text" value="<?php echo $text;?>">
+        <input type="hidden" name="location" value="<?php echo $location;?>">
+        </form>
     </div>
 
 </div>

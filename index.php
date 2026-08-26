@@ -329,10 +329,7 @@ $category_icon = ["", "bi-phone", "bi-lamp", "bi-plug", "bi-bag", "bi-controller
     <h4 class="mb-0 fw-bold section-title">등록된 상품</h4>
 
     <?php
-    $a_order = ["정렬방식", "최신순", "낮은가격순", "높은가격순", "조회수순"];
-    $n_order = count($a_order);
-
-    // 상품 정렬 방식 설정
+    //상품 정렬 방식 설정
     $orderby = $_POST["orderby"] ?? 1; // 값이 있다면 받아오고, 없다면 디폴트가 1(최신순)
 
     switch ($orderby) {

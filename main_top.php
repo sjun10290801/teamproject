@@ -65,7 +65,7 @@
   <?php
   include_once "common.php";
   // 로그인 한 경우 주소 가져오기
-  if (isset($_SESSION["id"])) {
+  if (isset($_SESSION["id"]) && !(isset($_GET["text"]))) {
     $member_id = getId();
     $sql = "select juso2 from member where member_id = $member_id";
     $top_result = mysqli_query($db, $sql);
