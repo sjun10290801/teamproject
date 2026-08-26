@@ -48,7 +48,7 @@ include "main_top.php";
                     회원가입
                 </a>
 
-                <a href="pwd_search.html"
+                <a href="pwd_search.php"
                     class="text-secondary text-decoration-none">
                     비밀번호 찾기
                 </a>
