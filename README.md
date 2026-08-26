@@ -25,9 +25,9 @@
 
 ## 팀원 및 역할
 | GitHub ID | 역할 |
-| @sjun10290801 | Backend 전체 개발, JavaScript 기능 구현
-| @moongchitory | Frontend 개발
-| @woo0303 | Frontend 개발
+| @sjun10290801 | Backend 전체 개발, JavaScript 기능 구현 |
+| @moongchitory | Frontend 개발 |
+| @woo0303 | Frontend 개발 |
 
 ## ERD
 ![ERD](./erd.png)
