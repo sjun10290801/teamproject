@@ -211,10 +211,24 @@
     border-color: #a8ccc8;
 }
 
+    .good-title{
+        color: #18766d;
+        font-size: 34px;
+        font-weight: 800;
+        position: relative;
+        top: 15px;
+    }
+
+    .good-page {
+    background: #f0f6f5;
+}
+
+    
 </style>
 
-<div class="container mt-5 mb-5">
-    <h2 class="text-center fw-bold">관심목록</h2>
+<div class = "good-page" >
+<div class="container mb-5">
+    <h2 class="text-center fw-bold good-title">관심목록</h2>
 </div>
 
 
@@ -343,7 +357,7 @@
 
 </div>
 
-
+</div>
 
 <?php
   include "main_bottom.php";
