@@ -293,6 +293,37 @@ if (!$result) {
     .category-item.active i {
         color: #ffffff;
     }
+
+    .public-pagination {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 0 20px 40px;
+    }
+
+    .public-pagination .pagination {
+        gap: 6px;
+        margin-bottom: 0;
+    }
+
+    .public-pagination .page-link {
+        min-width: 38px;
+        height: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #18766d;
+        background: #ffffff;
+        border: 1px solid #cfe1df;
+        border-radius: 10px !important;
+    }
+
+    .public-pagination .page-link:hover,
+    .public-pagination .page-item.active .page-link {
+        color: #ffffff;
+        background: #18766d;
+        border-color: #18766d;
+    }
 </style>
 
 <?php
@@ -486,11 +517,12 @@ $category_icon = [
             </div>
         </div>
 
-    <?php
-    }
-    echo $pagebar;
-    ?>
+    <?php } ?>
 
+</div>
+
+<div class="public-pagination">
+    <?php echo $pagebar; ?>
 </div>
 
 </main>
