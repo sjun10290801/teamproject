@@ -56,6 +56,36 @@
       width: 320px;
       height: 400px;
     }
+
+    .public-pagination {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0 40px;
+    }
+
+    .public-pagination .pagination {
+      gap: 6px;
+      margin-bottom: 0;
+    }
+
+    .public-pagination .page-link {
+      min-width: 38px;
+      height: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #18766d;
+      background: white;
+      border: 1px solid #cfe1df;
+      border-radius: 10px !important;
+    }
+
+    .public-pagination .page-link:hover,
+    .public-pagination .page-item.active .page-link {
+      color: white;
+      background: #18766d;
+      border-color: #18766d;
+    }
   </style>
   <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
@@ -165,13 +195,13 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="images/banner-wide.png" class="d-block w-100 object-fit-cover" style="height: 450px;" object-position: center; alt="...">
+        <img src="images/banner-wide.png?v=2" class="d-block w-100 object-fit-cover" style="height: 450px;" object-position: center; alt="중고거래 배너">
       </div>
       <div class="carousel-item">
-        <img src="images/banner2-wide.png" class="d-block w-100 object-fit-cover" style="height: 450px;" object-position: center; alt="...">
+        <img src="images/banner2-wide.png?v=2" class="d-block w-100 object-fit-cover" style="height: 450px;" object-position: center; alt="중고상품 등록 배너">
       </div>
       <div class="carousel-item">
-        <img src="images/banner3-wide.png" class="d-block w-100 object-fit-cover" style="height: 450px;" object-position: center; alt="...">
+        <img src="images/banner3-wide.png?v=2" class="d-block w-100 object-fit-cover" style="height: 450px;" object-position: center; alt="중고거래 채팅 배너">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
