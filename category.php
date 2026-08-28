@@ -9,39 +9,23 @@ $category = $_GET["menu"] ?? "";
 $session_id = $_SESSION["id"] ?? "";
 
 if ($session_id) {
-    $stmt = $db->stmt_init();
-    $sql = "select member_id from member where id = ?";
-    $stmt->prepare($sql);
-    $stmt->bind_param("s", $session_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
+    $sql = "select member_id from member where id = '$session_id'";
+    $result = mysqli_query($db, $sql);
     if (!$result) {
         exit("에러 : $sql");
     }
 
     $row = mysqli_fetch_assoc($result);
     $member_id = $row["member_id"];
-    $tmp = "and p.member_id != ?";
+    $tmp = "and p.member_id != $member_id";
 } else {
     $member_id = "";
     $tmp = "";
 }
 
 $page_line = 12;
-
-$stmt = $db->stmt_init();
 $sql = "select p.product_id, p.member_id, p.image, p.price, p.category, p.reg_date, p.state, p.juso1, p.juso2, p.juso3, p.name, p.view
-        from product p inner join member m on p.member_id = m.member_id where p.state != 2 $tmp and p.category = ? and m.status = 0";
-$stmt->prepare($sql);
-if($session_id) {
-    $stmt->bind_param("ii", $member_id, $category);
-} else {
-    $stmt->bind_param("i", $category);
-}
-$stmt->execute();
-$result = $stmt->get_result();
-
+        from product p inner join member m on p.member_id = m.member_id where p.state != 2 $tmp and p.category = '$category' and m.status = 0";
 
 $args = "menu=$category";
 
