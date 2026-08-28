@@ -356,8 +356,9 @@
 ?>
 
 </div>
-
+<?php echo $pagebar;?>
 </div>
+
 
 <?php
   include "main_bottom.php";
