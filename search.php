@@ -362,6 +362,37 @@ if(!$result) exit("에러 : $sql");
     box-shadow: 0 0 0 0.2rem rgba(24, 118, 109, 0.15);
 }
 
+.public-pagination {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0 40px;
+}
+
+.public-pagination .pagination {
+    gap: 6px;
+    margin-bottom: 0;
+}
+
+.public-pagination .page-link {
+    min-width: 38px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #18766d;
+    background: #ffffff;
+    border: 1px solid #cfe1df;
+    border-radius: 10px !important;
+}
+
+.public-pagination .page-link:hover,
+.public-pagination .page-item.active .page-link {
+    color: #ffffff;
+    background: #18766d;
+    border-color: #18766d;
+}
+
 </style>
 
 
@@ -561,12 +592,13 @@ if(!$result) exit("에러 : $sql");
 
 
     <?php
-
     }
-
-    echo $pagebar;
     ?>
 
+</div>
+
+<div class="public-pagination">
+    <?php echo $pagebar; ?>
 </div>
 
 </main>
