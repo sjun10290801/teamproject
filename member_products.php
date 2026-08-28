@@ -19,6 +19,13 @@ $result = mysqli_query($db, $sql);
 if (!$result) exit('에러:$sql');
 ?>
 
+<style>
+    .product-page {
+        background-color: #f0f6f5;
+    }
+</style>
+
+<div class="product-page">
 <main class="container py-5">
     <div class="mx-auto" style="max-width: 1000px;">
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -69,6 +76,7 @@ if (!$result) exit('에러:$sql');
            
         </div>
     </div>
+</div>
 </main>
 
 <?php

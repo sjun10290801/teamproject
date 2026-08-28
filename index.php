@@ -7,8 +7,8 @@ include_once "common.php";
 
 ?>
 <style>
-  body {
-    background-color: #f8f9fa;
+  .index-page {
+    background: #f0f6f5;
   }
 
   .main-btn {
@@ -32,13 +32,6 @@ include_once "common.php";
     border-left: 5px solid #18766d;
     padding-left: 12px;
   }
-
-
-
-
-
-
-
 
   .card-list {
     display: grid;
@@ -308,6 +301,7 @@ if (isset($_POST["scroll"])) {
 $category_icon = ["", "bi-phone", "bi-lamp", "bi-plug", "bi-bag", "bi-controller", "bi-three-dots"];
 ?>
 
+<div class = "index-page" >
 <div class="category-menu">
   <a href="index.php" class="category-item active">
     <i class="bi bi-grid-fill"></i>
@@ -509,6 +503,7 @@ $category_icon = ["", "bi-phone", "bi-lamp", "bi-plug", "bi-bag", "bi-controller
       <i class="bi bi-chevron-right ms-1"></i>
     </a>
   </div>
+      </div>
 
 </main>
 

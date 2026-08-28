@@ -15,6 +15,12 @@
     
 ?>
 <style>
+
+    .review-page {
+        background-color: #f0f6f5;
+        padding: 1px 0 40px 0;
+    }
+
     .review-title{
         color: #18766d;
         font-size: 40px;
@@ -94,6 +100,7 @@
 
 </style>
 
+<div class="review-page">
 <div class="container mt-5">
 
     <div class="container mt-5 mb-5">
@@ -140,6 +147,8 @@
 </div>
     </div>
 <?php } ?>
+</div>
+
 </div>
 
 

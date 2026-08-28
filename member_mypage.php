@@ -29,6 +29,10 @@ $count = $row1["rating_count"];
 
 ?>
 <style>
+    .mypage-page {
+        background-color: #f0f6f5;
+    }
+
     .mypage-tab {
         transition: 0.2s;
     }
@@ -39,6 +43,8 @@ $count = $row1["rating_count"];
         border-color: #18766d !important;
     }
 </style>
+
+<div class="mypage-page">
 <main class="container py-5">
     <h2 class="text-center fw-bold mb-5">마이페이지</h2>
     <section class="card mx-auto border-0 shadow-sm rounded-4 overflow-hidden" style="max-width: 700px;">
@@ -221,6 +227,7 @@ $count = $row1["rating_count"];
         }
         ?>
     </div>
+</div>
 
 </main>
 <?php
