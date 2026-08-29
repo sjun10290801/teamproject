@@ -4,7 +4,7 @@ if(!session_id()) {
 	session_start();
 }
 
-    $db = mysqli_connect("localhost", "market", "1234", "market");  // localhost db와 연결
+    $db = mysqli_connect("localhost", "", "", "");  // localhost db와 연결
     if(!$db) exit("DB연결에러"); // 연결 실패 시 종료
 
     $a_category = ["카테고리", "디지털기기", "가구", "가전", "의류", "게임", "기타"];
@@ -130,7 +130,7 @@ if(!session_id()) {
 		$page_e = $page_block * $block;				// 블록의 마지막페이지
 		if ($blocks <= $block) $page_e = $pages;
 
-		$pagebar ="<nav>
+			$pagebar ="<nav>
 			<ul class='pagination pagination-sm justify-content-center py-1'>";
 
 		if ($block > 1)				// 이전 블록으로
